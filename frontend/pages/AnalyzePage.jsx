@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import TagInput from '../components/TagInput'
-import { analyzeProfile } from '../services/api'
+import { useWingman } from '../services/WingmanContext'
+
+const PROFILE_KEY = 'wingman_profile'
 
 const ARCHETYPE_COLORS = {
   intellectual:     'bg-blue-900/40 text-blue-300 border-blue-700/40',
@@ -38,39 +40,33 @@ function Field({ label, children }) {
 
 const inputCls = 'w-full bg-slate-900 border border-border rounded-lg px-4 py-2.5 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-colors'
 
+const EMPTY_PROFILE = { name: '', age: '', bio: '', occupation: '', hobbies: [], interests: [], image_descriptions: [] }
+
 export default function AnalyzePage() {
-  const [profile, setProfile] = useState({
-    name: '',
-    age: '',
-    bio: '',
-    occupation: '',
-    hobbies: [],
-    interests: [],
-    image_descriptions: [],
+  const { analyzeLoading: loading, analyzeResult: result, analyzeError, runAnalyze } = useWingman()
+
+  const [profile, setProfile] = useState(() => {
+    try { return JSON.parse(localStorage.getItem(PROFILE_KEY)) || EMPTY_PROFILE } catch { return EMPTY_PROFILE }
   })
-  const [result, setResult] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [formError, setFormError] = useState(null)
+  const error = formError || analyzeError
 
-  const set = (key) => (val) => setProfile((p) => ({ ...p, [key]: val }))
+  const set = (key) => (val) => setProfile((p) => {
+    const next = { ...p, [key]: val }
+    localStorage.setItem(PROFILE_KEY, JSON.stringify(next))
+    return next
+  })
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     if (!profile.hobbies.length) {
-      setError('Add at least one hobby to analyse.')
+      setFormError('Add at least one hobby to analyse.')
       return
     }
-    setLoading(true)
-    setError(null)
-    setResult(null)
-    try {
-      const res = await analyzeProfile({ ...profile, age: parseInt(profile.age) || 0 })
-      setResult(res.data)
-    } catch (err) {
-      setError(err.response?.data?.detail || 'Analysis failed — is the backend running?')
-    } finally {
-      setLoading(false)
-    }
+    setFormError(null)
+    const payload = { ...profile, age: parseInt(profile.age) || 0 }
+    localStorage.setItem(PROFILE_KEY, JSON.stringify(payload))
+    runAnalyze(payload)  // fire-and-forget: state lives in context, survives tab switches
   }
 
   return (

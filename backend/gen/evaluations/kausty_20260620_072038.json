@@ -1,0 +1,150 @@
+{
+  "profile_name": "Kausty",
+  "timestamp": "20260620_072038",
+  "total": 9,
+  "evaluations": [
+    {
+      "agent_metadata": {
+        "agent_name": "Alejandra Torres",
+        "compatibility_score": 42
+      },
+      "psychological_critique": {
+        "first_impression": "A bit too much focus on personal style and not enough substance",
+        "perceived_value": "Seems like a student trying to present a cool image, but lacks depth or ambition signal. Photos don't convey energy or passion.",
+        "dealbreakers_detected": [
+          "Unexplained lack of photos with description; gives the impression of being private/ secretive"
+        ]
+      },
+      "actionable_feedback": {
+        "prompt_changes": [
+          "More context on your studies and what drives you beyond just liking geopolitics",
+          "Add some personal anecdotes or stories to showcase humor, vulnerability, or adventure spirit"
+        ],
+        "direct_quote": "'If you showed a bit more of your humble side and the world didn't revolve around your hairstyles, I'd take another look.'"
+      }
+    },
+    {
+      "agent_metadata": {
+        "agent_name": "Jordana Rivera",
+        "compatibility_score": 60
+      },
+      "psychological_critique": {
+        "first_impression": "His profile gives me mixed signals, a mix of seeming awkward and trying to project 'cool'. I'm not really picking up any energetic or lively vibes.",
+        "perceived_value": "He seems unsure of himself, lacking confidence in his interests and hobbies. His bio is quite... unusual for a guy my age. I'm not getting a solid provider signal from him either.",
+        "dealbreakers_detected": ""
+      },
+      "actionable_feedback": {
+        "prompt_changes": "Tell me about your passions! What drives you? Give me something to grab onto and discuss. Maybe highlight some of your favorite gaming moments or how geopolitics impacts your workout routine (gosh, even just a sentence would be great!)",
+        "direct_quote": "'Show me the guy who's hiding beneath those intense gaming sessions – I bet he has a funnier side, and maybe that's how we'd vibe.'"
+      }
+    },
+    {
+      "agent_metadata": {
+        "agent_name": "Aisha Johnson",
+        "compatibility_score": 40
+      },
+      "psychological_critique": {
+        "first_impression": "Unimpressive. Kausty's photos don't radiate high energy, health, or good grooming. His bio is underwhelming.",
+        "perceived_value": "I perceive him as lacking ambition and a clear life direction. His interests in gaming and history suggest a more relaxed pace, but I'm unsure if that aligns with my expectations of a driven partner.",
+        "dealbreakers_detected": "[None]"
+      },
+      "actionable_feedback": {
+        "prompt_changes": "Update your bio to highlight your academic pursuits or career aspirations. Consider adding a few witty one-liners or interesting facts about yourself. Make sure to provide some context for your hobbies and interests so I can understand what drives you.",
+        "direct_quote": "'Upgrade from 'student' status; show me concrete achievements or growth stories, like your favorite book recommendation or most impressive work-related accomplishment.'"
+      }
+    },
+    {
+      "agent_metadata": {
+        "agent_name": "Maya Patel",
+        "compatibility_score": 40
+      },
+      "psychological_critique": {
+        "first_impression": "I get a feeling of confusion looking at Kausty's profile. He doesn't seem to have any clear direction or passion, which makes me question his provider and ambition signal.",
+        "perceived_value": "As far as I can tell, Kausty isn't showing much value or maturity in his bio. He seems more interested in playing video games and changing hairstyles than having meaningful interactions. It's like he's stuck in a temporary state of indecision.",
+        "dealbreakers_detected": "The fact that Kausty doesn't seem to care about presenting himself attractively (no photo descriptions, awkward styling) is a huge turn-off for me."
+      },
+      "actionable_feedback": {
+        "prompt_changes": "Kausty should focus on showcasing his personality, interests, and passions in a way that feels authentic and relatable. Maybe sharing what drives him or what he's passionate about outside of gaming could be more interesting.",
+        "direct_quote": "'If you could show me something beyond the surface, like a genuine interest in life, I'd swipe right.'"
+      }
+    },
+    {
+      "agent_metadata": {
+        "agent_name": "Jade Morin",
+        "compatibility_score": 40
+      },
+      "psychological_critique": {
+        "first_impression": "A bit bland, but I do appreciate the honesty about his hairstyles! It's refreshing. He seems more like an introverted observer rather than someone actively seeking adventure.",
+        "perceived_value": "He appears to be low on provider signal, no clear career ambition in sight. His photo descriptions lack any engaging context or emotional resonance. My instincts signal a potentially stagnant social life, which doesn't excite me much.",
+        "dealbreakers_detected": "The complete absence of travel-related experiences or hobbies gives me pause. I value my independence and freedom as a digital nomad."
+      },
+      "actionable_feedback": {
+        "prompt_changes": "Try incorporating a brief story or anecdote about your interests in geopolitics, history, or gaming. This will allow potential matches to glimpse your personality and spark meaningful conversations.",
+        "direct_quote": "'If you shared some wild camping stories or your favorite hiking routes, I might swipe right. Right now, the 'I'm trying too hard to look cool' vibe keeps me cautious.'"
+      }
+    },
+    {
+      "agent_metadata": {
+        "agent_name": "Clara Weber",
+        "compatibility_score": 42
+      },
+      "psychological_critique": {
+        "first_impression": "His photos didn't immediately scream 'high energy' or 'health,' which makes me wonder if he's as active as I'd like. His bio and tone seem somewhat laid-back, but not in a charming way.",
+        "perceived_value": "As a software developer, Kausty seems to have some skills, but his overall vibe is more casual than what I'm used to. He lacks the drive and ambition I usually look for in a partner.",
+        "dealbreakers_detected": []
+      },
+      "actionable_feedback": {
+        "prompt_changes": "If Kausty wants to attract someone like me, he should shift focus from his hairstyles (which initially raised some eyebrow emojis) to showcasing his passions and values. Perhaps he could highlight hobbies or interests that show me a glimpse of who he is beyond appearances.",
+        "direct_quote": "'I love when guys can balance edgy with empathy – it's what I'm missing here. Adding more personality to his bio and showing more emotional labor would make him a stronger candidate in my book.'"
+      }
+    },
+    {
+      "agent_metadata": {
+        "agent_name": "Priya Sharma",
+        "compatibility_score": 40
+      },
+      "psychological_critique": {
+        "first_impression": "A bit disjointed, with no clear sense of his personality or values. His love for changes in hairstyles and beard styles raises more questions than it answers.",
+        "perceived_value": "His occupation as a student makes me question his sense of direction and ambition. The focus on gaming and geopolitics suggests he might be more interested in escapism than personal growth.",
+        "dealbreakers_detected": "The lack of photo descriptions or any context to accompany his profile photos makes me wonder what's behind the awkwardness. The absence of a clear interest beyond gaming is also concerning."
+      },
+      "actionable_feedback": {
+        "prompt_changes": "Kausty should highlight his unique strengths, such as being a student, and provide more insight into his extracurricular activities or research interests. A well-crafted passion project or hobby description could make his profile stand out.",
+        "direct_quote": "If you actually showed me what makes your beard styles so meaningful to you instead of just listing them, I'd swipe right."
+      }
+    },
+    {
+      "agent_metadata": {
+        "agent_name": "Grace Roberts",
+        "compatibility_score": 20
+      },
+      "psychological_critique": {
+        "first_impression": "My initial thought is that Kausty's profile seems quite... basic. His lack of detail or personal touches makes me wonder what drives him.",
+        "perceived_value": "Given his student status, I assume he's still figuring out his ambitions and values. However, his frequent changes in hairstyle and beard styles suggest an attempt to present himself as exciting or edgy, but it falls flat with me. His interests seem quite narrow, and his photos provide no insight into who he is as a person.",
+        "dealbreakers_detected": [
+          "The absence of any background information makes me question his motivation for finding love",
+          "His lack of self-awareness through constant changes in appearance smacks of insecurity"
+        ]
+      },
+      "actionable_feedback": {
+        "prompt_changes": "Kausty, please share more about yourself beyond just listing your hobbies and interests. What gets you excited? What are you passionate about? Show me the real you!",
+        "direct_quote": "'If he shared some humor or a fun fact about himself instead of trying to impress with his haircut, I might be curious enough to swipe right.'"
+      }
+    },
+    {
+      "agent_metadata": {
+        "agent_name": "Storm Nguyen",
+        "compatibility_score": 60
+      },
+      "psychological_critique": {
+        "first_impression": "Unpredictable energy, but it feels like I'm not sure what to expect. His constant hairstyle and beard changes give me whiplash.",
+        "perceived_value": "It seems like he's trying to reinvent himself every quarter, which raises concerns about his commitment and emotional maturity. The focus on gaming, geopolitics, and history makes me wonder if he's more of a lone wolf.",
+        "dealbreakers_detected": "The lack of context in the photo descriptions is a huge red flag for me. I want to know what's behind those intense stares or smirks."
+      },
+      "actionable_feedback": {
+        "prompt_changes": "Add some personality and humor to your bio! If you genuinely enjoy gaming, geopolitics, and history, share why they interest you beyond the surface level. Use descriptive language for your photos so I can imagine how it feels to be there.",
+        "direct_quote": "'Show me what makes you weird instead of just trying to look cool all the time.'"
+      }
+    }
+  ]
+}
