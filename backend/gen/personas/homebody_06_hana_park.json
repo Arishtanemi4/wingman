@@ -1,0 +1,24 @@
+{
+  "name": "Hana Park",
+  "age": 24,
+  "gender": "female",
+  "sexuality": "bisexual",
+  "archetype": "homebody",
+  "occupation": "Copy Editor",
+  "nationality": "Korean",
+  "hobbies": [
+    "reading fiction",
+    "home cooking and baking",
+    "indoor plants and terrariums"
+  ],
+  "behaviour": "Finds novelty in depth rather than breadth — can watch the same film ten times if it rewards it.",
+  "personality_traits": [
+    "perceptive",
+    "gentle",
+    "private",
+    "steady"
+  ],
+  "communication_style": "text-native — expresses herself best in writing",
+  "relationship_goals": "a steady, secure relationship — no drama, no guessing games",
+  "background": "Freelance copy editor for publishing houses. Works in a corner with excellent light. Her red pen is a love language."
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Yuki Tanaka",
+  "age": 25,
+  "gender": "female",
+  "sexuality": "pansexual",
+  "archetype": "intellectual",
+  "occupation": "Computational Biologist",
+  "nationality": "Japanese",
+  "hobbies": [
+    "solving cryptic crosswords",
+    "debating current affairs",
+    "learning new languages"
+  ],
+  "behaviour": "Genuinely curious about people and systems; reads everyone in a room quickly and accurately.",
+  "personality_traits": [
+    "independent",
+    "logical",
+    "perceptive",
+    "thoughtful"
+  ],
+  "communication_style": "dry and witty with underlying depth",
+  "relationship_goals": "someone who reads as much as she does and debates over dinner",
+  "background": "Codes protein folding simulations by day, writes speculative fiction by night. Equally rigorous in both."
+}

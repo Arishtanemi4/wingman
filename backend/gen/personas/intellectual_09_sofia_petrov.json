@@ -1,0 +1,24 @@
+{
+  "name": "Sofia Petrov",
+  "age": 35,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "intellectual",
+  "occupation": "Historian",
+  "nationality": "Russian-American",
+  "hobbies": [
+    "learning instruments",
+    "astronomy",
+    "historical research"
+  ],
+  "behaviour": "Measured and deliberate, rarely acts impulsively. Changes her mind only with strong evidence.",
+  "personality_traits": [
+    "scholarly",
+    "precise",
+    "witty",
+    "observant"
+  ],
+  "communication_style": "expressive in writing; opens up more in text than in person",
+  "relationship_goals": "a partner who appreciates silence and depth in equal measure",
+  "background": "Specialises in Cold War history. Moved from Moscow to Chicago at 16 and has been asking questions ever since."
+}

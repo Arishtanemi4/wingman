@@ -1,0 +1,24 @@
+{
+  "name": "Lena Müller",
+  "age": 23,
+  "gender": "female",
+  "sexuality": "queer",
+  "archetype": "creative",
+  "occupation": "Graphic Designer",
+  "nationality": "German",
+  "hobbies": [
+    "film analysis",
+    "journaling",
+    "fashion illustration"
+  ],
+  "behaviour": "Deeply empathetic, absorbs others' emotions like a sponge; needs recharge time after intense social interactions.",
+  "personality_traits": [
+    "aesthetic",
+    "sensitive",
+    "original",
+    "observant"
+  ],
+  "communication_style": "visual and tactile, describes the world in sensory terms",
+  "relationship_goals": "someone who adventures through art, music, and culture with her",
+  "background": "Bauhaus-obsessed, Gen-Z energy. Designs typefaces for fun and protest posters for necessity. Always overcommitted."
+}

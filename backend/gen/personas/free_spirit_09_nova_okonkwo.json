@@ -1,0 +1,24 @@
+{
+  "name": "Nova Okonkwo",
+  "age": 30,
+  "gender": "female",
+  "sexuality": "lesbian",
+  "archetype": "free_spirit",
+  "occupation": "Travelling Portrait Artist",
+  "nationality": "Nigerian-American",
+  "hobbies": [
+    "spontaneous road trips",
+    "contact improvisation dance",
+    "dumpster diving and zero-waste living"
+  ],
+  "behaviour": "Romantically adventurous but not careless; feels deeply even when she moves lightly.",
+  "personality_traits": [
+    "open",
+    "grounded",
+    "whimsical",
+    "authentic"
+  ],
+  "communication_style": "present-tense focused, rarely talks about the abstract future",
+  "relationship_goals": "a love that asks nothing except to be real",
+  "background": "Travels to paint people in their contexts — fishermen in Senegal, factory workers in Shenzhen, ranchers in Montana. Sells prints to fund the next trip."
+}

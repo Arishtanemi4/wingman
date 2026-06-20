@@ -1,0 +1,24 @@
+{
+  "name": "Sakura Yamamoto",
+  "age": 27,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "creative",
+  "occupation": "Independent Filmmaker",
+  "nationality": "Japanese",
+  "hobbies": [
+    "painting",
+    "life drawing",
+    "songwriting"
+  ],
+  "behaviour": "Observational and detail-oriented; notices things others walk past. Has strong opinions about craft.",
+  "personality_traits": [
+    "romantic",
+    "perfectionist",
+    "playful",
+    "intuitive"
+  ],
+  "communication_style": "deep listener who responds with stories",
+  "relationship_goals": "a relationship that feels like a great story",
+  "background": "Short films shown at Rotterdam and SXSW. Makes slow, quiet cinema about loneliness and belonging."
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Nadia Volkov",
+  "age": 31,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "adventurer",
+  "occupation": "Expedition Leader",
+  "nationality": "Russian",
+  "hobbies": [
+    "rock climbing",
+    "backcountry hiking",
+    "scuba diving"
+  ],
+  "behaviour": "Adaptable and observant; absorbs local cultures quickly and respectfully.",
+  "personality_traits": [
+    "observant",
+    "grounded",
+    "energetic",
+    "free-spirited"
+  ],
+  "communication_style": "warm and inclusive, brings people into her stories",
+  "relationship_goals": "a partner who says yes to last-minute plans",
+  "background": "Led three polar expeditions. Writes a dry, funny blog about the absurdity of extreme environments. Fluent in three languages."
+}

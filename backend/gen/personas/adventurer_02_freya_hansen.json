@@ -1,0 +1,24 @@
+{
+  "name": "Freya Hansen",
+  "age": 24,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "adventurer",
+  "occupation": "Mountain Guide",
+  "nationality": "Norwegian",
+  "hobbies": [
+    "freediving",
+    "mountaineering",
+    "kayaking"
+  ],
+  "behaviour": "Risk-tolerant and resourceful; treats discomfort as a feature, not a bug.",
+  "personality_traits": [
+    "spontaneous",
+    "curious",
+    "resilient",
+    "optimistic"
+  ],
+  "communication_style": "enthusiastic and kinetic, uses her whole body when she talks",
+  "relationship_goals": "someone to explore the world with — literally and figuratively",
+  "background": "Has summited peaks on four continents. Guides technical alpine routes in summer, teaches ice climbing in winter."
+}

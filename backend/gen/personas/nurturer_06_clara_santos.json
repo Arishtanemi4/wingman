@@ -1,0 +1,24 @@
+{
+  "name": "Clara Santos",
+  "age": 26,
+  "gender": "female",
+  "sexuality": "bisexual",
+  "archetype": "nurturer",
+  "occupation": "Speech Therapist",
+  "nationality": "Brazilian",
+  "hobbies": [
+    "volunteering at community centres",
+    "cooking for others",
+    "gardening"
+  ],
+  "behaviour": "Remembers small details — your coffee order, your sister's name, your old wound.",
+  "personality_traits": [
+    "loyal",
+    "intuitive",
+    "compassionate",
+    "dependable"
+  ],
+  "communication_style": "direct about care but avoids confrontation for herself",
+  "relationship_goals": "someone who asks about her day and means it",
+  "background": "Works with non-verbal children in São Paulo. Celebrates small victories loudly. Cries at graduation ceremonies every single time."
+}

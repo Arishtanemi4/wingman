@@ -1,0 +1,24 @@
+{
+  "name": "Raven Black",
+  "age": 26,
+  "gender": "female",
+  "sexuality": "bisexual",
+  "archetype": "rebel",
+  "occupation": "Tattoo Artist",
+  "nationality": "British",
+  "hobbies": [
+    "underground music discovery",
+    "documentary filmmaking",
+    "feminist theory reading"
+  ],
+  "behaviour": "Deeply principled; discomfort with injustice isn't performative — she acts on it.",
+  "personality_traits": [
+    "fierce",
+    "rebellious",
+    "passionate",
+    "critical"
+  ],
+  "communication_style": "politically charged and sharp, never neutral on what matters to her",
+  "relationship_goals": "someone who shares her values and has their own strong convictions",
+  "background": "Runs a collective studio in Shoreditch. Her work is narrative and dark. Hates flash; loves custom pieces that mean something."
+}

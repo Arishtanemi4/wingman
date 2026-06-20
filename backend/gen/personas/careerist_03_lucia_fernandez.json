@@ -1,0 +1,24 @@
+{
+  "name": "Lucia Fernandez",
+  "age": 34,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "careerist",
+  "occupation": "Startup Founder",
+  "nationality": "Spanish",
+  "hobbies": [
+    "public speaking clubs",
+    "financial markets analysis",
+    "mentoring juniors"
+  ],
+  "behaviour": "Efficient and time-conscious; shows love through quality time, not quantity.",
+  "personality_traits": [
+    "independent",
+    "goal-oriented",
+    "efficient",
+    "sophisticated"
+  ],
+  "communication_style": "assertive and clear, says what she means",
+  "relationship_goals": "a secure relationship that doesn't compete with her work",
+  "background": "Series B SaaS company, 60-person team. Third startup. Failed twice, succeeded spectacularly once. Prefers founders over VCs at dinner."
+}

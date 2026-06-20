@@ -1,0 +1,24 @@
+{
+  "name": "Emily Taylor",
+  "age": 29,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "traditionalist",
+  "occupation": "Nurse",
+  "nationality": "British",
+  "hobbies": [
+    "cooking family recipes",
+    "attending religious or community services",
+    "genealogy research"
+  ],
+  "behaviour": "Values stability and consistency; believes that love is a daily choice made over a lifetime.",
+  "personality_traits": [
+    "dependable",
+    "loyal",
+    "warm",
+    "grounded"
+  ],
+  "communication_style": "warm and direct, says what she means and means what she says",
+  "relationship_goals": "a committed life partner who shares her values and family vision",
+  "background": "Surgical ward at Leeds General. Third-generation NHS worker. Knows the value of a long shift and a long table with everyone round it."
+}

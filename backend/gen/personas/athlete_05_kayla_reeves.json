@@ -1,0 +1,24 @@
+{
+  "name": "Kayla Reeves",
+  "age": 28,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "athlete",
+  "occupation": "Sports Physiotherapist",
+  "nationality": "American",
+  "hobbies": [
+    "HIIT training",
+    "cycling",
+    "hiking"
+  ],
+  "behaviour": "Team-oriented; collaboration and trust are core values, not just buzzwords.",
+  "personality_traits": [
+    "direct",
+    "grounded",
+    "focused",
+    "confident"
+  ],
+  "communication_style": "emotionally straightforward — checks in, doesn't hint",
+  "relationship_goals": "deep connection through shared physical experiences",
+  "background": "Works with an NBA development team in Phoenix. Fixes the problem and fixes the pattern that caused it. Runs marathons off-season for fun."
+}

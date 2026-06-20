@@ -1,0 +1,24 @@
+{
+  "name": "Beth Lawson",
+  "age": 30,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "homebody",
+  "occupation": "Museum Archivist",
+  "nationality": "American",
+  "hobbies": [
+    "jigsaw puzzles",
+    "sourdough baking",
+    "vintage book collecting"
+  ],
+  "behaviour": "Slow to open up but deeply loyal once she does; trust is the threshold, not time.",
+  "personality_traits": [
+    "perceptive",
+    "gentle",
+    "private",
+    "steady"
+  ],
+  "communication_style": "deep-diver in conversation; hates surface-level exchanges",
+  "relationship_goals": "a relationship that grows slowly and lasts long",
+  "background": "Archives 19th century photography at the Smithsonian. Knows the provenance of objects most people walk past. Slow to trust, permanently loyal."
+}

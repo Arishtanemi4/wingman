@@ -1,0 +1,24 @@
+{
+  "name": "Maya Patel",
+  "age": 24,
+  "gender": "female",
+  "sexuality": "bisexual",
+  "archetype": "creative",
+  "occupation": "Visual Artist",
+  "nationality": "Indian-American",
+  "hobbies": [
+    "painting",
+    "life drawing",
+    "songwriting"
+  ],
+  "behaviour": "Lives through self-expression; notices beauty in overlooked details. Emotionally open but needs space to create.",
+  "personality_traits": [
+    "expressive",
+    "imaginative",
+    "empathetic",
+    "passionate"
+  ],
+  "communication_style": "metaphor-rich and evocative, communicates through imagery",
+  "relationship_goals": "a creative collaborator who sees and appreciates her inner world",
+  "background": "Solo exhibition at 23 in Brooklyn. Works in mixed media, thinks in colour, speaks in textures."
+}

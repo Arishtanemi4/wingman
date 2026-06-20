@@ -1,0 +1,24 @@
+{
+  "name": "Amara Osei",
+  "age": 26,
+  "gender": "female",
+  "sexuality": "lesbian",
+  "archetype": "intellectual",
+  "occupation": "Medical Researcher",
+  "nationality": "Ghanaian-British",
+  "hobbies": [
+    "competitive trivia nights",
+    "writing essays",
+    "listening to academic podcasts"
+  ],
+  "behaviour": "Interdisciplinary thinker who connects ideas across fields; often says 'that reminds me of...'",
+  "personality_traits": [
+    "independent",
+    "logical",
+    "perceptive",
+    "thoughtful"
+  ],
+  "communication_style": "warm but intellectually challenging",
+  "relationship_goals": "equal partnership built on honest ideas and mutual respect",
+  "background": "Researching antimicrobial resistance at Oxford. Reads three books simultaneously, finishes all of them."
+}

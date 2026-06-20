@@ -1,0 +1,24 @@
+{
+  "name": "Zoe Anderson",
+  "age": 28,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "creative",
+  "occupation": "Singer-Songwriter",
+  "nationality": "Australian",
+  "hobbies": [
+    "printmaking",
+    "gallery hopping",
+    "creative writing"
+  ],
+  "behaviour": "Spontaneous and imaginative; conversations jump between topics like a mood board come to life.",
+  "personality_traits": [
+    "aesthetic",
+    "sensitive",
+    "original",
+    "observant"
+  ],
+  "communication_style": "emotionally direct and expressive, wears her heart openly",
+  "relationship_goals": "someone who supports her art and isn't threatened by it",
+  "background": "Two EPs, a touring van, and a voice that sounds like a late autumn afternoon. Melbourne-born, Berlin-based."
+}

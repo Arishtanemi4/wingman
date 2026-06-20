@@ -1,0 +1,24 @@
+{
+  "name": "Birgit Johansson",
+  "age": 31,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "athlete",
+  "occupation": "Sports Nutritionist",
+  "nationality": "Swedish",
+  "hobbies": [
+    "sports nutrition research",
+    "parkour",
+    "trail running"
+  ],
+  "behaviour": "Health-conscious without being preachy; leads by example, doesn't lecture.",
+  "personality_traits": [
+    "team-oriented",
+    "determined",
+    "physical",
+    "motivated"
+  ],
+  "communication_style": "passionate and intense when on topics she cares about",
+  "relationship_goals": "a partnership built on respect, shared values, and great endorphins",
+  "background": "Works with Swedish Olympic athletes. Evidence-only approach. Writes a newsletter debunking sports nutrition myths that coaches forward to their teams."
+}

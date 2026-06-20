@@ -1,0 +1,24 @@
+{
+  "name": "Grace Roberts",
+  "age": 28,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "nurturer",
+  "occupation": "Pediatric Nurse",
+  "nationality": "British",
+  "hobbies": [
+    "volunteering at community centres",
+    "cooking for others",
+    "gardening"
+  ],
+  "behaviour": "Attuned and empathetic; notices how people feel before they say a word.",
+  "personality_traits": [
+    "empathetic",
+    "caring",
+    "patient",
+    "warm"
+  ],
+  "communication_style": "warm and attentive, makes you feel heard",
+  "relationship_goals": "a partner who reciprocates her care and shows up for her too",
+  "background": "GOSH nurse for five years. Has a gift for calm in crisis and a laugh that reliably un-tenses a room."
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Charlotte Williams",
+  "age": 28,
+  "gender": "female",
+  "sexuality": "bisexual",
+  "archetype": "careerist",
+  "occupation": "Brand Strategist",
+  "nationality": "British",
+  "hobbies": [
+    "TED talks",
+    "running",
+    "squash"
+  ],
+  "behaviour": "Direct about what she wants; plays no games and expects the same.",
+  "personality_traits": [
+    "ambitious",
+    "disciplined",
+    "strategic",
+    "confident"
+  ],
+  "communication_style": "high-bandwidth conversationalist, covers a lot fast",
+  "relationship_goals": "someone who challenges her and calls her on her blind spots",
+  "background": "Brand director at a creative agency, clients across FTSE 100. Equally at home in a boardroom or a moodboard session."
+}

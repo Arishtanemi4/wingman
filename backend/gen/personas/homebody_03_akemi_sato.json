@@ -1,0 +1,24 @@
+{
+  "name": "Akemi Sato",
+  "age": 25,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "homebody",
+  "occupation": "Literary Translator",
+  "nationality": "Japanese",
+  "hobbies": [
+    "board games with close friends",
+    "video games",
+    "knitting or crochet"
+  ],
+  "behaviour": "Recharges alone; needs downtime after social events even with people she loves.",
+  "personality_traits": [
+    "perceptive",
+    "gentle",
+    "private",
+    "steady"
+  ],
+  "communication_style": "thoughtful listener who gives full attention",
+  "relationship_goals": "deep intimacy built slowly and maintained with intention",
+  "background": "Translates Japanese fiction into English. Lives with three cats and a great selection of tea. Correspondence is her preferred form of friendship."
+}

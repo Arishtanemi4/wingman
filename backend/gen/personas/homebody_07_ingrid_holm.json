@@ -1,0 +1,24 @@
+{
+  "name": "Ingrid Holm",
+  "age": 33,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "homebody",
+  "occupation": "Tax Accountant",
+  "nationality": "Norwegian",
+  "hobbies": [
+    "fermenting and preserving foods",
+    "learning new recipes",
+    "podcast listening"
+  ],
+  "behaviour": "Stable and consistent; provides steady, reliable energy that people orbit for reassurance.",
+  "personality_traits": [
+    "introverted",
+    "thoughtful",
+    "calm",
+    "loyal"
+  ],
+  "communication_style": "calm and non-reactive, rarely raises her voice",
+  "relationship_goals": "someone who cherishes the small domestic rituals as much as she does",
+  "background": "Solo practice in Bergen. Has memorised every tax code and apologises for nothing. Bakes elaborate cakes on the weekend to reset."
+}

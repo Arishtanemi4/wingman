@@ -1,0 +1,24 @@
+{
+  "name": "Marie Girard",
+  "age": 34,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "traditionalist",
+  "occupation": "Family Counsellor",
+  "nationality": "French",
+  "hobbies": [
+    "cooking family recipes",
+    "attending religious or community services",
+    "genealogy research"
+  ],
+  "behaviour": "Comfortable with who she is; doesn't need to reinvent herself, just deepen.",
+  "personality_traits": [
+    "traditional",
+    "practical",
+    "nurturing",
+    "steady"
+  ],
+  "communication_style": "storytelling style rooted in family and community history",
+  "relationship_goals": "someone her family would love and who loves them back",
+  "background": "Catholic marriage and family counsellor in Lyon. Genuinely believes in permanence and helps others find it. Practical about love and idealistic about commitment."
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Jasmine Williams",
+  "age": 26,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "social_butterfly",
+  "occupation": "Event Planner",
+  "nationality": "African-American",
+  "hobbies": [
+    "online content creation",
+    "charity galas",
+    "club nights"
+  ],
+  "behaviour": "Energy comes from people; a long solo weekend leaves her restless.",
+  "personality_traits": [
+    "energetic",
+    "social",
+    "entertaining",
+    "generous"
+  ],
+  "communication_style": "enthusiastic and high-energy, hard not to match",
+  "relationship_goals": "someone who enjoys sharing her socially but isn't threatened by her warmth",
+  "background": "Has planned 200 weddings, never been to a bad one. Treats every event like a love letter to the guests. Atlanta to New York."
+}

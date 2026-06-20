@@ -1,0 +1,24 @@
+{
+  "name": "Caitlin Byrne",
+  "age": 31,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "traditionalist",
+  "occupation": "Office Administrator",
+  "nationality": "Irish",
+  "hobbies": [
+    "family board game nights",
+    "local history societies",
+    "folk music and dancing"
+  ],
+  "behaviour": "Family and community are her first reference points; connection to lineage matters deeply.",
+  "personality_traits": [
+    "family-oriented",
+    "patient",
+    "stable",
+    "committed"
+  ],
+  "communication_style": "patient and calm, rarely reactive",
+  "relationship_goals": "a loving, stable relationship built over years, not weeks",
+  "background": "Runs a mid-size solicitors' office in Limerick with quiet, total command. Organises everything from the summer barbecue to the filing system. Indispensable."
+}

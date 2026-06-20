@@ -1,0 +1,24 @@
+{
+  "name": "Marta Silva",
+  "age": 26,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "athlete",
+  "occupation": "Professional Footballer",
+  "nationality": "Portuguese",
+  "hobbies": [
+    "weightlifting",
+    "outdoor running",
+    "CrossFit"
+  ],
+  "behaviour": "Emotionally resilient — treats setbacks like a bad training day: tomorrow, again.",
+  "personality_traits": [
+    "team-oriented",
+    "determined",
+    "physical",
+    "motivated"
+  ],
+  "communication_style": "team-player framing: 'we' over 'I'",
+  "relationship_goals": "someone who matches her discipline and calls her on her excuses",
+  "background": "Midfield for a Primeira Liga women's team. Scholarship kid from Porto who made it. Has a brother who supports the wrong team."
+}

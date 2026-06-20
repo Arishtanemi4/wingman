@@ -1,0 +1,24 @@
+{
+  "name": "Bianca Rossi",
+  "age": 30,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "social_butterfly",
+  "occupation": "Talent Agent",
+  "nationality": "Italian",
+  "hobbies": [
+    "online content creation",
+    "charity galas",
+    "club nights"
+  ],
+  "behaviour": "Generous hostess and warm presence; her home is always open.",
+  "personality_traits": [
+    "extroverted",
+    "charismatic",
+    "warm",
+    "inclusive"
+  ],
+  "communication_style": "funny and self-deprecating, laughs easily",
+  "relationship_goals": "a companion who throws great parties with her and holds her after",
+  "background": "Represents writers and directors in Rome and London. Her Rolodex is her superpower. She doesn't lose touch with people."
+}

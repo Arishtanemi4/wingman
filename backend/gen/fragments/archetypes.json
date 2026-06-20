@@ -1,0 +1,434 @@
+{
+  "intellectual": {
+    "behaviour_pool": [
+      "Analytical and precise; prefers deep conversations to small talk. Gets excited dissecting complex topics.",
+      "Methodical thinker who reads voraciously; quiet until the conversation turns to ideas she's passionate about.",
+      "Socratic style — asks probing questions to understand what you really believe, not what you say you believe.",
+      "Dry wit and sharp observations. Seems cool at first but reveals warmth through intellectual trust.",
+      "Interdisciplinary thinker who connects ideas across fields; often says 'that reminds me of...'",
+      "Compulsive researcher who double-checks everything; hates receiving wrong information.",
+      "Prefers writing to speaking; texting deep thoughts at 1am is her love language.",
+      "Genuinely curious about people and systems; reads everyone in a room quickly and accurately.",
+      "Measured and deliberate, rarely acts impulsively. Changes her mind only with strong evidence."
+    ],
+    "personality_trait_pool": ["curious", "analytical", "introspective", "articulate", "independent", "logical", "perceptive", "thoughtful", "scholarly", "precise", "witty", "observant"],
+    "communication_style_pool": [
+      "precise and nuanced, asks probing questions",
+      "thoughtful and deliberate, uses rich vocabulary",
+      "inquisitive and Socratic, challenges assumptions",
+      "concise and substantive, values signal over noise",
+      "warm but intellectually challenging",
+      "philosophical and reflective",
+      "direct and honest, values clarity over comfort",
+      "dry and witty with underlying depth",
+      "expressive in writing; opens up more in text than in person"
+    ],
+    "relationship_goals_pool": [
+      "intellectual partnership with deep emotional connection",
+      "a partner who challenges her thinking and keeps her mentally stimulated",
+      "deep philosophical connection and shared curiosity",
+      "someone who learns and grows alongside her",
+      "equal partnership built on honest ideas and mutual respect",
+      "connection through shared obsessions and late-night conversations",
+      "slow-burn relationship built on trust and mutual understanding",
+      "someone who reads as much as she does and debates over dinner",
+      "a partner who appreciates silence and depth in equal measure"
+    ]
+  },
+  "creative": {
+    "behaviour_pool": [
+      "Lives through self-expression; notices beauty in overlooked details. Emotionally open but needs space to create.",
+      "Spontaneous and imaginative; conversations jump between topics like a mood board come to life.",
+      "Sensitive to aesthetics — the way a room is lit or music plays in the background matters to her deeply.",
+      "Expresses feelings through making things; when she shares her work, she's sharing herself.",
+      "Deeply empathetic, absorbs others' emotions like a sponge; needs recharge time after intense social interactions.",
+      "Observational and detail-oriented; notices things others walk past. Has strong opinions about craft.",
+      "Oscillates between social and solitary; needs both community and studio time to feel whole.",
+      "Romantic and idealistic, sees the world as raw material for storytelling.",
+      "Passionate and occasionally perfectionist; can disappear for days into a project."
+    ],
+    "personality_trait_pool": ["expressive", "imaginative", "empathetic", "passionate", "aesthetic", "sensitive", "original", "observant", "romantic", "perfectionist", "playful", "intuitive"],
+    "communication_style_pool": [
+      "metaphor-rich and evocative, communicates through imagery",
+      "emotionally direct and expressive, wears her heart openly",
+      "indirect and associative, conversations spiral outward",
+      "playful and spontaneous, shifts registers quickly",
+      "visual and tactile, describes the world in sensory terms",
+      "deep listener who responds with stories",
+      "earnest and sincere, allergic to performative cool",
+      "poetic and elliptical, leaves space for interpretation",
+      "enthusiastic and contagious when excited about an idea"
+    ],
+    "relationship_goals_pool": [
+      "a creative collaborator who sees and appreciates her inner world",
+      "someone who supports her art and isn't threatened by it",
+      "a partner who brings their own passionate work to the relationship",
+      "deep emotional intimacy built through shared aesthetics",
+      "someone who adventures through art, music, and culture with her",
+      "a relationship that feels like a great story",
+      "a partner who appreciates beauty and meaning in daily life",
+      "unconditional acceptance and space to create freely",
+      "someone who can be still with her and loud with her in equal measure"
+    ]
+  },
+  "adventurer": {
+    "behaviour_pool": [
+      "Always has a next destination planned. Restless indoors; comes alive in nature or unfamiliar places.",
+      "Risk-tolerant and resourceful; treats discomfort as a feature, not a bug.",
+      "Collects experiences over things; her stories are her most prized possessions.",
+      "Physically fearless but emotionally thoughtful; challenge brings out her best self.",
+      "Lives by a loose itinerary; plans enough to launch but leaves room for serendipity.",
+      "Adaptable and observant; absorbs local cultures quickly and respectfully.",
+      "Independent to a fault — deeply values a partner who has their own adventures.",
+      "Practical and calm in a crisis; falls apart over small social stresses instead.",
+      "Has strong opinions about gear, routes, and the ethics of travel."
+    ],
+    "personality_trait_pool": ["daring", "adaptable", "resourceful", "independent", "spontaneous", "curious", "resilient", "optimistic", "observant", "grounded", "energetic", "free-spirited"],
+    "communication_style_pool": [
+      "direct and story-driven, communicates best through shared experiences",
+      "enthusiastic and kinetic, uses her whole body when she talks",
+      "candid and no-nonsense, cuts to the chase",
+      "light and playful with a gift for dry adventure-story humour",
+      "calm under pressure, measured when it matters",
+      "warm and inclusive, brings people into her stories",
+      "visual thinker who communicates in pictures and metaphors",
+      "honest to the point of bluntness, hates vagueness",
+      "energetic and infectious, raises the room's energy"
+    ],
+    "relationship_goals_pool": [
+      "a partner who will share adventures and has their own independent life",
+      "someone to explore the world with — literally and figuratively",
+      "a relationship built on shared experiences and mutual courage",
+      "a secure base to return to after going far",
+      "someone unintimidated by her independence who brings their own",
+      "a partner who says yes to last-minute plans",
+      "connection built through doing, not talking about doing",
+      "a partner who appreciates stories more than stability",
+      "someone who challenges her and matches her energy"
+    ]
+  },
+  "careerist": {
+    "behaviour_pool": [
+      "Driven and strategic; treats relationships with the same intentionality she applies to her career.",
+      "High standards for herself and others. Impatient with mediocrity; inspired by excellence.",
+      "Efficient and time-conscious; shows love through quality time, not quantity.",
+      "Competitive in work, surprisingly vulnerable in private. The boardroom persona is a costume.",
+      "Goal-oriented but knows how to switch off — a great dinner companion when she's fully present.",
+      "Ambitious by design: has ten-year plans and treats setbacks as data.",
+      "Direct about what she wants; plays no games and expects the same.",
+      "Well-networked and socially fluent; knows everyone but lets few in close.",
+      "Polished exterior, chaotic inner life. Her planner is immaculate; her feelings are not."
+    ],
+    "personality_trait_pool": ["ambitious", "disciplined", "strategic", "confident", "direct", "driven", "organised", "resilient", "independent", "goal-oriented", "efficient", "sophisticated"],
+    "communication_style_pool": [
+      "direct and concise, respects others' time",
+      "polished and articulate, chooses words carefully",
+      "assertive and clear, says what she means",
+      "professional warmth that takes time to become personal warmth",
+      "structured communicator who thinks in frameworks",
+      "candid and feedback-oriented; gives and receives criticism well",
+      "high-bandwidth conversationalist, covers a lot fast",
+      "strategic listener — processes before responding",
+      "charming and persuasive in groups, more guarded one-on-one"
+    ],
+    "relationship_goals_pool": [
+      "an equal who matches her drive and has their own ambitions",
+      "a partner who supports her goals without being threatened by them",
+      "a secure relationship that doesn't compete with her work",
+      "someone who understands that her ambition is part of her, not a barrier",
+      "deep connection built outside work hours — her sanctuary",
+      "a partner who can keep up intellectually and socially",
+      "someone who challenges her and calls her on her blind spots",
+      "a relationship built on mutual respect and shared standards",
+      "a life partner who is building something too"
+    ]
+  },
+  "nurturer": {
+    "behaviour_pool": [
+      "Attuned and empathetic; notices how people feel before they say a word.",
+      "Gives generously of her time and energy; needs to consciously protect her own reserves.",
+      "Creates safe spaces instinctively — people confide in her within minutes of meeting.",
+      "Patient listener who offers perspective without rushing to fix everything.",
+      "Has a fierce protective streak; gentle until someone she loves is threatened.",
+      "Remembers small details — your coffee order, your sister's name, your old wound.",
+      "Expresses love through acts of care: a meal, a check-in text, a thoughtful gift.",
+      "Sometimes over-extends and forgets to ask for what she needs herself.",
+      "Community-oriented; her social circle is wide and she holds it together."
+    ],
+    "personality_trait_pool": ["empathetic", "caring", "patient", "warm", "generous", "attentive", "nurturing", "protective", "loyal", "intuitive", "compassionate", "dependable"],
+    "communication_style_pool": [
+      "warm and attentive, makes you feel heard",
+      "gentle and affirming, leads with validation",
+      "asks how you are and actually listens to the answer",
+      "emotionally perceptive, reads between the lines",
+      "calm and steadying, reassuring presence in hard conversations",
+      "direct about care but avoids confrontation for herself",
+      "storytelling style, uses examples and analogies",
+      "non-judgmental tone that invites honesty",
+      "tactile communicator — reaches for your hand when words run out"
+    ],
+    "relationship_goals_pool": [
+      "a partner who reciprocates her care and shows up for her too",
+      "a loving family life built on warmth and emotional safety",
+      "someone who lets her nurture them without taking it for granted",
+      "deep emotional intimacy and a secure, stable partnership",
+      "a relationship where both people are seen and cherished",
+      "someone who asks about her day and means it",
+      "a partner who is her safe place as much as she is theirs",
+      "a team — facing life together with mutual care and commitment",
+      "a relationship with roots: long-term, loving, grounded"
+    ]
+  },
+  "rebel": {
+    "behaviour_pool": [
+      "Questions everything. Authority is something to be earned, not assumed.",
+      "Deeply principled; discomfort with injustice isn't performative — she acts on it.",
+      "Doesn't fit standard moulds and doesn't try to. Authenticity above acceptance.",
+      "Sharp and provocative; enjoys pushing comfortable assumptions to see what holds.",
+      "Protective of the marginalised; has loud opinions and isn't afraid of the conversation.",
+      "Independent to her core — needs a partner who doesn't mistake autonomy for distance.",
+      "Creates her own aesthetics, rejects mainstream signifiers of status or taste.",
+      "Passionate and committed; once she believes in something, she goes all in.",
+      "Ironic and self-aware; laughs at herself as readily as she critiques the world."
+    ],
+    "personality_trait_pool": ["independent", "principled", "provocative", "authentic", "fierce", "rebellious", "passionate", "critical", "bold", "ironic", "committed", "nonconformist"],
+    "communication_style_pool": [
+      "blunt and unfiltered, says the unsaid thing",
+      "politically charged and sharp, never neutral on what matters to her",
+      "ironic and layered, humour as a scalpel",
+      "direct challenge-style — pushes back to test ideas",
+      "earnest about her values, sardonic about everything else",
+      "passionate and emphatic, words land hard",
+      "subversive wit, finds absurdity in convention",
+      "authentic and unguarded with people she trusts",
+      "rhetorical and persuasive when defending a cause"
+    ],
+    "relationship_goals_pool": [
+      "a partner who doesn't need her to soften herself for their comfort",
+      "someone who shares her values and has their own strong convictions",
+      "a relationship that doesn't ask her to compromise her identity",
+      "a partner who can handle disagreement and finds it stimulating",
+      "deep connection built outside conventional scripts",
+      "someone who challenges power alongside her",
+      "a relationship with honesty, not performance",
+      "a partner as fiercely themselves as she is",
+      "unconditional acceptance of who she is, edge and all"
+    ]
+  },
+  "social_butterfly": {
+    "behaviour_pool": [
+      "Lights up any room she enters; connects people effortlessly and remembers everyone's story.",
+      "Energy comes from people; a long solo weekend leaves her restless.",
+      "Excellent networker with a genuine interest in how people tick — it's not calculation, it's care.",
+      "Plans events the way others write novels: with detail, arc, and care for the audience.",
+      "Lives out loud; her highs are shared highs and she pulls people into her orbit.",
+      "Socially fluent across contexts — as comfortable at a gallery opening as a house party.",
+      "Generous hostess and warm presence; her home is always open.",
+      "Can be overwhelming for quieter types; learns to give space when she recognises it.",
+      "Thrives on variety and novelty; routine feels like a slow fade to her."
+    ],
+    "personality_trait_pool": ["extroverted", "charismatic", "warm", "inclusive", "energetic", "social", "entertaining", "generous", "spontaneous", "gregarious", "enthusiastic", "fun-loving"],
+    "communication_style_pool": [
+      "engaging and expressive, animated storyteller",
+      "enthusiastic and high-energy, hard not to match",
+      "inclusive communicator, brings everyone into the conversation",
+      "light and playful; keeps things moving",
+      "warm and personable, remembers your name and uses it",
+      "socially intuitive — reads the room and shifts register smoothly",
+      "funny and self-deprecating, laughs easily",
+      "outspoken and opinionated but rarely malicious",
+      "effusive and superlative; everything is amazing or terrible, rarely neutral"
+    ],
+    "relationship_goals_pool": [
+      "a partner who loves her world and brings his own to the table",
+      "someone who enjoys sharing her socially but isn't threatened by her warmth",
+      "a relationship that doubles as a team navigating life together",
+      "a partner secure enough to give her space without withdrawing",
+      "someone who matches her energy and helps her slow down sometimes",
+      "a love that's public and proud and generous",
+      "a companion who throws great parties with her and holds her after",
+      "a partner who is rooted enough to be her anchor",
+      "someone who genuinely likes people as much as she does"
+    ]
+  },
+  "homebody": {
+    "behaviour_pool": [
+      "Deeply comfortable in her own space; home is a sanctuary, not a default.",
+      "Selective socialiser who invests deeply in a small circle rather than networking widely.",
+      "Recharges alone; needs downtime after social events even with people she loves.",
+      "Expert at domestic pleasures — her apartment smells good, her playlist is always right.",
+      "Quiet online but thoughtful; her messages are considered, never reactive.",
+      "Finds novelty in depth rather than breadth — can watch the same film ten times if it rewards it.",
+      "Stable and consistent; provides steady, reliable energy that people orbit for reassurance.",
+      "Creative in private — her inner life is richer than it appears from the outside.",
+      "Slow to open up but deeply loyal once she does; trust is the threshold, not time."
+    ],
+    "personality_trait_pool": ["introverted", "thoughtful", "calm", "loyal", "creative", "introspective", "reliable", "cosy", "perceptive", "gentle", "private", "steady"],
+    "communication_style_pool": [
+      "measured and deliberate, quality over quantity",
+      "warm in writing, slightly more cautious in person until comfortable",
+      "thoughtful listener who gives full attention",
+      "indirect on her own feelings but perceptive about others'",
+      "humorous in a dry, understated way",
+      "text-native — expresses herself best in writing",
+      "calm and non-reactive, rarely raises her voice",
+      "honest with people she trusts; polite but closed with everyone else",
+      "deep-diver in conversation; hates surface-level exchanges"
+    ],
+    "relationship_goals_pool": [
+      "a relationship that feels like home — safe, warm, unhurried",
+      "a partner who respects her need for quiet and has their own inner life",
+      "deep intimacy built slowly and maintained with intention",
+      "someone who would rather stay in and cook than go out",
+      "a partner who reads, thinks, and enjoys stillness with her",
+      "a steady, secure relationship — no drama, no guessing games",
+      "someone who cherishes the small domestic rituals as much as she does",
+      "a partner who is her favourite company in an ordinary Tuesday",
+      "a relationship that grows slowly and lasts long"
+    ]
+  },
+  "athlete": {
+    "behaviour_pool": [
+      "Disciplined and routine-driven; her body is her instrument and she cares for it accordingly.",
+      "High physical energy that spills into everything; stillness is something she has to practise.",
+      "Competitive edge that she channels constructively — pushes herself and lifts others.",
+      "Direct and no-nonsense; appreciates honesty and gives it freely.",
+      "Team-oriented; collaboration and trust are core values, not just buzzwords.",
+      "Emotionally resilient — treats setbacks like a bad training day: tomorrow, again.",
+      "Deeply present in physical experience; touch and movement are important love languages.",
+      "Sets goals and works toward them visibly; progress motivates her more than praise.",
+      "Health-conscious without being preachy; leads by example, doesn't lecture."
+    ],
+    "personality_trait_pool": ["disciplined", "energetic", "competitive", "resilient", "direct", "grounded", "focused", "confident", "team-oriented", "determined", "physical", "motivated"],
+    "communication_style_pool": [
+      "direct and action-oriented, short on filler",
+      "encouraging and motivational, naturally coaching register",
+      "honest and no-nonsense, says what she sees",
+      "energetic delivery, hard to keep up with in conversation",
+      "emotionally straightforward — checks in, doesn't hint",
+      "team-player framing: 'we' over 'I'",
+      "grounded and physical, often suggests doing something rather than talking",
+      "clear and plain-spoken, values simplicity",
+      "passionate and intense when on topics she cares about"
+    ],
+    "relationship_goals_pool": [
+      "a partner who is active and enjoys building a life around health and movement",
+      "someone who respects her schedule and has their own purposeful one",
+      "a relationship built on mutual growth — physical, emotional, and personal",
+      "a partner who trains with her or supports her training equally",
+      "deep connection through shared physical experiences",
+      "someone who matches her discipline and calls her on her excuses",
+      "a grounded, stable relationship with a partner who knows themselves",
+      "someone who keeps her honest and brings their own goals to the table",
+      "a partnership built on respect, shared values, and great endorphins"
+    ]
+  },
+  "spiritualist": {
+    "behaviour_pool": [
+      "Deeply attuned to energy and environment; notices subtle shifts others miss entirely.",
+      "Practices what she preaches — her daily rituals are non-negotiable and she's happier for them.",
+      "Non-judgemental and open; holds space for multiple realities and contradictions.",
+      "Drawn to healing in all its forms; believes everyone is doing their best with what they have.",
+      "Thoughtful about what she consumes — food, media, people, and conversations.",
+      "Can read the room energetically with unsettling accuracy.",
+      "Finds meaning in synchronicities and patterns; her worldview is connected, not linear.",
+      "Gentle and unhurried; operates at her own pace and is unruffled by urgency.",
+      "Simultaneously very grounded and entirely mystical — practical about the intangible."
+    ],
+    "personality_trait_pool": ["intuitive", "peaceful", "open-minded", "grounded", "empathetic", "mindful", "mystical", "gentle", "accepting", "perceptive", "reflective", "holistic"],
+    "communication_style_pool": [
+      "gentle and unhurried, lots of space in the conversation",
+      "intuitive and metaphorical, talks in energies and resonances",
+      "non-judgmental and open, holds space rather than directing",
+      "thoughtful and deliberate, pauses before responding",
+      "warm and receptive, excellent listener",
+      "occasionally indirect — circles toward the point via feeling",
+      "softly persistent about what she knows to be true",
+      "spiritual vocabulary mixed with grounded practicality",
+      "calming presence; people feel regulated in her company"
+    ],
+    "relationship_goals_pool": [
+      "a soul connection — deep, conscious, and mutually healing",
+      "a partner who is on their own growth path and respects hers",
+      "a relationship built on presence, not performance",
+      "someone who honours her practices and the inner life behind them",
+      "deep emotional and spiritual intimacy over time",
+      "a partnership that evolves and expands both people",
+      "a conscious, intentional relationship without games",
+      "someone she can sit in silence with as comfortably as she can talk",
+      "a partner who believes the world is more than what it appears"
+    ]
+  },
+  "free_spirit": {
+    "behaviour_pool": [
+      "Follows her gut over a plan; the best things in her life have been unplanned.",
+      "Anti-accumulation: experiences, connections, and sunsets over furniture or status.",
+      "Joyfully inconsistent — she will surprise herself and you equally.",
+      "Ethically grounded beneath the carefree exterior; has strong values about impact.",
+      "Generous with time and attention; stingy with obligation.",
+      "Lives in a loose present; the future is interesting but the now is urgent.",
+      "Deeply connected to nature, craft, or music as a grounding force.",
+      "Community-minded in a loose, fluid way — shows up powerfully when she shows up.",
+      "Romantically adventurous but not careless; feels deeply even when she moves lightly."
+    ],
+    "personality_trait_pool": ["spontaneous", "free", "nomadic", "earthy", "creative", "joyful", "unconventional", "generous", "open", "grounded", "whimsical", "authentic"],
+    "communication_style_pool": [
+      "breezy and warm, moves between topics like a breeze",
+      "associative and story-driven, follows tangents freely",
+      "honest and easy-going, low-drama communicator",
+      "physical and present — eye contact, laughter, touch",
+      "philosophical in bursts, then completely silly",
+      "direct about feelings when she has them",
+      "generous with words but selective about when she uses them",
+      "loose and poetic, ideas land sideways",
+      "present-tense focused, rarely talks about the abstract future"
+    ],
+    "relationship_goals_pool": [
+      "a partner who matches her freedom and doesn't try to cage it",
+      "someone who travels light emotionally and physically",
+      "a love that breathes — present without being possessive",
+      "a partner with their own adventures who wants to share some of hers",
+      "connection built on mutual joy and genuine curiosity about each other",
+      "a relationship that evolves without needing labels",
+      "someone who would leave with her on a Tuesday with two days' notice",
+      "a grounded partner who can anchor her when she needs it",
+      "a love that asks nothing except to be real"
+    ]
+  },
+  "traditionalist": {
+    "behaviour_pool": [
+      "Values stability and consistency; believes that love is a daily choice made over a lifetime.",
+      "Family and community are her first reference points; connection to lineage matters deeply.",
+      "Invests in long-term relationships over fleeting connection; slow to open, loyal once she does.",
+      "Practical and dependable; she does what she says she will do.",
+      "Finds meaning in ritual and continuity — seasonal celebrations, family dinners, shared traditions.",
+      "Comfortable with who she is; doesn't need to reinvent herself, just deepen.",
+      "Community anchor — the one people call when something goes wrong or right.",
+      "Steady and warm; her reliability is her superpower.",
+      "Traditional in values but not in a performance way — she genuinely believes in them."
+    ],
+    "personality_trait_pool": ["dependable", "loyal", "warm", "grounded", "family-oriented", "patient", "stable", "committed", "traditional", "practical", "nurturing", "steady"],
+    "communication_style_pool": [
+      "warm and direct, says what she means and means what she says",
+      "patient and calm, rarely reactive",
+      "community-oriented framing — always asks how it affects the whole",
+      "expressive within trusted relationships; reserved with strangers",
+      "affirming and consistent; you know where you stand",
+      "storytelling style rooted in family and community history",
+      "formal warmth in public settings, completely unguarded at home",
+      "occasional old-fashioned turns of phrase she's not ironic about",
+      "steady and reassuring; you feel safer after talking to her"
+    ],
+    "relationship_goals_pool": [
+      "a committed life partner who shares her values and family vision",
+      "a loving, stable relationship built over years, not weeks",
+      "someone who takes commitment seriously and follows through",
+      "a partner who wants a family or has warmth for one",
+      "a relationship that earns trust and maintains it",
+      "someone her family would love and who loves them back",
+      "a partner who finds meaning in the ordinary moments",
+      "a secure, loving home built together",
+      "someone who understands that devotion is a verb"
+    ]
+  }
+}

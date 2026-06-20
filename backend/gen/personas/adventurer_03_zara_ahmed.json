@@ -1,0 +1,24 @@
+{
+  "name": "Zara Ahmed",
+  "age": 29,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "adventurer",
+  "occupation": "Wildlife Photographer",
+  "nationality": "Pakistani-British",
+  "hobbies": [
+    "paragliding",
+    "wild swimming",
+    "motorcycle riding"
+  ],
+  "behaviour": "Collects experiences over things; her stories are her most prized possessions.",
+  "personality_traits": [
+    "observant",
+    "grounded",
+    "energetic",
+    "free-spirited"
+  ],
+  "communication_style": "candid and no-nonsense, cuts to the chase",
+  "relationship_goals": "a relationship built on shared experiences and mutual courage",
+  "background": "Spent six months in the Amazon for a single shot. National Geographic contributor. A bit feral, fully intentional."
+}

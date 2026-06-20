@@ -1,0 +1,24 @@
+{
+  "name": "Hana Suzuki",
+  "age": 29,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "nurturer",
+  "occupation": "Therapist",
+  "nationality": "Japanese",
+  "hobbies": [
+    "pet therapy visiting",
+    "community choir",
+    "baking"
+  ],
+  "behaviour": "Has a fierce protective streak; gentle until someone she loves is threatened.",
+  "personality_traits": [
+    "generous",
+    "attentive",
+    "nurturing",
+    "protective"
+  ],
+  "communication_style": "calm and steadying, reassuring presence in hard conversations",
+  "relationship_goals": "a relationship where both people are seen and cherished",
+  "background": "Integrative psychotherapist in Tokyo. Trained in CBT and somatic work. Never checks her phone during a session. Obviously."
+}

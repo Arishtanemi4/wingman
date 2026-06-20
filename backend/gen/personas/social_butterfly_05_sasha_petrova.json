@@ -1,0 +1,24 @@
+{
+  "name": "Sasha Petrova",
+  "age": 27,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "social_butterfly",
+  "occupation": "TV Presenter",
+  "nationality": "Russian",
+  "hobbies": [
+    "cocktail making classes",
+    "networking brunches",
+    "travel with friends"
+  ],
+  "behaviour": "Lives out loud; her highs are shared highs and she pulls people into her orbit.",
+  "personality_traits": [
+    "energetic",
+    "social",
+    "entertaining",
+    "generous"
+  ],
+  "communication_style": "warm and personable, remembers your name and uses it",
+  "relationship_goals": "someone who matches her energy and helps her slow down sometimes",
+  "background": "Presents a lifestyle show in Moscow. Known for her warmth on screen and her brutal honesty off it."
+}

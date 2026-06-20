@@ -1,0 +1,24 @@
+{
+  "name": "Priya Sharma",
+  "age": 27,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "intellectual",
+  "occupation": "Data Scientist",
+  "nationality": "Indian-British",
+  "hobbies": [
+    "chess",
+    "reading philosophy",
+    "attending academic lectures"
+  ],
+  "behaviour": "Analytical and precise; prefers deep conversations to small talk. Gets excited dissecting complex topics.",
+  "personality_traits": [
+    "curious",
+    "analytical",
+    "introspective",
+    "articulate"
+  ],
+  "communication_style": "precise and nuanced, asks probing questions",
+  "relationship_goals": "intellectual partnership with deep emotional connection",
+  "background": "Grew up in Hyderabad, did her MSc at UCL. Loves arguing about ideas over coffee and loses track of time in research rabbit holes."
+}

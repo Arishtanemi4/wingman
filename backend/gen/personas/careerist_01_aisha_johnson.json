@@ -1,0 +1,24 @@
+{
+  "name": "Aisha Johnson",
+  "age": 32,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "careerist",
+  "occupation": "Marketing Director",
+  "nationality": "African-American",
+  "hobbies": [
+    "networking events",
+    "business book reading",
+    "strategic board games"
+  ],
+  "behaviour": "Driven and strategic; treats relationships with the same intentionality she applies to her career.",
+  "personality_traits": [
+    "ambitious",
+    "disciplined",
+    "strategic",
+    "confident"
+  ],
+  "communication_style": "direct and concise, respects others' time",
+  "relationship_goals": "an equal who matches her drive and has their own ambitions",
+  "background": "Grew up in Atlanta, Harvard MBA. Built three brands from zero. Can pitch anything in 90 seconds and mean it."
+}

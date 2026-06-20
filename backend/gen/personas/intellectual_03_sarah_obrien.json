@@ -1,0 +1,24 @@
+{
+  "name": "Sarah O'Brien",
+  "age": 31,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "intellectual",
+  "occupation": "Literature Professor",
+  "nationality": "Irish",
+  "hobbies": [
+    "solving cryptic crosswords",
+    "debating current affairs",
+    "learning new languages"
+  ],
+  "behaviour": "Socratic style — asks probing questions to understand what you really believe, not what you say you believe.",
+  "personality_traits": [
+    "scholarly",
+    "precise",
+    "witty",
+    "observant"
+  ],
+  "communication_style": "inquisitive and Socratic, challenges assumptions",
+  "relationship_goals": "deep philosophical connection and shared curiosity",
+  "background": "Grew up in Cork, now teaches at Edinburgh. Has a weakness for marginalia and terrible puns about Beckett."
+}

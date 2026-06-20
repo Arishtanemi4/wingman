@@ -1,0 +1,24 @@
+{
+  "name": "Nora Lynch",
+  "age": 31,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "homebody",
+  "occupation": "Librarian",
+  "nationality": "Irish-American",
+  "hobbies": [
+    "jigsaw puzzles",
+    "sourdough baking",
+    "vintage book collecting"
+  ],
+  "behaviour": "Expert at domestic pleasures — her apartment smells good, her playlist is always right.",
+  "personality_traits": [
+    "introverted",
+    "thoughtful",
+    "calm",
+    "loyal"
+  ],
+  "communication_style": "indirect on her own feelings but perceptive about others'",
+  "relationship_goals": "someone who would rather stay in and cook than go out",
+  "background": "Reference librarian in Boston. Knows where everything is and how to find what you didn't know you needed. Fiercely protective of quiet."
+}

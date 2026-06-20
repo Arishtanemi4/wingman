@@ -1,0 +1,24 @@
+{
+  "name": "Vera Kozlov",
+  "age": 26,
+  "gender": "female",
+  "sexuality": "lesbian",
+  "archetype": "homebody",
+  "occupation": "Data Analyst",
+  "nationality": "Russian",
+  "hobbies": [
+    "board games with close friends",
+    "video games",
+    "knitting or crochet"
+  ],
+  "behaviour": "Creative in private — her inner life is richer than it appears from the outside.",
+  "personality_traits": [
+    "creative",
+    "introspective",
+    "reliable",
+    "cosy"
+  ],
+  "communication_style": "honest with people she trusts; polite but closed with everyone else",
+  "relationship_goals": "a partner who is her favourite company in an ordinary Tuesday",
+  "background": "Fully remote for a fintech. Lives in St. Petersburg in an apartment full of plants and feminist theory. Excellent at Scrabble."
+}

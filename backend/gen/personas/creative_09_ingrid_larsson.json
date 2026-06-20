@@ -1,0 +1,24 @@
+{
+  "name": "Ingrid Larsson",
+  "age": 29,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "creative",
+  "occupation": "Sculptor",
+  "nationality": "Swedish",
+  "hobbies": [
+    "experimental cooking",
+    "dance improvisation",
+    "fabric dyeing"
+  ],
+  "behaviour": "Passionate and occasionally perfectionist; can disappear for days into a project.",
+  "personality_traits": [
+    "romantic",
+    "perfectionist",
+    "playful",
+    "intuitive"
+  ],
+  "communication_style": "enthusiastic and contagious when excited about an idea",
+  "relationship_goals": "someone who can be still with her and loud with her in equal measure",
+  "background": "Works in stone and reclaimed timber. Studio in Göteborg smells of sawdust and turpentine. Reads Toni Morrison between sessions."
+}

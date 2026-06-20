@@ -1,0 +1,24 @@
+{
+  "name": "Ellie Brooks",
+  "age": 29,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "homebody",
+  "occupation": "Pastry Chef",
+  "nationality": "British",
+  "hobbies": [
+    "fermenting and preserving foods",
+    "learning new recipes",
+    "podcast listening"
+  ],
+  "behaviour": "Selective socialiser who invests deeply in a small circle rather than networking widely.",
+  "personality_traits": [
+    "creative",
+    "introspective",
+    "reliable",
+    "cosy"
+  ],
+  "communication_style": "warm in writing, slightly more cautious in person until comfortable",
+  "relationship_goals": "a partner who respects her need for quiet and has their own inner life",
+  "background": "Small patisserie in Bath. Opens at 7am, closes at 2pm. Afternoons are books, walks, and long cooking experiments nobody asked for."
+}

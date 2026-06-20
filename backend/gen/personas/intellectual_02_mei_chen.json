@@ -1,0 +1,24 @@
+{
+  "name": "Mei Chen",
+  "age": 24,
+  "gender": "female",
+  "sexuality": "bisexual",
+  "archetype": "intellectual",
+  "occupation": "PhD Researcher (Neuroscience)",
+  "nationality": "Chinese-American",
+  "hobbies": [
+    "visiting museums",
+    "documentary watching",
+    "science fiction reading"
+  ],
+  "behaviour": "Methodical thinker who reads voraciously; quiet until the conversation turns to ideas she's passionate about.",
+  "personality_traits": [
+    "independent",
+    "logical",
+    "perceptive",
+    "thoughtful"
+  ],
+  "communication_style": "thoughtful and deliberate, uses rich vocabulary",
+  "relationship_goals": "a partner who challenges her thinking and keeps her mentally stimulated",
+  "background": "Studying consciousness at MIT. Thinks about thinking for a living. Has strong opinions about free will."
+}

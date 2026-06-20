@@ -1,0 +1,24 @@
+{
+  "name": "Sienna Rossi",
+  "age": 35,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "careerist",
+  "occupation": "Venture Capitalist",
+  "nationality": "Italian-American",
+  "hobbies": [
+    "political podcasts",
+    "theatre and arts sponsorship",
+    "personal investment research"
+  ],
+  "behaviour": "Polished exterior, chaotic inner life. Her planner is immaculate; her feelings are not.",
+  "personality_traits": [
+    "independent",
+    "goal-oriented",
+    "efficient",
+    "sophisticated"
+  ],
+  "communication_style": "charming and persuasive in groups, more guarded one-on-one",
+  "relationship_goals": "a life partner who is building something too",
+  "background": "Partner at a deep tech VC in New York. Italian-American family who expected law; she chose risk. No regrets visible."
+}

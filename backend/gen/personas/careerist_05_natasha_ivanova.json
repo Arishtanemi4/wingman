@@ -1,0 +1,24 @@
+{
+  "name": "Natasha Ivanova",
+  "age": 36,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "careerist",
+  "occupation": "Management Consultant",
+  "nationality": "Russian",
+  "hobbies": [
+    "executive education courses",
+    "wine tasting",
+    "business travel"
+  ],
+  "behaviour": "Goal-oriented but knows how to switch off — a great dinner companion when she's fully present.",
+  "personality_traits": [
+    "direct",
+    "driven",
+    "organised",
+    "resilient"
+  ],
+  "communication_style": "structured communicator who thinks in frameworks",
+  "relationship_goals": "deep connection built outside work hours — her sanctuary",
+  "background": "McKinsey Principal. Has restructured companies on three continents. Exhausting in the best way. Loves opera ironically and unironically."
+}

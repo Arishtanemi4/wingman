@@ -1,0 +1,24 @@
+{
+  "name": "Soo-Jin Park",
+  "age": 27,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "traditionalist",
+  "occupation": "Certified Accountant",
+  "nationality": "Korean",
+  "hobbies": [
+    "gardening",
+    "reading classic literature",
+    "baking bread"
+  ],
+  "behaviour": "Finds meaning in ritual and continuity — seasonal celebrations, family dinners, shared traditions.",
+  "personality_traits": [
+    "family-oriented",
+    "patient",
+    "stable",
+    "committed"
+  ],
+  "communication_style": "affirming and consistent; you know where you stand",
+  "relationship_goals": "a relationship that earns trust and maintains it",
+  "background": "CPA at a Seoul firm. Saves 30% of her income and knows where every won goes. Her discipline is deep, not performance. Warm and funny to those she trusts."
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Chloe Martin",
+  "age": 28,
+  "gender": "female",
+  "sexuality": "bisexual",
+  "archetype": "social_butterfly",
+  "occupation": "PR Director",
+  "nationality": "French-Canadian",
+  "hobbies": [
+    "social media content creation",
+    "karaoke",
+    "festival organising"
+  ],
+  "behaviour": "Excellent networker with a genuine interest in how people tick — it's not calculation, it's care.",
+  "personality_traits": [
+    "spontaneous",
+    "gregarious",
+    "enthusiastic",
+    "fun-loving"
+  ],
+  "communication_style": "inclusive communicator, brings everyone into the conversation",
+  "relationship_goals": "a relationship that doubles as a team navigating life together",
+  "background": "Runs a boutique PR firm in Montréal. Knows the journalists, knows the chefs, knows the artists. The city comes to her."
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Daria Sokolova",
+  "age": 29,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "rebel",
+  "occupation": "Investigative Journalist",
+  "nationality": "Russian",
+  "hobbies": [
+    "community radio",
+    "guerrilla gardening",
+    "screen printing"
+  ],
+  "behaviour": "Sharp and provocative; enjoys pushing comfortable assumptions to see what holds.",
+  "personality_traits": [
+    "independent",
+    "principled",
+    "provocative",
+    "authentic"
+  ],
+  "communication_style": "direct challenge-style — pushes back to test ideas",
+  "relationship_goals": "a partner who can handle disagreement and finds it stimulating",
+  "background": "Investigates oligarch money flows for a European outlet. Has received threats she documents carefully. Doesn't scare easily."
+}

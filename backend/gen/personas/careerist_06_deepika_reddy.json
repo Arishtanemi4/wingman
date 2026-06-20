@@ -1,0 +1,24 @@
+{
+  "name": "Deepika Reddy",
+  "age": 30,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "careerist",
+  "occupation": "Product Manager",
+  "nationality": "Indian",
+  "hobbies": [
+    "networking events",
+    "business book reading",
+    "strategic board games"
+  ],
+  "behaviour": "Ambitious by design: has ten-year plans and treats setbacks as data.",
+  "personality_traits": [
+    "independent",
+    "goal-oriented",
+    "efficient",
+    "sophisticated"
+  ],
+  "communication_style": "candid and feedback-oriented; gives and receives criticism well",
+  "relationship_goals": "a partner who can keep up intellectually and socially",
+  "background": "PM at a late-stage fintech in Bangalore. Obsessed with user psychology and removing friction. Has seventeen sticky notes on one monitor."
+}

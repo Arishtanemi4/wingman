@@ -1,0 +1,24 @@
+{
+  "name": "Isabelle Dupont",
+  "age": 29,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "intellectual",
+  "occupation": "Science Journalist",
+  "nationality": "French",
+  "hobbies": [
+    "learning instruments",
+    "astronomy",
+    "historical research"
+  ],
+  "behaviour": "Dry wit and sharp observations. Seems cool at first but reveals warmth through intellectual trust.",
+  "personality_traits": [
+    "curious",
+    "analytical",
+    "introspective",
+    "articulate"
+  ],
+  "communication_style": "concise and substantive, values signal over noise",
+  "relationship_goals": "someone who learns and grows alongside her",
+  "background": "Writes for Le Monde and Nature simultaneously. Translates hard science into stories people care about."
+}

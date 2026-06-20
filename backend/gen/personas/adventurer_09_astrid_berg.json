@@ -1,0 +1,24 @@
+{
+  "name": "Astrid Berg",
+  "age": 33,
+  "gender": "female",
+  "sexuality": "lesbian",
+  "archetype": "adventurer",
+  "occupation": "Wilderness Survival Instructor",
+  "nationality": "Danish",
+  "hobbies": [
+    "travel journalling",
+    "wildlife tracking",
+    "bouldering"
+  ],
+  "behaviour": "Has strong opinions about gear, routes, and the ethics of travel.",
+  "personality_traits": [
+    "observant",
+    "grounded",
+    "energetic",
+    "free-spirited"
+  ],
+  "communication_style": "energetic and infectious, raises the room's energy",
+  "relationship_goals": "someone who challenges her and matches her energy",
+  "background": "Trains military and civilian survival skills in Scandinavian winters. Wrote a well-regarded wilderness medicine handbook."
+}

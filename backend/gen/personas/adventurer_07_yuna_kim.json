@@ -1,0 +1,24 @@
+{
+  "name": "Yuna Kim",
+  "age": 23,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "adventurer",
+  "occupation": "Professional Rock Climber",
+  "nationality": "Korean",
+  "hobbies": [
+    "freediving",
+    "mountaineering",
+    "kayaking"
+  ],
+  "behaviour": "Independent to a fault — deeply values a partner who has their own adventures.",
+  "personality_traits": [
+    "daring",
+    "adaptable",
+    "resourceful",
+    "independent"
+  ],
+  "communication_style": "visual thinker who communicates in pictures and metaphors",
+  "relationship_goals": "connection built through doing, not talking about doing",
+  "background": "Competition circuit in Asia and Europe. Sends V9 boulder problems on lunch breaks. Thinks fear is a calibration tool."
+}

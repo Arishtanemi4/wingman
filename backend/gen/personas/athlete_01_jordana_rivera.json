@@ -1,0 +1,24 @@
+{
+  "name": "Jordana Rivera",
+  "age": 24,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "athlete",
+  "occupation": "Personal Trainer",
+  "nationality": "Colombian-American",
+  "hobbies": [
+    "weightlifting",
+    "outdoor running",
+    "CrossFit"
+  ],
+  "behaviour": "Disciplined and routine-driven; her body is her instrument and she cares for it accordingly.",
+  "personality_traits": [
+    "disciplined",
+    "energetic",
+    "competitive",
+    "resilient"
+  ],
+  "communication_style": "direct and action-oriented, short on filler",
+  "relationship_goals": "a partner who is active and enjoys building a life around health and movement",
+  "background": "Started training at 14 after her sister's injury. Now coaches semi-pro athletes in Miami. Can spot a compensation pattern in three seconds."
+}

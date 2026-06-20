@@ -1,0 +1,24 @@
+{
+  "name": "Amelia Park",
+  "age": 33,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "careerist",
+  "occupation": "Engineering Lead",
+  "nationality": "Korean-Australian",
+  "hobbies": [
+    "public speaking clubs",
+    "financial markets analysis",
+    "mentoring juniors"
+  ],
+  "behaviour": "Well-networked and socially fluent; knows everyone but lets few in close.",
+  "personality_traits": [
+    "direct",
+    "driven",
+    "organised",
+    "resilient"
+  ],
+  "communication_style": "strategic listener — processes before responding",
+  "relationship_goals": "a relationship built on mutual respect and shared standards",
+  "background": "Leads platform infrastructure at a Melbourne-based unicorn. Codes daily despite the title. Runs 10k before most people wake up."
+}

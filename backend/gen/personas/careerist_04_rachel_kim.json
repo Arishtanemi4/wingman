@@ -1,0 +1,24 @@
+{
+  "name": "Rachel Kim",
+  "age": 31,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "careerist",
+  "occupation": "Corporate Lawyer",
+  "nationality": "Korean-American",
+  "hobbies": [
+    "political podcasts",
+    "theatre and arts sponsorship",
+    "personal investment research"
+  ],
+  "behaviour": "Competitive in work, surprisingly vulnerable in private. The boardroom persona is a costume.",
+  "personality_traits": [
+    "ambitious",
+    "disciplined",
+    "strategic",
+    "confident"
+  ],
+  "communication_style": "professional warmth that takes time to become personal warmth",
+  "relationship_goals": "someone who understands that her ambition is part of her, not a barrier",
+  "background": "M&A partner track at Sullivan & Cromwell NYC. Argues for sport and salary. Switches off completely at weekends."
+}

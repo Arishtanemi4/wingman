@@ -1,0 +1,24 @@
+{
+  "name": "Nkechi Obi",
+  "age": 30,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "traditionalist",
+  "occupation": "Community Leader",
+  "nationality": "Nigerian-British",
+  "hobbies": [
+    "family board game nights",
+    "local history societies",
+    "folk music and dancing"
+  ],
+  "behaviour": "Community anchor — the one people call when something goes wrong or right.",
+  "personality_traits": [
+    "dependable",
+    "loyal",
+    "warm",
+    "grounded"
+  ],
+  "communication_style": "formal warmth in public settings, completely unguarded at home",
+  "relationship_goals": "a partner who finds meaning in the ordinary moments",
+  "background": "Runs a community centre in Peckham. Organises the church choir, the food bank, and the youth mentoring programme. People do what she asks because she's already done it herself."
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Romy Fischer",
+  "age": 25,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "rebel",
+  "occupation": "Feminist Writer",
+  "nationality": "German",
+  "hobbies": [
+    "graffiti and street art",
+    "radical reading groups",
+    "alternative comedy nights"
+  ],
+  "behaviour": "Passionate and committed; once she believes in something, she goes all in.",
+  "personality_traits": [
+    "fierce",
+    "rebellious",
+    "passionate",
+    "critical"
+  ],
+  "communication_style": "authentic and unguarded with people she trusts",
+  "relationship_goals": "a partner as fiercely themselves as she is",
+  "background": "Writes a widely-read Substack on gender politics and labour. Her essays get quoted back to her in arguments by people who don't know she wrote them."
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Rosa Mendez",
+  "age": 28,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "adventurer",
+  "occupation": "Scuba Diving Instructor",
+  "nationality": "Argentine",
+  "hobbies": [
+    "paragliding",
+    "wild swimming",
+    "motorcycle riding"
+  ],
+  "behaviour": "Practical and calm in a crisis; falls apart over small social stresses instead.",
+  "personality_traits": [
+    "spontaneous",
+    "curious",
+    "resilient",
+    "optimistic"
+  ],
+  "communication_style": "honest to the point of bluntness, hates vagueness",
+  "relationship_goals": "a partner who appreciates stories more than stability",
+  "background": "Runs her own dive school in Roatán. Collects dive certifications the way others collect stamps. Grows her own vegetables."
+}

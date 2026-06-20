@@ -1,0 +1,24 @@
+{
+  "name": "Emma Chen",
+  "age": 29,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "careerist",
+  "occupation": "Investment Banker",
+  "nationality": "Chinese-British",
+  "hobbies": [
+    "TED talks",
+    "running",
+    "squash"
+  ],
+  "behaviour": "High standards for herself and others. Impatient with mediocrity; inspired by excellence.",
+  "personality_traits": [
+    "direct",
+    "driven",
+    "organised",
+    "resilient"
+  ],
+  "communication_style": "polished and articulate, chooses words carefully",
+  "relationship_goals": "a partner who supports her goals without being threatened by them",
+  "background": "Goldman Sachs London. Works 70-hour weeks and reads novels on planes to stay human. Has a suspiciously green houseplant."
+}

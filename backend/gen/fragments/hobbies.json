@@ -1,0 +1,91 @@
+{
+  "intellectual": [
+    "chess", "reading philosophy", "attending academic lectures", "solving cryptic crosswords",
+    "debating current affairs", "learning new languages", "competitive trivia nights",
+    "writing essays", "listening to academic podcasts", "visiting museums",
+    "documentary watching", "science fiction reading", "learning instruments",
+    "astronomy", "historical research"
+  ],
+  "creative": [
+    "painting", "life drawing", "songwriting", "attending live music",
+    "darkroom photography", "ceramics", "film analysis", "journaling",
+    "fashion illustration", "printmaking", "gallery hopping", "creative writing",
+    "experimental cooking", "dance improvisation", "fabric dyeing"
+  ],
+  "adventurer": [
+    "rock climbing", "backcountry hiking", "scuba diving", "paragliding",
+    "wild swimming", "motorcycle riding", "surfing", "ski touring",
+    "trail running", "freediving", "mountaineering", "kayaking",
+    "travel journalling", "wildlife tracking", "bouldering"
+  ],
+  "careerist": [
+    "networking events", "business book reading", "strategic board games",
+    "public speaking clubs", "financial markets analysis",
+    "mentoring juniors", "executive education courses",
+    "wine tasting", "business travel", "TED talks",
+    "running", "squash", "political podcasts",
+    "theatre and arts sponsorship", "personal investment research"
+  ],
+  "nurturer": [
+    "volunteering at community centres", "cooking for others", "gardening",
+    "reading fiction", "yoga", "knitting and crafts", "pet therapy visiting",
+    "community choir", "baking", "nature walks", "journaling",
+    "hosting dinner parties", "watercolour painting", "mindfulness practice",
+    "children's storytelling"
+  ],
+  "rebel": [
+    "political activism", "DIY punk shows", "zine making",
+    "graffiti and street art", "radical reading groups",
+    "alternative comedy nights", "collective organising",
+    "protest art installations", "tattoo culture", "underground music discovery",
+    "documentary filmmaking", "feminist theory reading",
+    "community radio", "guerrilla gardening", "screen printing"
+  ],
+  "social_butterfly": [
+    "hosting dinner parties", "attending fashion events", "dance classes",
+    "social media content creation", "karaoke", "festival organising",
+    "cocktail making classes", "networking brunches", "travel with friends",
+    "online content creation", "charity galas", "club nights",
+    "pop culture commentary", "cooking for crowds", "open-mic comedy"
+  ],
+  "homebody": [
+    "reading fiction", "home cooking and baking", "indoor plants and terrariums",
+    "board games with close friends", "video games", "knitting or crochet",
+    "journaling", "rewatching comfort films", "home renovation projects",
+    "fermenting and preserving foods", "learning new recipes",
+    "podcast listening", "jigsaw puzzles", "sourdough baking",
+    "vintage book collecting"
+  ],
+  "athlete": [
+    "weightlifting", "outdoor running", "CrossFit", "yoga",
+    "rock climbing", "swimming", "HIIT training", "cycling",
+    "hiking", "martial arts", "beach volleyball", "Pilates",
+    "sports nutrition research", "parkour", "trail running"
+  ],
+  "spiritualist": [
+    "meditation and breathwork", "tarot and astrology", "sound baths",
+    "reiki and energy healing", "yoga and yoga philosophy",
+    "reading metaphysical texts", "nature ceremonies",
+    "crystal work", "journaling and dream analysis",
+    "ayurvedic cooking", "ecstatic dance", "shamanic practices",
+    "cacao ceremonies", "forest bathing", "ceremonial cacao"
+  ],
+  "free_spirit": [
+    "busking and street performance", "hitchhiking and budget travel",
+    "wild camping", "urban foraging", "DIY crafts and upcycling",
+    "open-mic storytelling", "community festivals",
+    "surfing", "barefoot yoga", "van dwelling",
+    "organic gardening", "alternative music scenes",
+    "spontaneous road trips", "contact improvisation dance",
+    "dumpster diving and zero-waste living"
+  ],
+  "traditionalist": [
+    "cooking family recipes", "attending religious or community services",
+    "genealogy research", "seasonal festivals and celebrations",
+    "knitting and needlework", "community volunteering",
+    "gardening", "reading classic literature", "baking bread",
+    "family board game nights", "local history societies",
+    "folk music and dancing", "neighbourhood watch",
+    "church or community choir", "charity fundraising"
+  ]
+}

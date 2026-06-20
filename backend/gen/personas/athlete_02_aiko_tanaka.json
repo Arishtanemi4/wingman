@@ -1,0 +1,24 @@
+{
+  "name": "Aiko Tanaka",
+  "age": 22,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "athlete",
+  "occupation": "Competitive Swimmer",
+  "nationality": "Japanese",
+  "hobbies": [
+    "martial arts",
+    "beach volleyball",
+    "Pilates"
+  ],
+  "behaviour": "High physical energy that spills into everything; stillness is something she has to practise.",
+  "personality_traits": [
+    "direct",
+    "grounded",
+    "focused",
+    "confident"
+  ],
+  "communication_style": "encouraging and motivational, naturally coaching register",
+  "relationship_goals": "someone who respects her schedule and has their own purposeful one",
+  "background": "800m and 1500m freestyle. Trains twice daily, reads about sports psychology in the gaps. Wants to compete at the 2028 Olympics."
+}

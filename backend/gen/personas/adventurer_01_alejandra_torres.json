@@ -1,0 +1,24 @@
+{
+  "name": "Alejandra Torres",
+  "age": 26,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "adventurer",
+  "occupation": "Travel Blogger and Journalist",
+  "nationality": "Mexican",
+  "hobbies": [
+    "rock climbing",
+    "backcountry hiking",
+    "scuba diving"
+  ],
+  "behaviour": "Always has a next destination planned. Restless indoors; comes alive in nature or unfamiliar places.",
+  "personality_traits": [
+    "daring",
+    "adaptable",
+    "resourceful",
+    "independent"
+  ],
+  "communication_style": "direct and story-driven, communicates best through shared experiences",
+  "relationship_goals": "a partner who will share adventures and has their own independent life",
+  "background": "Visited 60 countries before 26. Writes about the places tourism forgot. Learned to pack in a carry-on by necessity."
+}

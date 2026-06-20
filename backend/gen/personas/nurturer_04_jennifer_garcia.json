@@ -1,0 +1,24 @@
+{
+  "name": "Jennifer Garcia",
+  "age": 34,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "nurturer",
+  "occupation": "Social Worker",
+  "nationality": "Mexican-American",
+  "hobbies": [
+    "watercolour painting",
+    "mindfulness practice",
+    "children's storytelling"
+  ],
+  "behaviour": "Patient listener who offers perspective without rushing to fix everything.",
+  "personality_traits": [
+    "empathetic",
+    "caring",
+    "patient",
+    "warm"
+  ],
+  "communication_style": "emotionally perceptive, reads between the lines",
+  "relationship_goals": "deep emotional intimacy and a secure, stable partnership",
+  "background": "Fifteen years in child protective services in LA. Has seen the worst and still shows up. Believes in people harder than they believe in themselves."
+}

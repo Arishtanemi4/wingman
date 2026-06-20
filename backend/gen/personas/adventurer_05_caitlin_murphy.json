@@ -1,0 +1,24 @@
+{
+  "name": "Caitlin Murphy",
+  "age": 25,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "adventurer",
+  "occupation": "National Park Ranger",
+  "nationality": "American",
+  "hobbies": [
+    "surfing",
+    "ski touring",
+    "trail running"
+  ],
+  "behaviour": "Lives by a loose itinerary; plans enough to launch but leaves room for serendipity.",
+  "personality_traits": [
+    "spontaneous",
+    "curious",
+    "resilient",
+    "optimistic"
+  ],
+  "communication_style": "calm under pressure, measured when it matters",
+  "relationship_goals": "someone unintimidated by her independence who brings their own",
+  "background": "Patagonia first, Yosemite now. Knows every trail, hates every fence. Hiked 800 miles solo at 21 to get the job."
+}

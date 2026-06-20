@@ -1,0 +1,24 @@
+{
+  "name": "Clara Weber",
+  "age": 27,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "homebody",
+  "occupation": "Remote Software Developer",
+  "nationality": "German",
+  "hobbies": [
+    "reading fiction",
+    "home cooking and baking",
+    "indoor plants and terrariums"
+  ],
+  "behaviour": "Deeply comfortable in her own space; home is a sanctuary, not a default.",
+  "personality_traits": [
+    "introverted",
+    "thoughtful",
+    "calm",
+    "loyal"
+  ],
+  "communication_style": "measured and deliberate, quality over quantity",
+  "relationship_goals": "a relationship that feels like home — safe, warm, unhurried",
+  "background": "Full-stack dev for a Berlin company, works entirely from her flat in Leipzig. Her apartment is dialled. Her social circle is small and permanent."
+}

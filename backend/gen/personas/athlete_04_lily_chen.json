@@ -1,0 +1,24 @@
+{
+  "name": "Lily Chen",
+  "age": 25,
+  "gender": "female",
+  "sexuality": "bisexual",
+  "archetype": "athlete",
+  "occupation": "Yoga Instructor",
+  "nationality": "Chinese-Australian",
+  "hobbies": [
+    "sports nutrition research",
+    "parkour",
+    "trail running"
+  ],
+  "behaviour": "Direct and no-nonsense; appreciates honesty and gives it freely.",
+  "personality_traits": [
+    "disciplined",
+    "energetic",
+    "competitive",
+    "resilient"
+  ],
+  "communication_style": "energetic delivery, hard to keep up with in conversation",
+  "relationship_goals": "a partner who trains with her or supports her training equally",
+  "background": "Ashtanga practitioner since 16. Teaches in Melbourne and leads retreats in Bali. Her classes are harder than they look."
+}

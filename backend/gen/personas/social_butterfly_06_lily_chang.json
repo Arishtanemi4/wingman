@@ -1,0 +1,24 @@
+{
+  "name": "Lily Chang",
+  "age": 25,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "social_butterfly",
+  "occupation": "Lifestyle Blogger",
+  "nationality": "Taiwanese-American",
+  "hobbies": [
+    "hosting dinner parties",
+    "attending fashion events",
+    "dance classes"
+  ],
+  "behaviour": "Socially fluent across contexts — as comfortable at a gallery opening as a house party.",
+  "personality_traits": [
+    "spontaneous",
+    "gregarious",
+    "enthusiastic",
+    "fun-loving"
+  ],
+  "communication_style": "socially intuitive — reads the room and shifts register smoothly",
+  "relationship_goals": "a love that's public and proud and generous",
+  "background": "Hosts a podcast and writes a newsletter. Built an audience on honesty about mental health and good recommendations for everything else."
+}

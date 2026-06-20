@@ -1,0 +1,24 @@
+{
+  "name": "Pippa Clarke",
+  "age": 32,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "social_butterfly",
+  "occupation": "Charity Gala Organiser",
+  "nationality": "British",
+  "hobbies": [
+    "pop culture commentary",
+    "cooking for crowds",
+    "open-mic comedy"
+  ],
+  "behaviour": "Thrives on variety and novelty; routine feels like a slow fade to her.",
+  "personality_traits": [
+    "spontaneous",
+    "gregarious",
+    "enthusiastic",
+    "fun-loving"
+  ],
+  "communication_style": "effusive and superlative; everything is amazing or terrible, rarely neutral",
+  "relationship_goals": "someone who genuinely likes people as much as she does",
+  "background": "Raises millions for medical research through events that people queue to attend. Knows every philanthropist in London under 50."
+}

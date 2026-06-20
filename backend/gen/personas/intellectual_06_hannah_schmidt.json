@@ -1,0 +1,24 @@
+{
+  "name": "Hannah Schmidt",
+  "age": 33,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "intellectual",
+  "occupation": "Political Philosopher",
+  "nationality": "German",
+  "hobbies": [
+    "chess",
+    "reading philosophy",
+    "attending academic lectures"
+  ],
+  "behaviour": "Compulsive researcher who double-checks everything; hates receiving wrong information.",
+  "personality_traits": [
+    "scholarly",
+    "precise",
+    "witty",
+    "observant"
+  ],
+  "communication_style": "philosophical and reflective",
+  "relationship_goals": "connection through shared obsessions and late-night conversations",
+  "background": "Published her first book at 30. Debates for sport, cooks for pleasure. Does not suffer intellectual cowardice."
+}

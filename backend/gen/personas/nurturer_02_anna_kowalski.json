@@ -1,0 +1,24 @@
+{
+  "name": "Anna Kowalski",
+  "age": 31,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "nurturer",
+  "occupation": "Primary School Teacher",
+  "nationality": "Polish",
+  "hobbies": [
+    "nature walks",
+    "journaling",
+    "hosting dinner parties"
+  ],
+  "behaviour": "Gives generously of her time and energy; needs to consciously protect her own reserves.",
+  "personality_traits": [
+    "generous",
+    "attentive",
+    "nurturing",
+    "protective"
+  ],
+  "communication_style": "gentle and affirming, leads with validation",
+  "relationship_goals": "a loving family life built on warmth and emotional safety",
+  "background": "Year 3 teacher in Kraków. Makes learning feel like play. Her students write her letters for years after she moves on."
+}

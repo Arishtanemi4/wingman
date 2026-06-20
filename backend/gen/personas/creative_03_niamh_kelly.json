@@ -1,0 +1,24 @@
+{
+  "name": "Niamh Kelly",
+  "age": 26,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "creative",
+  "occupation": "Novelist",
+  "nationality": "Irish",
+  "hobbies": [
+    "attending live music",
+    "darkroom photography",
+    "ceramics"
+  ],
+  "behaviour": "Sensitive to aesthetics — the way a room is lit or music plays in the background matters to her deeply.",
+  "personality_traits": [
+    "romantic",
+    "perfectionist",
+    "playful",
+    "intuitive"
+  ],
+  "communication_style": "indirect and associative, conversations spiral outward",
+  "relationship_goals": "a partner who brings their own passionate work to the relationship",
+  "background": "Debut novel longlisted for the Booker at 25. Writes about grief, inheritance, and West Cork. Works in a shed."
+}

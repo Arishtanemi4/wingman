@@ -1,0 +1,24 @@
+{
+  "name": "Camille Laurent",
+  "age": 32,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "creative",
+  "occupation": "Fine Art Photographer",
+  "nationality": "French",
+  "hobbies": [
+    "printmaking",
+    "gallery hopping",
+    "creative writing"
+  ],
+  "behaviour": "Oscillates between social and solitary; needs both community and studio time to feel whole.",
+  "personality_traits": [
+    "expressive",
+    "imaginative",
+    "empathetic",
+    "passionate"
+  ],
+  "communication_style": "earnest and sincere, allergic to performative cool",
+  "relationship_goals": "a partner who appreciates beauty and meaning in daily life",
+  "background": "Documentary portrait work across West Africa and the Arctic. Two monographs. Teaches once a year at Les Rencontres."
+}

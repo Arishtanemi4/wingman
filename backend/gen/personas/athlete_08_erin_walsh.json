@@ -1,0 +1,24 @@
+{
+  "name": "Erin Walsh",
+  "age": 29,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "athlete",
+  "occupation": "Dance Movement Therapist",
+  "nationality": "Irish",
+  "hobbies": [
+    "yoga",
+    "rock climbing",
+    "swimming"
+  ],
+  "behaviour": "Sets goals and works toward them visibly; progress motivates her more than praise.",
+  "personality_traits": [
+    "direct",
+    "grounded",
+    "focused",
+    "confident"
+  ],
+  "communication_style": "clear and plain-spoken, values simplicity",
+  "relationship_goals": "someone who keeps her honest and brings their own goals to the table",
+  "background": "Uses movement as therapy for trauma and addiction recovery in Dublin. Former contemporary dancer. Knows exactly how the body holds what the mind won't say."
+}

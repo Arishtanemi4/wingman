@@ -1,0 +1,24 @@
+{
+  "name": "Leila Nouri",
+  "age": 28,
+  "gender": "female",
+  "sexuality": "heterosexual",
+  "archetype": "intellectual",
+  "occupation": "Policy Analyst",
+  "nationality": "Iranian-Canadian",
+  "hobbies": [
+    "visiting museums",
+    "documentary watching",
+    "science fiction reading"
+  ],
+  "behaviour": "Prefers writing to speaking; texting deep thoughts at 1am is her love language.",
+  "personality_traits": [
+    "curious",
+    "analytical",
+    "introspective",
+    "articulate"
+  ],
+  "communication_style": "direct and honest, values clarity over comfort",
+  "relationship_goals": "slow-burn relationship built on trust and mutual understanding",
+  "background": "Works at a think tank in Ottawa. Has a gift for making complex systems legible and a talent for controlled irritation."
+}
