@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { WingmanProvider } from './services/WingmanContext'
+import { currentUsername } from './services/auth'
 import ProtectedRoute from './components/ProtectedRoute'
 import Layout from './components/Layout'
 import LoginPage from './pages/LoginPage'
@@ -8,11 +9,13 @@ import EvaluatePage from './pages/EvaluatePage'
 import PersonasPage from './pages/PersonasPage'
 import ChatPage from './pages/ChatPage'
 
-// Mounts WingmanProvider fresh on every login — remounts when user leaves protected area
+// key={username} forces WingmanProvider to remount (fresh state + storage keys)
+// whenever the logged-in user changes — so one user never sees another's results.
+// State still persists across tab-switches for the SAME user (key unchanged).
 function ProtectedApp() {
   return (
     <ProtectedRoute>
-      <WingmanProvider>
+      <WingmanProvider key={currentUsername() || 'anon'}>
         <Layout>
           <Outlet />
         </Layout>

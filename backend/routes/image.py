@@ -103,17 +103,54 @@ def analyze_image(image_base64: str | None, image_url: str | None) -> dict:
     return {**result, "image_hash": key, "cached": False}
 
 
+def aggregate_photo_score(image_analyses: list[dict]) -> dict | None:
+    """
+    Combine per-photo 'overall' scores into one 'photo strength'.
+    Best-dominant (halo / first impression) with a soft penalty for a weak pic.
+    The first photo is treated as the main/headline. Keep constants in sync with
+    frontend/services/photoScore.js.
+    """
+    overalls = [float(a.get("overall", 0) or 0) for a in image_analyses or []]
+    if not overalls:
+        return None
+
+    best, avg, main, worst = max(overalls), sum(overalls) / len(overalls), overalls[0], min(overalls)
+    base = 0.5 * best + 0.3 * main + 0.2 * avg
+    penalty = max(0.0, 5 - worst) * 0.5          # soft: only weak pics (<5) dent
+    strength = round(min(10.0, max(1.0, base - penalty)), 1)
+
+    weakest_index = overalls.index(worst)
+    return {
+        "strength": strength,
+        "best": best,
+        "weakest_index": weakest_index,
+        "weakest_score": worst,
+        "count": len(overalls),
+    }
+
+
 def format_image_block(image_descriptions: list[str], image_analyses: list[dict]) -> str:
     """Render photo data (plain descriptions + scored analyses) for LLM prompts."""
     lines = []
     for d in image_descriptions or []:
         lines.append(f"- {d}")
-    for a in image_analyses or []:
+    for i, a in enumerate(image_analyses or []):
         scores = a.get("scores", {})
         scores_str = ", ".join(f"{k}: {v}/10" for k, v in scores.items())
         overall = a.get("overall")
-        suffix = f" [photo scores — {scores_str}; overall {overall}/10]" if scores else ""
+        tag = "main photo" if i == 0 else f"photo {i + 1}"
+        suffix = f" [{tag} — {scores_str}; overall {overall}/10]" if scores else ""
         lines.append(f"- {a.get('description', '')}{suffix}")
+
+    agg = aggregate_photo_score(image_analyses)
+    if agg and agg["count"] > 1:
+        weakest = image_analyses[agg["weakest_index"]]
+        lines.append(
+            f"\nOverall photo strength: {agg['strength']}/10 across {agg['count']} photos. "
+            f"His strongest photo leads the first impression; his weakest "
+            f"(\"{weakest.get('description', '')[:60]}\", {agg['weakest_score']}/10) is a mild drag. "
+            f"Weigh his best pic heavily, but don't ignore a weak one."
+        )
     return "\n".join(lines)
 
 

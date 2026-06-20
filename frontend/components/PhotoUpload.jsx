@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { describeImage } from '../services/api'
+import { photoStrength } from '../services/photoScore'
 
 const SCORE_LABELS = {
   golden_ratio: 'Golden ratio',
@@ -69,6 +70,10 @@ export default function PhotoUpload({ analyses, onChange }) {
 
   const remove = (hash) => onChange((analyses || []).filter((a) => a.image_hash !== hash))
 
+  const strength = photoStrength(analyses)
+  const strengthColor = (s) => (s >= 7 ? 'text-green-400' : s >= 4 ? 'text-yellow-400' : 'text-red-400')
+  const strengthBar = (s) => (s >= 7 ? 'bg-green-500' : s >= 4 ? 'bg-yellow-500' : 'bg-red-500')
+
   return (
     <div className="space-y-3">
       <label className="flex items-center justify-center gap-2 border border-dashed border-border rounded-lg px-4 py-3 text-sm text-slate-400 hover:border-purple-500 hover:text-slate-200 cursor-pointer transition-colors">
@@ -83,7 +88,23 @@ export default function PhotoUpload({ analyses, onChange }) {
 
       {error && <p className="text-red-400 text-xs">{error}</p>}
 
-      {(analyses || []).map((a) => (
+      {/* Combined photo strength — only meaningful with 2+ photos */}
+      {strength && strength.count > 1 && (
+        <div className="bg-card border border-purple-900/40 rounded-lg p-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs text-purple-400 uppercase tracking-widest">Photo strength</span>
+            <span className={`text-lg font-bold ${strengthColor(strength.strength)}`}>{strength.strength}/10</span>
+          </div>
+          <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden mb-2">
+            <div className={`h-full ${strengthBar(strength.strength)} rounded-full`} style={{ width: `${strength.strength * 10}%` }} />
+          </div>
+          <p className="text-xs text-slate-500">
+            Best pic {strength.best}/10 leads · weakest {strength.weakestScore}/10 is a mild drag · {strength.count} photos
+          </p>
+        </div>
+      )}
+
+      {(analyses || []).map((a, i) => (
         <div key={a.image_hash} className="bg-slate-900/60 border border-border rounded-lg overflow-hidden">
           {/* Image preview */}
           {a.preview_url && (
@@ -93,6 +114,9 @@ export default function PhotoUpload({ analyses, onChange }) {
                 alt="profile"
                 className="w-full h-48 object-cover"
               />
+              <span className="absolute top-2 left-2 bg-black/70 text-xs px-2 py-1 rounded-full text-slate-200">
+                {i === 0 ? '★ Main' : `Photo ${i + 1}`}
+              </span>
               <div className="absolute top-2 right-2 flex items-center gap-1.5">
                 <span className="bg-black/70 text-purple-300 text-xs font-bold px-2 py-1 rounded-full">
                   {a.overall}/10
