@@ -28,7 +28,7 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route element={<ProtectedApp />}>
           <Route path="/analyze"   element={<AnalyzePage />} />
-          <Route path="/evaluate"  element={<EvaluatePage />} />
+          <Route path="/simulate"  element={<EvaluatePage />} />
           <Route path="/personas"  element={<PersonasPage />} />
           <Route path="/chat/:name" element={<ChatPage />} />
         </Route>

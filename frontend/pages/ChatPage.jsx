@@ -17,13 +17,21 @@ const ARCHETYPE_COLORS = {
   traditionalist:   'text-amber-300',
 }
 
+const archetypeLabel = (arch) =>
+  arch
+    ? `A Female ${arch.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}`
+    : 'Her'
+
+const archetypeInitial = (arch) =>
+  arch ? arch[0].toUpperCase() : '?'
+
 export default function ChatPage() {
   const { name } = useParams()
   const navigate = useNavigate()
   const decodedName = decodeURIComponent(name)
 
   const [persona, setPersona] = useState(null)
-  const [messages, setMessages] = useState([]) // [{role, content}]
+  const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [fetchError, setFetchError] = useState(null)
@@ -45,7 +53,7 @@ export default function ChatPage() {
     const text = input.trim()
     if (!text || loading) return
 
-    const history = [...messages] // snapshot before adding new user msg
+    const history = [...messages]
     setMessages((prev) => [...prev, { role: 'user', content: text }])
     setInput('')
     setLoading(true)
@@ -90,6 +98,9 @@ export default function ChatPage() {
     )
   }
 
+  const displayLabel = archetypeLabel(persona.archetype)
+  const initial = archetypeInitial(persona.archetype)
+
   return (
     <div className="flex flex-col h-[calc(100vh-56px-4rem)]">
       {/* Header */}
@@ -102,7 +113,7 @@ export default function ChatPage() {
             >
               ←
             </button>
-            <h2 className="font-semibold text-slate-100">{persona.name}</h2>
+            <h2 className="font-semibold text-slate-100">{displayLabel}</h2>
             <span className={`text-xs font-medium ${ARCHETYPE_COLORS[persona.archetype]}`}>
               {persona.archetype.replace(/_/g, ' ')}
             </span>
@@ -123,7 +134,7 @@ export default function ChatPage() {
       <div className="flex-1 overflow-y-auto space-y-4 pb-2 pr-1">
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-slate-600 gap-2">
-            <p className="text-sm">Say something to {persona.name.split(' ')[0]}</p>
+            <p className="text-sm">Say something to {displayLabel}</p>
             <p className="text-xs max-w-xs text-center">{persona.background}</p>
           </div>
         )}
@@ -135,7 +146,7 @@ export default function ChatPage() {
           >
             {msg.role === 'assistant' && (
               <div className="w-7 h-7 rounded-full bg-slate-700 flex items-center justify-center text-xs font-semibold text-slate-300 shrink-0 mr-2 mt-0.5">
-                {persona.name[0]}
+                {initial}
               </div>
             )}
             <div
@@ -153,7 +164,7 @@ export default function ChatPage() {
         {loading && (
           <div className="flex justify-start">
             <div className="w-7 h-7 rounded-full bg-slate-700 flex items-center justify-center text-xs font-semibold text-slate-300 shrink-0 mr-2 mt-0.5">
-              {persona.name[0]}
+              {initial}
             </div>
             <div className="bg-card border border-border rounded-2xl rounded-tl-sm px-4 py-3 flex gap-1.5 items-center">
               <span className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
@@ -173,7 +184,7 @@ export default function ChatPage() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={`Message ${persona.name.split(' ')[0]}...`}
+          placeholder={`Message ${displayLabel}...`}
           rows={1}
           className="flex-1 bg-card border border-border rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-colors resize-none"
         />

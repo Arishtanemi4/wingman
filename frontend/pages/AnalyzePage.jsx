@@ -45,7 +45,7 @@ function Field({ label, children }) {
 
 const inputCls = 'w-full bg-slate-900 border border-border rounded-lg px-4 py-2.5 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-colors'
 
-const EMPTY_PROFILE = { name: '', age: '', bio: '', occupation: '', hobbies: [], interests: [], image_descriptions: [], image_analyses: [] }
+const EMPTY_PROFILE = { name: '', age: '', bio: '', occupation: '', hobbies: [], image_descriptions: [], image_analyses: [] }
 
 export default function AnalyzePage() {
   const { analyzeLoading: loading, analyzeResult: result, analyzeError, runAnalyze } = useWingman()
@@ -185,14 +185,6 @@ export default function AnalyzePage() {
               value={profile.hobbies}
               onChange={set('hobbies')}
               placeholder="e.g. hiking, photography..."
-            />
-          </Field>
-
-          <Field label="Interests (press Enter to add)">
-            <TagInput
-              value={profile.interests}
-              onChange={set('interests')}
-              placeholder="e.g. travel, music..."
             />
           </Field>
 

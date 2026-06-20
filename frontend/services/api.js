@@ -25,4 +25,7 @@ export const analyzeProfile = (profile) =>
 export const describeImage = (payload) =>
   slowApi.post('/api/image/describe', payload)
 
+export const getArchetypeInsights = (profile) =>
+  slowApi.post('/api/archetypes/insights', profile)
+
 export default api

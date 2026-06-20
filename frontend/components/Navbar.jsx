@@ -21,7 +21,7 @@ export default function Navbar() {
           </span>
           <div className="flex gap-6">
             <NavLink to="/analyze" className={linkClass}>Analyze</NavLink>
-            <NavLink to="/evaluate" className={linkClass}>Evaluate</NavLink>
+            <NavLink to="/simulate" className={linkClass}>Simulate</NavLink>
             <NavLink to="/personas" className={linkClass}>Personas</NavLink>
           </div>
         </div>

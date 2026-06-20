@@ -4,15 +4,16 @@ import { currentUsername, userKey } from './auth'
 
 const API_URL = import.meta.env.VITE_API_URL
 
-// Keys computed at provider mount time — scoped to the current user
-const RESULT_KEY = userKey('wingman_result')
-const EVAL_KEY   = userKey('wingman_eval')
-
 const WingmanContext = createContext(null)
 
 export const useWingman = () => useContext(WingmanContext)
 
 export function WingmanProvider({ children }) {
+  // Keys computed HERE (inside the provider, at mount time after login).
+  // Must NOT be at module level — module loads once, but provider remounts per login.
+  const RESULT_KEY = userKey('wingman_result')
+  const EVAL_KEY   = userKey('wingman_sim')
+
   // ── Analyze state ──
   const [analyzeLoading, setAnalyzeLoading] = useState(false)
   const [analyzeResult, setAnalyzeResult] = useState(() => {
@@ -91,7 +92,9 @@ export function WingmanProvider({ children }) {
             if (event.type === 'start') {
               setEvalProgress({ done: 0, total: event.total })
             } else if (event.type === 'result') {
-              accumulated = [...accumulated, event.data]
+              // Always store _archetype so display never falls back to LLM name
+              const enriched = { ...event.data, _archetype: event.archetype }
+              accumulated = [...accumulated, enriched]
               setEvalResults([...accumulated])
               setEvalProgress(prev => ({ ...prev, done: event.index }))
               persistEval(accumulated, false)

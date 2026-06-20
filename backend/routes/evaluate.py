@@ -88,7 +88,7 @@ def _format_persona(p: dict) -> str:
 
 
 def _format_male_profile(name: str, age: int, occupation: str, bio: str,
-                          hobbies: list[str], interests: list[str],
+                          hobbies: list[str],
                           image_descriptions: list[str], image_analyses: list[dict]) -> str:
     photos = format_image_block(image_descriptions, image_analyses) or "none"
     return (
@@ -97,7 +97,6 @@ def _format_male_profile(name: str, age: int, occupation: str, bio: str,
         f"Occupation: {occupation or 'not specified'}\n"
         f"Bio: {bio}\n"
         f"Hobbies: {', '.join(hobbies)}\n"
-        f"Interests: {', '.join(interests) if interests else 'none listed'}\n"
         f"Photos (with aesthetic scores out of 10):\n{photos}"
     )
 
@@ -132,7 +131,7 @@ def _evaluate_one(persona_data: dict, male_profile_str: str) -> dict | None:
 
 
 def run_evaluation(name: str, age: int, occupation: str, bio: str,
-                   hobbies: list[str], interests: list[str],
+                   hobbies: list[str],
                    image_descriptions: list[str], image_analyses: list[dict]) -> str:
     """
     Runs all 108 personas against the male profile in parallel.
@@ -142,7 +141,7 @@ def run_evaluation(name: str, age: int, occupation: str, bio: str,
     print(f"[eval] Starting evaluation for '{name}'")
 
     male_profile_str = _format_male_profile(
-        name, age, occupation, bio, hobbies, interests, image_descriptions, image_analyses
+        name, age, occupation, bio, hobbies, image_descriptions, image_analyses
     )
 
     # One persona per archetype — 12 calls instead of 108
@@ -202,7 +201,6 @@ class UserProfile(BaseModel):
     bio: str
     occupation: str | None = None
     hobbies: list[str]
-    interests: list[str] = []
     image_descriptions: list[str] = []
     image_analyses: list[dict] = []
     username: str | None = None
@@ -215,7 +213,7 @@ def evaluate_profile_route(profile: UserProfile) -> EvaluationReport:
 
     filepath = run_evaluation(
         profile.name, profile.age, profile.occupation or "",
-        profile.bio, profile.hobbies, profile.interests,
+        profile.bio, profile.hobbies,
         profile.image_descriptions, profile.image_analyses,
     )
 
@@ -263,7 +261,7 @@ def evaluate_stream(profile: UserProfile):
 
         male_profile_str = _format_male_profile(
             profile.name, profile.age, profile.occupation or "",
-            profile.bio, profile.hobbies, profile.interests,
+            profile.bio, profile.hobbies,
             profile.image_descriptions, profile.image_analyses,
         )
 
@@ -272,11 +270,12 @@ def evaluate_stream(profile: UserProfile):
         for i, persona_data in enumerate(personas):
             result = _evaluate_one(persona_data, male_profile_str)
             if result:
+                result['_archetype'] = persona_data['archetype']
                 report["evaluations"].append(result)
                 report["total"] = len(report["evaluations"])
                 with open(filepath, "w", encoding="utf-8") as f:
                     json.dump(report, f, indent=2, ensure_ascii=False)
-                yield f"data: {json.dumps({'type': 'result', 'index': i + 1, 'data': result})}\n\n"
+                yield f"data: {json.dumps({'type': 'result', 'index': i + 1, 'archetype': persona_data['archetype'], 'data': result})}\n\n"
 
         # Persist completed report to cache for instant future replays
         cache_set(EVAL_CACHE_DIR, key, report)

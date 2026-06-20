@@ -9,6 +9,7 @@ from pydantic import BaseModel
 
 from cache import cache_get, cache_set, hash_obj
 from gen.config import ANALYSIS_CACHE_DIR, FRAGMENTS_DIR, LLM_API_KEY, LLM_BASE_URL, LLM_MODEL
+INSIGHTS_CACHE_DIR = ANALYSIS_CACHE_DIR  # reuse same dir, different key prefix
 from routes.image import format_image_block
 from user_store import append_analysis
 
@@ -31,7 +32,6 @@ class UserProfile(BaseModel):
     bio: str
     occupation: str | None = None
     hobbies: list[str]
-    interests: list[str] = []
     image_descriptions: list[str] = []
     image_analyses: list[dict] = []
     username: str | None = None               # set by frontend from session
@@ -73,7 +73,6 @@ def _archetype_context() -> str:
 
 def _build_prompt(profile: UserProfile, arch_context: str) -> str:
     hobbies_str = ", ".join(profile.hobbies) or "none listed"
-    interests_str = ", ".join(profile.interests) if profile.interests else "none listed"
     occupation_str = profile.occupation or "not specified"
 
     img_block = ""
@@ -95,8 +94,7 @@ Name: {profile.name}
 Age: {profile.age}
 Occupation: {occupation_str}
 Bio: {profile.bio}
-Hobbies: {hobbies_str}
-Interests: {interests_str}{img_block}
+Hobbies: {hobbies_str}{img_block}
 
 ## Task
 For each of the user's hobbies:
@@ -196,4 +194,77 @@ def analyze_profile(profile: UserProfile) -> AnalysisResult:
 
     cache_set(ANALYSIS_CACHE_DIR, key, result.model_dump())
     append_analysis(profile.username or "", profile.model_dump(exclude={"username"}), result.model_dump())
+    return result
+
+
+# ── Archetype Insights ────────────────────────────────────────────────────────
+
+_INSIGHTS_PROMPT = """You are a dating coach. Based on this man's dating profile, analyse his
+compatibility with each of the 12 female personality archetypes below.
+For each archetype give exactly 2 pros (what naturally appeals to women of this type about him)
+and 2 cons (what he would need to improve to better attract this type).
+Be specific — reference his actual hobbies, bio, and job.
+
+## His Profile
+Name: {name}, Age: {age}, Occupation: {occupation}
+Bio: {bio}
+Hobbies: {hobbies}
+
+## Archetypes
+{arch_context}
+
+Respond ONLY with valid JSON — no prose outside it:
+{{
+  "insights": [
+    {{
+      "archetype": "<archetype key>",
+      "pros": ["specific pro 1", "specific pro 2"],
+      "cons": ["specific con 1", "specific con 2"]
+    }}
+  ]
+}}"""
+
+
+class ArchetypeInsight(BaseModel):
+    archetype: str
+    pros: list[str]
+    cons: list[str]
+
+
+class InsightsResult(BaseModel):
+    insights: list[ArchetypeInsight]
+
+
+@router.post("/archetypes/insights", response_model=InsightsResult)
+def archetype_insights(profile: UserProfile) -> InsightsResult:
+    """One LLM call — returns pros/cons for all 12 archetypes. Cached by profile hash."""
+    if not profile.hobbies:
+        raise HTTPException(400, "At least one hobby is required.")
+
+    key = "insights_" + hash_obj(profile.model_dump())
+    cached = cache_get(INSIGHTS_CACHE_DIR, key)
+    if cached:
+        return InsightsResult(**cached)
+
+    prompt = _INSIGHTS_PROMPT.format(
+        name=profile.name,
+        age=profile.age,
+        occupation=profile.occupation or "not specified",
+        bio=profile.bio,
+        hobbies=", ".join(profile.hobbies),
+        arch_context=_archetype_context(),
+    )
+    response = _client.chat.completions.create(
+        model=LLM_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    raw = response.choices[0].message.content
+
+    try:
+        data = _extract_json(raw)
+        result = InsightsResult(**data)
+    except Exception as exc:
+        raise HTTPException(500, f"Failed to parse insights: {exc}. Raw: {raw[:300]}")
+
+    cache_set(INSIGHTS_CACHE_DIR, key, result.model_dump())
     return result

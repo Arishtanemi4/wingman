@@ -17,31 +17,28 @@ const ARCHETYPE_COLORS = {
   traditionalist:   'bg-amber-900/40 text-amber-300 border-amber-700/40',
 }
 
-function archetypeFromName(name) {
-  if (!name) return null
-  return Object.keys(ARCHETYPE_COLORS).find(k =>
-    name.toLowerCase().includes(k.replace('_', ' '))
+const archetypeLabel = (arch) =>
+  arch ? `A Female ${arch.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}` : '—'
+
+const resolveArchetype = (r) =>
+  r._archetype || Object.keys(ARCHETYPE_COLORS).find(k =>
+    (r.agent_metadata?.agent_name || '').toLowerCase().includes(k.replace('_', ' '))
   ) || null
-}
 
 function OverallSummary({ results }) {
   if (!results.length) return null
-
   const scores = results.map(r => r.agent_metadata?.compatibility_score ?? 0)
   const avg = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length)
   const top = results.reduce((a, b) =>
-    (a.agent_metadata?.compatibility_score ?? 0) >= (b.agent_metadata?.compatibility_score ?? 0) ? a : b
-  )
+    (a.agent_metadata?.compatibility_score ?? 0) >= (b.agent_metadata?.compatibility_score ?? 0) ? a : b)
   const bottom = results.reduce((a, b) =>
-    (a.agent_metadata?.compatibility_score ?? 100) <= (b.agent_metadata?.compatibility_score ?? 100) ? a : b
-  )
-
+    (a.agent_metadata?.compatibility_score ?? 100) <= (b.agent_metadata?.compatibility_score ?? 100) ? a : b)
   const scoreColor = avg >= 70 ? 'text-green-400' : avg >= 45 ? 'text-yellow-400' : 'text-red-400'
   const scoreLabel = avg >= 70 ? 'Strong profile' : avg >= 45 ? 'Room to grow' : 'Needs work'
 
   return (
     <div className="bg-card border border-purple-900/40 rounded-2xl p-6 mb-6">
-      <h3 className="text-xs text-purple-400 uppercase tracking-widest mb-5">Overall Summary</h3>
+      <h3 className="text-xs text-purple-400 uppercase tracking-widest mb-5">Simulation Summary</h3>
       <div className="grid grid-cols-3 gap-4 mb-5">
         <div className="text-center">
           <p className={`text-4xl font-bold ${scoreColor}`}>{avg}</p>
@@ -49,30 +46,27 @@ function OverallSummary({ results }) {
           <p className={`text-xs font-medium mt-0.5 ${scoreColor}`}>{scoreLabel}</p>
         </div>
         <div className="text-center border-x border-border">
-          <p className="text-slate-100 font-medium text-sm">{top.agent_metadata?.agent_name?.split(' ')[0]}</p>
+          <p className="text-slate-100 font-medium text-sm">{archetypeLabel(resolveArchetype(top))}</p>
           <p className="text-xs text-slate-500 mt-1">most compatible</p>
           <p className="text-green-400 font-bold text-lg">{top.agent_metadata?.compatibility_score}</p>
         </div>
         <div className="text-center">
-          <p className="text-slate-100 font-medium text-sm">{bottom.agent_metadata?.agent_name?.split(' ')[0]}</p>
+          <p className="text-slate-100 font-medium text-sm">{archetypeLabel(resolveArchetype(bottom))}</p>
           <p className="text-xs text-slate-500 mt-1">least compatible</p>
           <p className="text-red-400 font-bold text-lg">{bottom.agent_metadata?.compatibility_score}</p>
         </div>
       </div>
-
-      {/* Score distribution */}
       <div className="space-y-1.5">
         {results
           .slice()
           .sort((a, b) => (b.agent_metadata?.compatibility_score ?? 0) - (a.agent_metadata?.compatibility_score ?? 0))
           .map((r, i) => {
             const score = r.agent_metadata?.compatibility_score ?? 0
-            const name = r.agent_metadata?.agent_name || '—'
-            const arch = archetypeFromName(name)
+            const arch = resolveArchetype(r)
             const barColor = score >= 70 ? 'bg-green-500' : score >= 45 ? 'bg-yellow-500' : 'bg-red-500'
             return (
               <div key={i} className="flex items-center gap-3 text-xs">
-                <span className="text-slate-400 w-28 truncate">{name.split(' ')[0]} {name.split(' ')[1]}</span>
+                <span className="text-slate-400 w-36 truncate">{archetypeLabel(arch)}</span>
                 <div className="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
                   <div className={`h-full ${barColor} rounded-full transition-all duration-700`} style={{ width: `${score}%` }} />
                 </div>
@@ -85,11 +79,11 @@ function OverallSummary({ results }) {
   )
 }
 
-function EvalCard({ evaluation }) {
+function SimCard({ evaluation }) {
   const meta = evaluation.agent_metadata || {}
   const critique = evaluation.psychological_critique || {}
   const feedback = evaluation.actionable_feedback || {}
-  const arch = archetypeFromName(meta.agent_name)
+  const arch = resolveArchetype(evaluation)
   const score = meta.compatibility_score ?? 0
   const scoreColor = score >= 70 ? 'text-green-400' : score >= 45 ? 'text-yellow-400' : 'text-red-400'
 
@@ -97,7 +91,7 @@ function EvalCard({ evaluation }) {
     <div className="bg-card border border-border rounded-xl p-5">
       <div className="flex items-start justify-between mb-4">
         <div>
-          <p className="text-slate-100 font-medium">{meta.agent_name || '—'}</p>
+          <p className="text-slate-100 font-medium">{archetypeLabel(arch)}</p>
           {arch && (
             <span className={`text-xs px-2 py-0.5 rounded-full border mt-1 inline-block ${ARCHETYPE_COLORS[arch]}`}>
               {arch.replace(/_/g, ' ')}
@@ -109,7 +103,6 @@ function EvalCard({ evaluation }) {
           <p className="text-xs text-slate-600 mt-0.5">/ 100</p>
         </div>
       </div>
-
       <div className="space-y-3 text-sm">
         {critique.first_impression && (
           <div>
@@ -139,7 +132,7 @@ function EvalCard({ evaluation }) {
   )
 }
 
-export default function EvaluatePage() {
+export default function SimulatePage() {
   const navigate = useNavigate()
   const {
     evalStatus: status,
@@ -154,7 +147,7 @@ export default function EvaluatePage() {
     try { return JSON.parse(localStorage.getItem(userKey('wingman_profile'))) } catch { return null }
   })()
 
-  const startEvaluation = () => runEvaluate(profile)
+  const startSimulation = () => runEvaluate(profile)
 
   if (!profile) {
     return (
@@ -171,9 +164,9 @@ export default function EvaluatePage() {
     <div>
       <div className="mb-6 flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold mb-1">Persona Evaluations</h1>
+          <h1 className="text-2xl font-bold mb-1">Simulate</h1>
           <p className="text-slate-500 text-sm">
-            12 archetypes evaluate <span className="text-slate-300">{profile.name}</span>'s profile.
+            12 female archetypes rate <span className="text-slate-300">{profile.name}</span>'s profile.
           </p>
         </div>
         <div className="flex gap-3">
@@ -182,8 +175,8 @@ export default function EvaluatePage() {
               Stop
             </button>
           ) : (
-            <button onClick={startEvaluation} className="px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium transition-colors">
-              {status === 'done' ? 'Re-run' : 'Start Evaluation'}
+            <button onClick={startSimulation} className="px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium transition-colors">
+              {status === 'done' ? 'Re-run' : 'Start Simulation'}
             </button>
           )}
         </div>
@@ -192,7 +185,7 @@ export default function EvaluatePage() {
       {status === 'running' && (
         <div className="mb-6">
           <div className="flex justify-between text-xs text-slate-500 mb-2">
-            <span>Evaluating archetypes…</span>
+            <span>Simulating archetypes…</span>
             <span>{progress.done}/{progress.total}</span>
           </div>
           <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
@@ -210,7 +203,7 @@ export default function EvaluatePage() {
 
       {status === 'idle' && results.length === 0 && (
         <div className="bg-card border border-dashed border-border rounded-2xl p-12 text-center text-slate-600">
-          <p className="text-lg">Hit Start Evaluation to begin</p>
+          <p className="text-lg">Hit Start Simulation to begin</p>
           <p className="text-sm mt-1">Each archetype streams in as it completes (~3 min total)</p>
         </div>
       )}
@@ -218,7 +211,7 @@ export default function EvaluatePage() {
       {results.length > 0 && <OverallSummary results={results} />}
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        {results.map((r, i) => <EvalCard key={i} evaluation={r} />)}
+        {results.map((r, i) => <SimCard key={i} evaluation={r} />)}
         {status === 'running' && (
           <div className="bg-card border border-border/50 rounded-xl p-5 animate-pulse">
             <div className="h-4 bg-slate-700 rounded w-2/3 mb-3" />
