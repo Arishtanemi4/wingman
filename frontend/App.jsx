@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { WingmanProvider } from './services/WingmanContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import Layout from './components/Layout'
@@ -8,10 +8,15 @@ import EvaluatePage from './pages/EvaluatePage'
 import PersonasPage from './pages/PersonasPage'
 import ChatPage from './pages/ChatPage'
 
-function Protected({ children }) {
+// Mounts WingmanProvider fresh on every login — remounts when user leaves protected area
+function ProtectedApp() {
   return (
     <ProtectedRoute>
-      <Layout>{children}</Layout>
+      <WingmanProvider>
+        <Layout>
+          <Outlet />
+        </Layout>
+      </WingmanProvider>
     </ProtectedRoute>
   )
 }
@@ -19,16 +24,16 @@ function Protected({ children }) {
 export default function App() {
   return (
     <BrowserRouter>
-      <WingmanProvider>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/analyze" element={<Protected><AnalyzePage /></Protected>} />
-        <Route path="/evaluate" element={<Protected><EvaluatePage /></Protected>} />
-        <Route path="/personas" element={<Protected><PersonasPage /></Protected>} />
-        <Route path="/chat/:name" element={<Protected><ChatPage /></Protected>} />
+        <Route element={<ProtectedApp />}>
+          <Route path="/analyze"   element={<AnalyzePage />} />
+          <Route path="/evaluate"  element={<EvaluatePage />} />
+          <Route path="/personas"  element={<PersonasPage />} />
+          <Route path="/chat/:name" element={<ChatPage />} />
+        </Route>
         <Route path="*" element={<Navigate to="/analyze" replace />} />
       </Routes>
-      </WingmanProvider>
     </BrowserRouter>
   )
 }

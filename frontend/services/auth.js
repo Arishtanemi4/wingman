@@ -43,3 +43,9 @@ export function isAuthenticated() {
 export function currentUsername() {
   return getSession()?.username || null
 }
+
+/** Returns a localStorage key scoped to the logged-in user. */
+export function userKey(base) {
+  const u = currentUsername() || '_guest'
+  return `${base}_${u}`
+}

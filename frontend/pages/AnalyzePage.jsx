@@ -3,9 +3,11 @@ import TagInput from '../components/TagInput'
 import PhotoUpload from '../components/PhotoUpload'
 import { useWingman } from '../services/WingmanContext'
 import { describeImage } from '../services/api'
-import { currentUsername } from '../services/auth'
+import { currentUsername, userKey } from '../services/auth'
 
-const PROFILE_KEY = 'wingman_profile'
+// Scoped to the logged-in user — computed once at module parse time is wrong here
+// so we compute it inside the component via a getter
+const getProfileKey = () => userKey('wingman_profile')
 
 const ARCHETYPE_COLORS = {
   intellectual:     'bg-blue-900/40 text-blue-300 border-blue-700/40',
@@ -49,7 +51,7 @@ export default function AnalyzePage() {
   const { analyzeLoading: loading, analyzeResult: result, analyzeError, runAnalyze } = useWingman()
 
   const [profile, setProfile] = useState(() => {
-    try { return JSON.parse(localStorage.getItem(PROFILE_KEY)) || EMPTY_PROFILE } catch { return EMPTY_PROFILE }
+    try { return JSON.parse(localStorage.getItem(getProfileKey())) || EMPTY_PROFILE } catch { return EMPTY_PROFILE }
   })
   const [formError, setFormError] = useState(null)
   const [avatarUploading, setAvatarUploading] = useState(false)
@@ -80,7 +82,7 @@ export default function AnalyzePage() {
 
   const set = (key) => (val) => setProfile((p) => {
     const next = { ...p, [key]: val }
-    localStorage.setItem(PROFILE_KEY, JSON.stringify(next))
+    localStorage.setItem(getProfileKey(), JSON.stringify(next))
     return next
   })
 
@@ -92,7 +94,7 @@ export default function AnalyzePage() {
     }
     setFormError(null)
     const payload = { ...profile, age: parseInt(profile.age) || 0 }
-    localStorage.setItem(PROFILE_KEY, JSON.stringify(payload))
+    localStorage.setItem(getProfileKey(), JSON.stringify(payload))
     runAnalyze(payload)  // fire-and-forget: state lives in context, survives tab switches
   }
 

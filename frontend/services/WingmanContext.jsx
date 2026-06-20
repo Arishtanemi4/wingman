@@ -1,11 +1,12 @@
 import { createContext, useContext, useState, useRef } from 'react'
 import { analyzeProfile } from './api'
-import { currentUsername } from './auth'
+import { currentUsername, userKey } from './auth'
 
 const API_URL = import.meta.env.VITE_API_URL
 
-const RESULT_KEY = 'wingman_result'
-const EVAL_KEY   = 'wingman_eval'
+// Keys computed at provider mount time — scoped to the current user
+const RESULT_KEY = userKey('wingman_result')
+const EVAL_KEY   = userKey('wingman_eval')
 
 const WingmanContext = createContext(null)
 

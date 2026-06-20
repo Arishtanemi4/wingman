@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useWingman } from '../services/WingmanContext'
+import { userKey } from '../services/auth'
 
 const ARCHETYPE_COLORS = {
   intellectual:     'bg-blue-900/40 text-blue-300 border-blue-700/40',
@@ -150,7 +151,7 @@ export default function EvaluatePage() {
   } = useWingman()
 
   const profile = (() => {
-    try { return JSON.parse(localStorage.getItem('wingman_profile')) } catch { return null }
+    try { return JSON.parse(localStorage.getItem(userKey('wingman_profile'))) } catch { return null }
   })()
 
   const startEvaluation = () => runEvaluate(profile)
