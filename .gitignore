@@ -1,0 +1,5 @@
+# Cache files
+*.claude*
+*__pycache__*
+*node_modules*
+*.vscode*
