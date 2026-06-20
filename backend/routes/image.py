@@ -65,6 +65,20 @@ def _extract_json(text: str) -> dict:
     return result
 
 
+def _to_score(val, default: float = 0.0) -> float:
+    """Coerce a model value (number, '7/10', a sentence…) to a 0–10 float."""
+    if isinstance(val, bool):
+        return default
+    if isinstance(val, (int, float)):
+        num = float(val)
+    elif isinstance(val, str):
+        m = re.search(r"-?\d+(?:\.\d+)?", val)
+        num = float(m.group()) if m else default
+    else:
+        num = default
+    return max(0.0, min(10.0, num))
+
+
 def analyze_image(image_base64: str | None, image_url: str | None) -> dict:
     """Describe + score a photo via qwen2.5-vl. Cached by image hash."""
     if not image_base64 and not image_url:
@@ -93,11 +107,21 @@ def analyze_image(image_base64: str | None, image_url: str | None) -> dict:
     )
     data = _extract_json(response.choices[0].message.content)
 
+    raw_scores = data.get("scores", {})
+    scores = (
+        {k: _to_score(v) for k, v in raw_scores.items()}
+        if isinstance(raw_scores, dict) else {}
+    )
+    # overall may come back as a sentence — fall back to the mean of the sub-scores
+    overall = _to_score(data.get("overall"), default=0.0)
+    if overall <= 0:
+        overall = round(sum(scores.values()) / len(scores), 1) if scores else 5.0
+
     result = {
-        "description": data.get("description", ""),
-        "scores": data.get("scores", {}),
-        "overall": float(data.get("overall", 0) or 0),
-        "improvement": data.get("improvement", ""),
+        "description": str(data.get("description", "")),
+        "scores": scores,
+        "overall": overall,
+        "improvement": str(data.get("improvement", "")),
     }
     cache_set(IMAGE_CACHE_DIR, key, result)
     return {**result, "image_hash": key, "cached": False}

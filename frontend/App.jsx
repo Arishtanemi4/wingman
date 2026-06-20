@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom
 import { WingmanProvider } from './services/WingmanContext'
 import { currentUsername } from './services/auth'
 import ProtectedRoute from './components/ProtectedRoute'
+import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/Layout'
 import LoginPage from './pages/LoginPage'
 import AnalyzePage from './pages/AnalyzePage'
@@ -26,6 +27,7 @@ function ProtectedApp() {
 
 export default function App() {
   return (
+    <ErrorBoundary>
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
@@ -38,5 +40,6 @@ export default function App() {
         <Route path="*" element={<Navigate to="/analyze" replace />} />
       </Routes>
     </BrowserRouter>
+    </ErrorBoundary>
   )
 }

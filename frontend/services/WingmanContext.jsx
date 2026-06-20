@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useRef } from 'react'
-import { analyzeProfile } from './api'
+import { analyzeProfile, extractErrorMessage } from './api'
+import { stripPreviews } from './imageUtils'
 import { currentUsername, userKey } from './auth'
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -27,11 +28,11 @@ export function WingmanProvider({ children }) {
     setAnalyzeResult(null)
     localStorage.removeItem(RESULT_KEY)
     try {
-      const res = await analyzeProfile({ ...payload, username: currentUsername() })
+      const res = await analyzeProfile({ ...stripPreviews(payload), username: currentUsername() })
       setAnalyzeResult(res.data)
       localStorage.setItem(RESULT_KEY, JSON.stringify(res.data))
     } catch (err) {
-      setAnalyzeError(err.response?.data?.detail || 'Analysis failed — is the backend running?')
+      setAnalyzeError(extractErrorMessage(err, 'Analysis failed — is the backend running?'))
     } finally {
       setAnalyzeLoading(false)
     }
@@ -49,7 +50,11 @@ export function WingmanProvider({ children }) {
   const abortRef = useRef(null)
 
   const persistEval = (results, done = false) => {
-    localStorage.setItem(EVAL_KEY, JSON.stringify({ results, done }))
+    try {
+      localStorage.setItem(EVAL_KEY, JSON.stringify({ results, done }))
+    } catch (e) {
+      console.warn('Could not persist eval results (storage quota?):', e?.message)
+    }
   }
 
   const runEvaluate = async (profile) => {
@@ -67,7 +72,7 @@ export function WingmanProvider({ children }) {
       const res = await fetch(`${API_URL}/api/evaluate/stream`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...profile, username: currentUsername() }),
+        body: JSON.stringify({ ...stripPreviews(profile), username: currentUsername() }),
         signal: controller.signal,
       })
       if (!res.ok) throw new Error(`Server error ${res.status}`)

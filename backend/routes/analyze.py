@@ -201,8 +201,8 @@ def analyze_profile(profile: UserProfile) -> AnalysisResult:
 
 _INSIGHTS_PROMPT = """You are a dating coach. Based on this man's dating profile, analyse his
 compatibility with each of the 12 female personality archetypes below.
-For each archetype give exactly 2 pros (what naturally appeals to women of this type about him)
-and 2 cons (what he would need to improve to better attract this type).
+For each archetype give exactly 2 short pros (what naturally appeals to women of this type
+about him) and 2 short cons (what he'd need to improve). Keep each point under 12 words.
 Be specific — reference his actual hobbies, bio, and job.
 
 ## His Profile
@@ -213,14 +213,10 @@ Hobbies: {hobbies}
 ## Archetypes
 {arch_context}
 
-Respond ONLY with valid JSON — no prose outside it:
+Respond ONLY with compact valid JSON — no prose outside it:
 {{
   "insights": [
-    {{
-      "archetype": "<archetype key>",
-      "pros": ["specific pro 1", "specific pro 2"],
-      "cons": ["specific con 1", "specific con 2"]
-    }}
+    {{"archetype": "<archetype key>", "pros": ["pro 1", "pro 2"], "cons": ["con 1", "con 2"]}}
   ]
 }}"""
 
@@ -235,9 +231,26 @@ class InsightsResult(BaseModel):
     insights: list[ArchetypeInsight]
 
 
+def _coerce_insights(data: dict) -> dict[str, dict]:
+    """Salvage whatever archetypes parsed; coerce items to strings; ignore junk."""
+    parsed: dict[str, dict] = {}
+    for item in (data.get("insights") or []):
+        if not isinstance(item, dict):
+            continue
+        arch = str(item.get("archetype", "")).strip().lower().replace(" ", "_")
+        if arch not in _ARCHETYPES or arch in parsed:
+            continue
+        pros = [str(x).strip() for x in (item.get("pros") or []) if str(x).strip()][:2]
+        cons = [str(x).strip() for x in (item.get("cons") or []) if str(x).strip()][:2]
+        parsed[arch] = {"archetype": arch, "pros": pros, "cons": cons}
+    return parsed
+
+
 @router.post("/archetypes/insights", response_model=InsightsResult)
 def archetype_insights(profile: UserProfile) -> InsightsResult:
-    """One LLM call — returns pros/cons for all 12 archetypes. Cached by profile hash."""
+    """One LLM call — pros/cons for all 12 archetypes. Cached by profile hash.
+    Tolerant of malformed/partial LLM output: always returns all 12 archetypes,
+    filling any the model missed with empty pros/cons rather than failing."""
     if not profile.hobbies:
         raise HTTPException(400, "At least one hobby is required.")
 
@@ -254,17 +267,30 @@ def archetype_insights(profile: UserProfile) -> InsightsResult:
         hobbies=", ".join(profile.hobbies),
         arch_context=_archetype_context(),
     )
-    response = _client.chat.completions.create(
-        model=LLM_MODEL,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    raw = response.choices[0].message.content
-
     try:
-        data = _extract_json(raw)
-        result = InsightsResult(**data)
+        response = _client.chat.completions.create(
+            model=LLM_MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=2000,
+            timeout=180,
+        )
     except Exception as exc:
-        raise HTTPException(500, f"Failed to parse insights: {exc}. Raw: {raw[:300]}")
+        raise HTTPException(503, f"LLM unavailable: {exc}")
 
-    cache_set(INSIGHTS_CACHE_DIR, key, result.model_dump())
+    raw = response.choices[0].message.content
+    try:
+        parsed = _coerce_insights(_extract_json(raw))
+    except Exception:
+        parsed = {}
+
+    # Always return all 12 in canonical order; fill gaps with empty pros/cons
+    insights = [
+        parsed.get(arch, {"archetype": arch, "pros": [], "cons": []})
+        for arch in _ARCHETYPES
+    ]
+    result = InsightsResult(insights=insights)
+
+    # Only cache a result that actually has content (so a retry can improve a dud)
+    if any(i["pros"] or i["cons"] for i in insights):
+        cache_set(INSIGHTS_CACHE_DIR, key, result.model_dump())
     return result

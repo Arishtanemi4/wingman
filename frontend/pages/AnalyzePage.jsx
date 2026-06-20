@@ -3,7 +3,17 @@ import TagInput from '../components/TagInput'
 import PhotoUpload from '../components/PhotoUpload'
 import { useWingman } from '../services/WingmanContext'
 import { describeImage } from '../services/api'
+import { fileToBase64, downscaleImage } from '../services/imageUtils'
 import { currentUsername, userKey } from '../services/auth'
+
+// Persist profile without crashing if it ever exceeds the localStorage quota.
+function persistProfile(key, profile) {
+  try {
+    localStorage.setItem(key, JSON.stringify(profile))
+  } catch (e) {
+    console.warn('Could not persist profile (storage quota?):', e?.message)
+  }
+}
 
 // Scoped to the logged-in user — computed once at module parse time is wrong here
 // so we compute it inside the component via a getter
@@ -27,9 +37,10 @@ const ARCHETYPE_COLORS = {
 const DEFAULT_BADGE = 'bg-slate-800 text-slate-300 border-slate-600'
 
 function ArchetypeBadge({ name }) {
+  const label = String(name ?? '').replace(/_/g, ' ')
   return (
     <span className={`text-xs px-2 py-0.5 rounded-full border ${ARCHETYPE_COLORS[name] || DEFAULT_BADGE}`}>
-      {name.replace(/_/g, ' ')}
+      {label}
     </span>
   )
 }
@@ -66,10 +77,9 @@ export default function AnalyzePage() {
     if (!file) return
     setAvatarUploading(true)
     try {
-      const reader = new FileReader()
       const [image_base64, preview_url] = await Promise.all([
-        new Promise((res, rej) => { reader.onload = () => res(reader.result.split(',')[1]); reader.onerror = rej; reader.readAsDataURL(file) }),
-        new Promise((res, rej) => { const r2 = new FileReader(); r2.onload = () => res(r2.result); r2.onerror = rej; r2.readAsDataURL(file) }),
+        fileToBase64(file),       // full-res for scoring
+        downscaleImage(file),     // small thumbnail for display/persistence
       ])
       const apiRes = await describeImage({ image_base64 })
       const newAnalysis = { ...apiRes.data, preview_url }
@@ -82,7 +92,7 @@ export default function AnalyzePage() {
 
   const set = (key) => (val) => setProfile((p) => {
     const next = { ...p, [key]: val }
-    localStorage.setItem(getProfileKey(), JSON.stringify(next))
+    persistProfile(getProfileKey(), next)
     return next
   })
 
@@ -94,7 +104,7 @@ export default function AnalyzePage() {
     }
     setFormError(null)
     const payload = { ...profile, age: parseInt(profile.age) || 0 }
-    localStorage.setItem(getProfileKey(), JSON.stringify(payload))
+    persistProfile(getProfileKey(), payload)
     runAnalyze(payload)  // fire-and-forget: state lives in context, survives tab switches
   }
 
@@ -243,10 +253,12 @@ export default function AnalyzePage() {
             <div className="bg-card border border-purple-900/40 rounded-2xl p-6">
               <h3 className="text-xs text-purple-400 uppercase tracking-widest mb-4">Top Recommendations</h3>
               <ol className="space-y-3">
-                {result.top_recommendations.map((rec, i) => (
+                {(result.top_recommendations || []).map((rec, i) => (
                   <li key={i} className="flex gap-3">
                     <span className="text-purple-500 font-bold text-sm w-5 shrink-0">{i + 1}.</span>
-                    <p className="text-slate-300 text-sm leading-relaxed">{rec}</p>
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      {typeof rec === 'string' ? rec : String(rec?.text ?? JSON.stringify(rec))}
+                    </p>
                   </li>
                 ))}
               </ol>
@@ -256,13 +268,13 @@ export default function AnalyzePage() {
             <div>
               <h3 className="text-xs text-slate-500 uppercase tracking-widest mb-3">Hobby Breakdown</h3>
               <div className="space-y-4">
-                {result.hobby_feedback.map((hf) => (
-                  <div key={hf.hobby} className="bg-card border border-border rounded-xl p-5">
+                {(result.hobby_feedback || []).map((hf, idx) => (
+                  <div key={hf.hobby || idx} className="bg-card border border-border rounded-xl p-5">
                     <div className="flex items-start justify-between gap-3 mb-4">
                       <span className="text-slate-100 font-medium capitalize">{hf.hobby}</span>
                       <div className="flex gap-1.5 flex-wrap justify-end">
-                        {hf.appeals_to.map((a) => (
-                          <ArchetypeBadge key={a} name={a} />
+                        {(hf.appeals_to || []).map((a, ai) => (
+                          <ArchetypeBadge key={ai} name={a} />
                         ))}
                       </div>
                     </div>

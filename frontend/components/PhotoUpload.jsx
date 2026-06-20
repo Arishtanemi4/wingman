@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { describeImage } from '../services/api'
+import { describeImage, extractErrorMessage } from '../services/api'
 import { photoStrength } from '../services/photoScore'
+import { fileToBase64, downscaleImage } from '../services/imageUtils'
 
 const SCORE_LABELS = {
   golden_ratio: 'Golden ratio',
@@ -8,24 +9,6 @@ const SCORE_LABELS = {
   contrast: 'Contrast',
   facial_symmetry: 'Symmetry',
   physical_build: 'Build',
-}
-
-function fileToBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = () => resolve(reader.result.split(',')[1])
-    reader.onerror = reject
-    reader.readAsDataURL(file)
-  })
-}
-
-function fileToDataUrl(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = () => resolve(reader.result)
-    reader.onerror = reject
-    reader.readAsDataURL(file)
-  })
 }
 
 function ScoreBar({ label, value }) {
@@ -55,14 +38,14 @@ export default function PhotoUpload({ analyses, onChange }) {
     setError(null)
     try {
       const [image_base64, preview_url] = await Promise.all([
-        fileToBase64(file),
-        fileToDataUrl(file),
+        fileToBase64(file),       // full-res for accurate scoring
+        downscaleImage(file),     // small thumbnail for display/persistence
       ])
       const res = await describeImage({ image_base64 })
       // merge preview_url into the analysis so the profile circle can use it
       onChange([...(analyses || []), { ...res.data, preview_url }])
     } catch (err) {
-      setError(err.response?.data?.detail || 'Photo analysis failed — is minicpm-v pulled?')
+      setError(extractErrorMessage(err, 'Photo analysis failed — is minicpm-v pulled?'))
     } finally {
       setUploading(false)
     }
