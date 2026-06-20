@@ -1,20 +1,26 @@
 # CLAUDE.md
 
-**Role**: A python Software Engineer with strong RAG and Agentic AI skills that has great domain knowledge in dating psychology.
+**Role**: A Python engineer with agentic-AI skills and dating-psychology domain knowledge.
 
 ## Structure
-**Python file for each agent personas**
-- There shall be one or a few common files that are used by each persona.
-- Each Persona will have a separate `.py` file
+**Personas are DATA, not one file per agent.**
+- `generate.py` is the single entry point; shared config in `config.py`.
+- Write generated personas as `.json` into `personas/`.
+- Keep reusable trait fragments as `.json` in `fragments/`.
 
-## Framework
-**Persona simulation library**
-- Use TinyTroupe to simulate all possible personas.
-- Males and Females.
-    - Straight, Bisexual, etc with various hobbies and interests that are attracted to certain characteristics.
+## Generation
+**Use TinyTroupe.**
+- Build populations with `TinyPersonFactory.create_factory_from_demography(...)`
+  + `generate_people(..., parallelize=True)`.
+- Persist/reload specs via `TinyPerson.save_specification()` / `load_specification()`.
+- Encode the 80/20 attraction skew in the demography/sampling plan, not per persona.
+- Span genders, sexualities, and varied attraction profiles across the pool.
 
-# Data
-- To simulate real world dating markets, it is likely that 80% of the personas shall be attracted to 20% of the characteristics, see to it that that is also incorporated in the personas.
-- Maintain a `.json` that contains meta data for each persona to create a better pool.
-- The JSON tags can be `archetype`, `behaviour`, `hobbies`, `occupation`, `age`, `gender`, `sexuality`.
+## Persona metadata
+Maintain a `.json` per persona: `archetype`, `behaviour`, `hobbies`, `occupation`, `age`, `gender`, `sexuality`.
 
+## LLM
+- TinyTroupe is an API client, not a model host. Reach Llama 3 via an OpenAI-compatible
+  endpoint (e.g. Ollama) and set `base_url`, `model`, `api_key` in config — swapping
+  local ↔ cloud is config only.
+- Generate the pool once with a strong model; run live interaction on local Llama 3.
