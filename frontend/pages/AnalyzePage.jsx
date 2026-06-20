@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import TagInput from '../components/TagInput'
+import PhotoUpload from '../components/PhotoUpload'
 import { useWingman } from '../services/WingmanContext'
+import { describeImage } from '../services/api'
+import { currentUsername } from '../services/auth'
 
 const PROFILE_KEY = 'wingman_profile'
 
@@ -40,7 +43,7 @@ function Field({ label, children }) {
 
 const inputCls = 'w-full bg-slate-900 border border-border rounded-lg px-4 py-2.5 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-colors'
 
-const EMPTY_PROFILE = { name: '', age: '', bio: '', occupation: '', hobbies: [], interests: [], image_descriptions: [] }
+const EMPTY_PROFILE = { name: '', age: '', bio: '', occupation: '', hobbies: [], interests: [], image_descriptions: [], image_analyses: [] }
 
 export default function AnalyzePage() {
   const { analyzeLoading: loading, analyzeResult: result, analyzeError, runAnalyze } = useWingman()
@@ -49,7 +52,31 @@ export default function AnalyzePage() {
     try { return JSON.parse(localStorage.getItem(PROFILE_KEY)) || EMPTY_PROFILE } catch { return EMPTY_PROFILE }
   })
   const [formError, setFormError] = useState(null)
+  const [avatarUploading, setAvatarUploading] = useState(false)
+  const avatarInputRef = useRef(null)
   const error = formError || analyzeError
+
+  const primaryPhoto = profile.image_analyses?.[0]
+
+  const handleAvatarChange = async (e) => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    setAvatarUploading(true)
+    try {
+      const reader = new FileReader()
+      const [image_base64, preview_url] = await Promise.all([
+        new Promise((res, rej) => { reader.onload = () => res(reader.result.split(',')[1]); reader.onerror = rej; reader.readAsDataURL(file) }),
+        new Promise((res, rej) => { const r2 = new FileReader(); r2.onload = () => res(r2.result); r2.onerror = rej; r2.readAsDataURL(file) }),
+      ])
+      const apiRes = await describeImage({ image_base64 })
+      const newAnalysis = { ...apiRes.data, preview_url }
+      // Replace first photo (avatar slot) or prepend
+      const rest = profile.image_analyses?.slice(1) || []
+      set('image_analyses')([newAnalysis, ...rest])
+    } catch {}
+    setAvatarUploading(false)
+  }
 
   const set = (key) => (val) => setProfile((p) => {
     const next = { ...p, [key]: val }
@@ -73,8 +100,38 @@ export default function AnalyzePage() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
       {/* ── Profile Form ── */}
       <div className="bg-card border border-border rounded-2xl p-6 sticky top-24">
-        <h2 className="text-lg font-semibold mb-1">Your Profile</h2>
-        <p className="text-slate-500 text-sm mb-6">Fill in your details to get personalised feedback.</p>
+        {/* Profile circle */}
+        <div className="flex items-center gap-4 mb-6">
+          <div className="relative shrink-0">
+            <button
+              type="button"
+              onClick={() => avatarInputRef.current?.click()}
+              className="w-16 h-16 rounded-full overflow-hidden border-2 border-purple-600 hover:border-purple-400 transition-colors relative group"
+            >
+              {primaryPhoto?.preview_url ? (
+                <img src={primaryPhoto.preview_url} alt="avatar" className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500 text-xl font-bold">
+                  {profile.name?.[0]?.toUpperCase() || '?'}
+                </div>
+              )}
+              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                {avatarUploading
+                  ? <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  : <span className="text-white text-xs">Change</span>
+                }
+              </div>
+            </button>
+            <input ref={avatarInputRef} type="file" accept="image/*" onChange={handleAvatarChange} className="hidden" />
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold">{profile.name || 'Your Profile'}</h2>
+            <p className="text-slate-500 text-xs">
+              {currentUsername() && <span className="text-purple-400">@{currentUsername()} · </span>}
+              Fill in your details to get personalised feedback.
+            </p>
+          </div>
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="grid grid-cols-2 gap-4">
@@ -135,6 +192,10 @@ export default function AnalyzePage() {
               onChange={set('interests')}
               placeholder="e.g. travel, music..."
             />
+          </Field>
+
+          <Field label="Photos (scored on golden ratio, lighting, symmetry…)">
+            <PhotoUpload analyses={profile.image_analyses} onChange={set('image_analyses')} />
           </Field>
 
           {error && (

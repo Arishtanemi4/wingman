@@ -1,15 +1,26 @@
 const STORAGE_KEY = 'wingman_session'
+const API_URL = import.meta.env.VITE_API_URL
 
-// Dummy credentials — swap for real auth when ready
-const VALID_CREDENTIALS = { username: 'abc', password: '123' }
-
-export function login(username, password) {
-  if (username === VALID_CREDENTIALS.username && password === VALID_CREDENTIALS.password) {
-    const session = { username, loggedIn: true, loginTime: Date.now() }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(session))
-    return { success: true, username }
+export async function login(username, password) {
+  try {
+    const res = await fetch(`${API_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    })
+    const data = await res.json()
+    if (data.success) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        username: data.username,
+        loggedIn: true,
+        loginTime: Date.now(),
+      }))
+      return { success: true, username: data.username }
+    }
+    return { success: false, error: data.error || 'Invalid username or password' }
+  } catch {
+    return { success: false, error: 'Could not reach server — is the backend running?' }
   }
-  return { success: false, error: 'Invalid username or password' }
 }
 
 export function logout() {
@@ -27,4 +38,8 @@ export function getSession() {
 
 export function isAuthenticated() {
   return getSession()?.loggedIn === true
+}
+
+export function currentUsername() {
+  return getSession()?.username || null
 }

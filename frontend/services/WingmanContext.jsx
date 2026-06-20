@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useRef } from 'react'
 import { analyzeProfile } from './api'
+import { currentUsername } from './auth'
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -24,7 +25,7 @@ export function WingmanProvider({ children }) {
     setAnalyzeResult(null)
     localStorage.removeItem(RESULT_KEY)
     try {
-      const res = await analyzeProfile(payload)
+      const res = await analyzeProfile({ ...payload, username: currentUsername() })
       setAnalyzeResult(res.data)
       localStorage.setItem(RESULT_KEY, JSON.stringify(res.data))
     } catch (err) {
@@ -64,7 +65,7 @@ export function WingmanProvider({ children }) {
       const res = await fetch(`${API_URL}/api/evaluate/stream`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(profile),
+        body: JSON.stringify({ ...profile, username: currentUsername() }),
         signal: controller.signal,
       })
       if (!res.ok) throw new Error(`Server error ${res.status}`)

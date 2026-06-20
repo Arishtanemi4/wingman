@@ -7,3 +7,10 @@
 # Secrets
 .env
 backend/.env
+
+# Generated metadata caches
+backend/gen/evaluations/
+backend/gen/image_cache/
+backend/gen/analysis_cache/
+backend/gen/eval_cache/
+backend/gen/user_profiles/

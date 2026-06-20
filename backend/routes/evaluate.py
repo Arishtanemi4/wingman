@@ -13,7 +13,10 @@ from openai import OpenAI
 from pydantic import BaseModel
 
 from agents import list_personas
-from gen.config import EVALUATIONS_DIR, LLM_API_KEY, LLM_BASE_URL, LLM_MODEL
+from cache import cache_get, cache_set, hash_obj
+from gen.config import EVAL_CACHE_DIR, EVALUATIONS_DIR, LLM_API_KEY, LLM_BASE_URL, LLM_MODEL
+from routes.image import format_image_block
+from user_store import append_evaluation
 
 router = APIRouter()
 _client = OpenAI(base_url=LLM_BASE_URL, api_key=LLM_API_KEY, timeout=60.0)
@@ -86,7 +89,8 @@ def _format_persona(p: dict) -> str:
 
 def _format_male_profile(name: str, age: int, occupation: str, bio: str,
                           hobbies: list[str], interests: list[str],
-                          image_descriptions: list[str]) -> str:
+                          image_descriptions: list[str], image_analyses: list[dict]) -> str:
+    photos = format_image_block(image_descriptions, image_analyses) or "none"
     return (
         f"Name: {name}\n"
         f"Age: {age}\n"
@@ -94,7 +98,7 @@ def _format_male_profile(name: str, age: int, occupation: str, bio: str,
         f"Bio: {bio}\n"
         f"Hobbies: {', '.join(hobbies)}\n"
         f"Interests: {', '.join(interests) if interests else 'none listed'}\n"
-        f"Photo descriptions: {'; '.join(image_descriptions) if image_descriptions else 'none'}"
+        f"Photos (with aesthetic scores out of 10):\n{photos}"
     )
 
 
@@ -129,7 +133,7 @@ def _evaluate_one(persona_data: dict, male_profile_str: str) -> dict | None:
 
 def run_evaluation(name: str, age: int, occupation: str, bio: str,
                    hobbies: list[str], interests: list[str],
-                   image_descriptions: list[str]) -> str:
+                   image_descriptions: list[str], image_analyses: list[dict]) -> str:
     """
     Runs all 108 personas against the male profile in parallel.
     Saves report to gen/evaluations/<name>_<timestamp>.json.
@@ -138,7 +142,7 @@ def run_evaluation(name: str, age: int, occupation: str, bio: str,
     print(f"[eval] Starting evaluation for '{name}'")
 
     male_profile_str = _format_male_profile(
-        name, age, occupation, bio, hobbies, interests, image_descriptions
+        name, age, occupation, bio, hobbies, interests, image_descriptions, image_analyses
     )
 
     # One persona per archetype — 12 calls instead of 108
@@ -200,6 +204,8 @@ class UserProfile(BaseModel):
     hobbies: list[str]
     interests: list[str] = []
     image_descriptions: list[str] = []
+    image_analyses: list[dict] = []
+    username: str | None = None
 
 
 @router.post("/evaluate", response_model=EvaluationReport)
@@ -209,7 +215,8 @@ def evaluate_profile_route(profile: UserProfile) -> EvaluationReport:
 
     filepath = run_evaluation(
         profile.name, profile.age, profile.occupation or "",
-        profile.bio, profile.hobbies, profile.interests, profile.image_descriptions,
+        profile.bio, profile.hobbies, profile.interests,
+        profile.image_descriptions, profile.image_analyses,
     )
 
     with open(filepath, encoding="utf-8") as f:
@@ -224,12 +231,24 @@ def evaluate_stream(profile: UserProfile):
     if not profile.hobbies:
         raise HTTPException(400, "At least one hobby is required.")
 
+    key = hash_obj(profile.model_dump())
+
     def generate():
         timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
         safe_name = profile.name.lower().replace(" ", "_")
         filepath = os.path.abspath(
             os.path.join(EVALUATIONS_DIR, f"{safe_name}_{timestamp}.json")
         )
+
+        # Cache hit → replay stored evaluations instantly, no LLM calls
+        cached = cache_get(EVAL_CACHE_DIR, key)
+        if cached:
+            evals = cached.get("evaluations", [])
+            yield f"data: {json.dumps({'type': 'start', 'total': len(evals), 'cached': True})}\n\n"
+            for i, result in enumerate(evals):
+                yield f"data: {json.dumps({'type': 'result', 'index': i + 1, 'data': result})}\n\n"
+            yield f"data: {json.dumps({'type': 'done', 'total': len(evals), 'cached': True})}\n\n"
+            return
 
         report = {"profile_name": profile.name, "timestamp": timestamp, "total": 0, "evaluations": []}
         with open(filepath, "w", encoding="utf-8") as f:
@@ -244,7 +263,8 @@ def evaluate_stream(profile: UserProfile):
 
         male_profile_str = _format_male_profile(
             profile.name, profile.age, profile.occupation or "",
-            profile.bio, profile.hobbies, profile.interests, profile.image_descriptions,
+            profile.bio, profile.hobbies, profile.interests,
+            profile.image_descriptions, profile.image_analyses,
         )
 
         yield f"data: {json.dumps({'type': 'start', 'total': len(personas), 'file_path': filepath})}\n\n"
@@ -258,6 +278,13 @@ def evaluate_stream(profile: UserProfile):
                     json.dump(report, f, indent=2, ensure_ascii=False)
                 yield f"data: {json.dumps({'type': 'result', 'index': i + 1, 'data': result})}\n\n"
 
+        # Persist completed report to cache for instant future replays
+        cache_set(EVAL_CACHE_DIR, key, report)
+        append_evaluation(
+            profile.username or "",
+            profile.model_dump(exclude={"username"}),
+            report["evaluations"],
+        )
         yield f"data: {json.dumps({'type': 'done', 'total': report['total'], 'file_path': filepath})}\n\n"
 
     return StreamingResponse(
