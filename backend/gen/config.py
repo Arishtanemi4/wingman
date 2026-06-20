@@ -20,4 +20,10 @@ LLM_MODEL = os.getenv("LLM_MODEL", "llama3")
 VISION_MODEL = os.getenv("VISION_MODEL", "minicpm-v")
 LLM_API_KEY = os.getenv("LLM_API_KEY", "ollama")
 
+# Persona chat sampling — tuned for short, casual dating-app texting
+CHAT_TEMPERATURE = float(os.getenv("CHAT_TEMPERATURE", "0.9"))
+CHAT_MAX_TOKENS = int(os.getenv("CHAT_MAX_TOKENS", "70"))
+CHAT_PRESENCE_PENALTY = float(os.getenv("CHAT_PRESENCE_PENALTY", "0.4"))
+CHAT_FREQUENCY_PENALTY = float(os.getenv("CHAT_FREQUENCY_PENALTY", "0.4"))
+
 TOTAL_PERSONAS = 108
