@@ -1,16 +1,16 @@
 """
 TinyTroupe-based persona generation.
-Generates richer AI-elaborated personas using an OpenAI-compatible LLM endpoint.
-Configure LLM_BASE_URL / LLM_MODEL / LLM_API_KEY in env or config.py.
+Generates richer AI-elaborated personas using NVIDIA NIM.
+Set NVIDIA_API_KEY in env before running.
 
-Run once with a strong model; personas are saved to personas/.
+Run once; personas are saved to personas/.
 """
 import json
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-from gen.config import PERSONAS_DIR, LLM_BASE_URL, LLM_MODEL, LLM_API_KEY
+from gen.config import PERSONAS_DIR, NVIDIA_BASE_URL, NVIDIA_API_KEY, DEFAULT_LLM_MODEL
 
 try:
     import tinytroupe
@@ -22,8 +22,8 @@ import openai
 
 os.makedirs(PERSONAS_DIR, exist_ok=True)
 
-openai.api_base = LLM_BASE_URL
-openai.api_key = LLM_API_KEY
+openai.api_base = NVIDIA_BASE_URL
+openai.api_key = NVIDIA_API_KEY
 
 # 12 demographic descriptions, 9 personas each = 108
 DEMOGRAPHICS = [

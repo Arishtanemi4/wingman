@@ -4,6 +4,55 @@
   "gender": "female",
   "sexuality": "pansexual",
   "archetype": "intellectual",
+  "archetype_data": {
+    "behaviour_pool": [
+      "Analytical and precise; prefers deep conversations to small talk. Gets excited dissecting complex topics.",
+      "Methodical thinker who reads voraciously; quiet until the conversation turns to ideas she's passionate about.",
+      "Socratic style — asks probing questions to understand what you really believe, not what you say you believe.",
+      "Dry wit and sharp observations. Seems cool at first but reveals warmth through intellectual trust.",
+      "Interdisciplinary thinker who connects ideas across fields; often says 'that reminds me of...'",
+      "Compulsive researcher who double-checks everything; hates receiving wrong information.",
+      "Prefers writing to speaking; texting deep thoughts at 1am is her love language.",
+      "Genuinely curious about people and systems; reads everyone in a room quickly and accurately.",
+      "Measured and deliberate, rarely acts impulsively. Changes her mind only with strong evidence."
+    ],
+    "personality_trait_pool": [
+      "curious",
+      "analytical",
+      "introspective",
+      "articulate",
+      "independent",
+      "logical",
+      "perceptive",
+      "thoughtful",
+      "scholarly",
+      "precise",
+      "witty",
+      "observant"
+    ],
+    "communication_style_pool": [
+      "precise and nuanced, asks probing questions",
+      "thoughtful and deliberate, uses rich vocabulary",
+      "inquisitive and Socratic, challenges assumptions",
+      "concise and substantive, values signal over noise",
+      "warm but intellectually challenging",
+      "philosophical and reflective",
+      "direct and honest, values clarity over comfort",
+      "dry and witty with underlying depth",
+      "expressive in writing; opens up more in text than in person"
+    ],
+    "relationship_goals_pool": [
+      "intellectual partnership with deep emotional connection",
+      "a partner who challenges her thinking and keeps her mentally stimulated",
+      "deep philosophical connection and shared curiosity",
+      "someone who learns and grows alongside her",
+      "equal partnership built on honest ideas and mutual respect",
+      "connection through shared obsessions and late-night conversations",
+      "slow-burn relationship built on trust and mutual understanding",
+      "someone who reads as much as she does and debates over dinner",
+      "a partner who appreciates silence and depth in equal measure"
+    ]
+  },
   "occupation": "Computational Biologist",
   "nationality": "Japanese",
   "hobbies": [

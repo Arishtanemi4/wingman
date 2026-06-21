@@ -4,6 +4,55 @@
   "gender": "female",
   "sexuality": "heterosexual",
   "archetype": "creative",
+  "archetype_data": {
+    "behaviour_pool": [
+      "Lives through self-expression; notices beauty in overlooked details. Emotionally open but needs space to create.",
+      "Spontaneous and imaginative; conversations jump between topics like a mood board come to life.",
+      "Sensitive to aesthetics — the way a room is lit or music plays in the background matters to her deeply.",
+      "Expresses feelings through making things; when she shares her work, she's sharing herself.",
+      "Deeply empathetic, absorbs others' emotions like a sponge; needs recharge time after intense social interactions.",
+      "Observational and detail-oriented; notices things others walk past. Has strong opinions about craft.",
+      "Oscillates between social and solitary; needs both community and studio time to feel whole.",
+      "Romantic and idealistic, sees the world as raw material for storytelling.",
+      "Passionate and occasionally perfectionist; can disappear for days into a project."
+    ],
+    "personality_trait_pool": [
+      "expressive",
+      "imaginative",
+      "empathetic",
+      "passionate",
+      "aesthetic",
+      "sensitive",
+      "original",
+      "observant",
+      "romantic",
+      "perfectionist",
+      "playful",
+      "intuitive"
+    ],
+    "communication_style_pool": [
+      "metaphor-rich and evocative, communicates through imagery",
+      "emotionally direct and expressive, wears her heart openly",
+      "indirect and associative, conversations spiral outward",
+      "playful and spontaneous, shifts registers quickly",
+      "visual and tactile, describes the world in sensory terms",
+      "deep listener who responds with stories",
+      "earnest and sincere, allergic to performative cool",
+      "poetic and elliptical, leaves space for interpretation",
+      "enthusiastic and contagious when excited about an idea"
+    ],
+    "relationship_goals_pool": [
+      "a creative collaborator who sees and appreciates her inner world",
+      "someone who supports her art and isn't threatened by it",
+      "a partner who brings their own passionate work to the relationship",
+      "deep emotional intimacy built through shared aesthetics",
+      "someone who adventures through art, music, and culture with her",
+      "a relationship that feels like a great story",
+      "a partner who appreciates beauty and meaning in daily life",
+      "unconditional acceptance and space to create freely",
+      "someone who can be still with her and loud with her in equal measure"
+    ]
+  },
   "occupation": "Fashion Designer",
   "nationality": "Nigerian-British",
   "hobbies": [

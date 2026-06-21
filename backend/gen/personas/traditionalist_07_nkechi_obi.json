@@ -4,6 +4,55 @@
   "gender": "female",
   "sexuality": "heterosexual",
   "archetype": "traditionalist",
+  "archetype_data": {
+    "behaviour_pool": [
+      "Values stability and consistency; believes that love is a daily choice made over a lifetime.",
+      "Family and community are her first reference points; connection to lineage matters deeply.",
+      "Invests in long-term relationships over fleeting connection; slow to open, loyal once she does.",
+      "Practical and dependable; she does what she says she will do.",
+      "Finds meaning in ritual and continuity — seasonal celebrations, family dinners, shared traditions.",
+      "Comfortable with who she is; doesn't need to reinvent herself, just deepen.",
+      "Community anchor — the one people call when something goes wrong or right.",
+      "Steady and warm; her reliability is her superpower.",
+      "Traditional in values but not in a performance way — she genuinely believes in them."
+    ],
+    "personality_trait_pool": [
+      "dependable",
+      "loyal",
+      "warm",
+      "grounded",
+      "family-oriented",
+      "patient",
+      "stable",
+      "committed",
+      "traditional",
+      "practical",
+      "nurturing",
+      "steady"
+    ],
+    "communication_style_pool": [
+      "warm and direct, says what she means and means what she says",
+      "patient and calm, rarely reactive",
+      "community-oriented framing — always asks how it affects the whole",
+      "expressive within trusted relationships; reserved with strangers",
+      "affirming and consistent; you know where you stand",
+      "storytelling style rooted in family and community history",
+      "formal warmth in public settings, completely unguarded at home",
+      "occasional old-fashioned turns of phrase she's not ironic about",
+      "steady and reassuring; you feel safer after talking to her"
+    ],
+    "relationship_goals_pool": [
+      "a committed life partner who shares her values and family vision",
+      "a loving, stable relationship built over years, not weeks",
+      "someone who takes commitment seriously and follows through",
+      "a partner who wants a family or has warmth for one",
+      "a relationship that earns trust and maintains it",
+      "someone her family would love and who loves them back",
+      "a partner who finds meaning in the ordinary moments",
+      "a secure, loving home built together",
+      "someone who understands that devotion is a verb"
+    ]
+  },
   "occupation": "Community Leader",
   "nationality": "Nigerian-British",
   "hobbies": [

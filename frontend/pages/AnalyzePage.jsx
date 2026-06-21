@@ -1,9 +1,8 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import TagInput from '../components/TagInput'
 import PhotoUpload from '../components/PhotoUpload'
 import { useWingman } from '../services/WingmanContext'
-import { describeImage } from '../services/api'
-import { fileToBase64, downscaleImage } from '../services/imageUtils'
+import { NVIDIA_MODELS, clearCache } from '../services/api'
 import { currentUsername, userKey } from '../services/auth'
 
 // Persist profile without crashing if it ever exceeds the localStorage quota.
@@ -56,38 +55,31 @@ function Field({ label, children }) {
 
 const inputCls = 'w-full bg-slate-900 border border-border rounded-lg px-4 py-2.5 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-colors'
 
-const EMPTY_PROFILE = { name: '', age: '', bio: '', occupation: '', hobbies: [], image_descriptions: [], image_analyses: [] }
+const EMPTY_PROFILE = { name: '', age: '', bio: '', occupation: '', gender: '', sexuality: '', interested_in: '', hobbies: [], image_descriptions: [], image_analyses: [] }
 
 export default function AnalyzePage() {
-  const { analyzeLoading: loading, analyzeResult: result, analyzeError, runAnalyze } = useWingman()
+  const { analyzeLoading: loading, analyzeResult: result, analyzeError, runAnalyze, selectedModel, updateModel } = useWingman()
 
   const [profile, setProfile] = useState(() => {
     try { return JSON.parse(localStorage.getItem(getProfileKey())) || EMPTY_PROFILE } catch { return EMPTY_PROFILE }
   })
   const [formError, setFormError] = useState(null)
-  const [avatarUploading, setAvatarUploading] = useState(false)
-  const avatarInputRef = useRef(null)
+  const [cacheClearing, setCacheClearing] = useState(false)
   const error = formError || analyzeError
 
   const primaryPhoto = profile.image_analyses?.[0]
 
-  const handleAvatarChange = async (e) => {
-    const file = e.target.files?.[0]
-    e.target.value = ''
-    if (!file) return
-    setAvatarUploading(true)
+  const handleClearCache = async () => {
+    setCacheClearing(true)
     try {
-      const [image_base64, preview_url] = await Promise.all([
-        fileToBase64(file),       // full-res for scoring
-        downscaleImage(file),     // small thumbnail for display/persistence
-      ])
-      const apiRes = await describeImage({ image_base64 })
-      const newAnalysis = { ...apiRes.data, preview_url }
-      // Replace first photo (avatar slot) or prepend
-      const rest = profile.image_analyses?.slice(1) || []
-      set('image_analyses')([newAnalysis, ...rest])
-    } catch {}
-    setAvatarUploading(false)
+      await clearCache()
+      set('image_analyses')([])
+      set('image_descriptions')([])
+      localStorage.removeItem(userKey('wingman_result'))
+      localStorage.removeItem(userKey('wingman_sim'))
+    } finally {
+      setCacheClearing(false)
+    }
   }
 
   const set = (key) => (val) => setProfile((p) => {
@@ -112,29 +104,17 @@ export default function AnalyzePage() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
       {/* ── Profile Form ── */}
       <div className="bg-card border border-border rounded-2xl p-6 sticky top-24">
-        {/* Profile circle */}
-        <div className="flex items-center gap-4 mb-6">
-          <div className="relative shrink-0">
-            <button
-              type="button"
-              onClick={() => avatarInputRef.current?.click()}
-              className="w-16 h-16 rounded-full overflow-hidden border-2 border-purple-600 hover:border-purple-400 transition-colors relative group"
-            >
-              {primaryPhoto?.preview_url ? (
-                <img src={primaryPhoto.preview_url} alt="avatar" className="w-full h-full object-cover" />
-              ) : (
-                <div className="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500 text-xl font-bold">
-                  {profile.name?.[0]?.toUpperCase() || '?'}
-                </div>
-              )}
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
-                {avatarUploading
-                  ? <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  : <span className="text-white text-xs">Change</span>
-                }
+        {/* Header: avatar + name + model selector */}
+        <div className="flex items-center justify-between gap-4 mb-6">
+          <div className="flex items-center gap-4">
+          <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-purple-600 shrink-0">
+            {primaryPhoto?.preview_url ? (
+              <img src={primaryPhoto.preview_url} alt="avatar" className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500 text-xl font-bold">
+                {profile.name?.[0]?.toUpperCase() || '?'}
               </div>
-            </button>
-            <input ref={avatarInputRef} type="file" accept="image/*" onChange={handleAvatarChange} className="hidden" />
+            )}
           </div>
           <div>
             <h2 className="text-lg font-semibold">{profile.name || 'Your Profile'}</h2>
@@ -143,6 +123,17 @@ export default function AnalyzePage() {
               Fill in your details to get personalised feedback.
             </p>
           </div>
+          </div>
+          <select
+            value={selectedModel}
+            onChange={(e) => updateModel(e.target.value)}
+            disabled={loading}
+            className="bg-slate-900 border border-border rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-purple-500 disabled:opacity-50 shrink-0"
+          >
+            {NVIDIA_MODELS.map(m => (
+              <option key={m.id} value={m.id}>{m.label}</option>
+            ))}
+          </select>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -167,6 +158,37 @@ export default function AnalyzePage() {
                 placeholder="27"
                 className={inputCls}
               />
+            </Field>
+          </div>
+
+          <div className="grid grid-cols-3 gap-4">
+            <Field label="Gender">
+              <select value={profile.gender} onChange={(e) => set('gender')(e.target.value)} className={inputCls}>
+                <option value="">Prefer not to say</option>
+                <option value="man">Man</option>
+                <option value="woman">Woman</option>
+                <option value="non-binary">Non-binary</option>
+                <option value="other">Other</option>
+              </select>
+            </Field>
+            <Field label="Sexuality">
+              <select value={profile.sexuality} onChange={(e) => set('sexuality')(e.target.value)} className={inputCls}>
+                <option value="">Prefer not to say</option>
+                <option value="straight">Straight</option>
+                <option value="gay">Gay</option>
+                <option value="lesbian">Lesbian</option>
+                <option value="bisexual">Bisexual</option>
+                <option value="pansexual">Pansexual</option>
+                <option value="queer">Queer</option>
+              </select>
+            </Field>
+            <Field label="Interested In">
+              <select value={profile.interested_in} onChange={(e) => set('interested_in')(e.target.value)} className={inputCls}>
+                <option value="">Everyone</option>
+                <option value="women">Women</option>
+                <option value="men">Men</option>
+                <option value="non-binary people">Non-binary people</option>
+              </select>
             </Field>
           </div>
 
@@ -201,6 +223,17 @@ export default function AnalyzePage() {
           <Field label="Photos (scored on golden ratio, lighting, symmetry…)">
             <PhotoUpload analyses={profile.image_analyses} onChange={set('image_analyses')} />
           </Field>
+
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={handleClearCache}
+              disabled={cacheClearing}
+              className="text-xs text-slate-600 hover:text-red-400 disabled:opacity-40 transition-colors"
+            >
+              {cacheClearing ? 'Clearing…' : 'Clear all cached outputs'}
+            </button>
+          </div>
 
           {error && (
             <p className="text-red-400 text-sm bg-red-950/40 border border-red-900/40 rounded-lg px-4 py-2">

@@ -1,16 +1,12 @@
 import json
 import os
 
-from openai import OpenAI
 from gen.config import (
-    FRAGMENTS_DIR, LLM_BASE_URL, LLM_MODEL, LLM_API_KEY,
-    CHAT_TEMPERATURE, CHAT_MAX_TOKENS, CHAT_PRESENCE_PENALTY, CHAT_FREQUENCY_PENALTY,
+    FRAGMENTS_DIR, DEFAULT_LLM_MODEL,
+    CHAT_TEMPERATURE, CHAT_MAX_TOKENS,
 )
+from llm import complete
 
-_client = OpenAI(base_url=LLM_BASE_URL, api_key=LLM_API_KEY)
-
-# Archetype-keyed few-shot texting examples, loaded once at startup
-# (edit chat_examples.json then restart — --reload only watches .py files)
 with open(os.path.join(FRAGMENTS_DIR, "chat_examples.json"), encoding="utf-8") as _f:
     _CHAT_EXAMPLES: dict = json.load(_f)
 
@@ -20,7 +16,6 @@ class PersonaAgent:
         self.data = data
 
     def _examples_block(self) -> str:
-        """Build the archetype-specific few-shot block for the system prompt."""
         pairs = _CHAT_EXAMPLES.get(self.data.get("archetype", ""), [])
         if not pairs:
             return ""
@@ -68,17 +63,18 @@ class PersonaAgent:
             f"{self._examples_block()}"
         )
 
-    def chat(self, history: list[dict], user_message: str) -> str:
+    def chat(self, history: list[dict], user_message: str, model: str | None = None) -> str:
         messages = [{"role": "system", "content": self.system_prompt()}]
         messages.extend(history)
         messages.append({"role": "user", "content": user_message})
 
-        response = _client.chat.completions.create(
-            model=LLM_MODEL,
-            messages=messages,
-            temperature=CHAT_TEMPERATURE,
-            max_tokens=CHAT_MAX_TOKENS,
-            presence_penalty=CHAT_PRESENCE_PENALTY,
-            frequency_penalty=CHAT_FREQUENCY_PENALTY,
-        )
-        return response.choices[0].message.content
+        try:
+            return complete(
+                model or DEFAULT_LLM_MODEL,
+                messages,
+                temperature=CHAT_TEMPERATURE,
+                max_tokens=CHAT_MAX_TOKENS,
+                top_p=0.95,
+            )
+        except Exception as exc:
+            raise RuntimeError(f"LLM unavailable: {exc}") from exc

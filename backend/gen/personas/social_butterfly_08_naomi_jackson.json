@@ -4,6 +4,55 @@
   "gender": "female",
   "sexuality": "heterosexual",
   "archetype": "social_butterfly",
+  "archetype_data": {
+    "behaviour_pool": [
+      "Lights up any room she enters; connects people effortlessly and remembers everyone's story.",
+      "Energy comes from people; a long solo weekend leaves her restless.",
+      "Excellent networker with a genuine interest in how people tick — it's not calculation, it's care.",
+      "Plans events the way others write novels: with detail, arc, and care for the audience.",
+      "Lives out loud; her highs are shared highs and she pulls people into her orbit.",
+      "Socially fluent across contexts — as comfortable at a gallery opening as a house party.",
+      "Generous hostess and warm presence; her home is always open.",
+      "Can be overwhelming for quieter types; learns to give space when she recognises it.",
+      "Thrives on variety and novelty; routine feels like a slow fade to her."
+    ],
+    "personality_trait_pool": [
+      "extroverted",
+      "charismatic",
+      "warm",
+      "inclusive",
+      "energetic",
+      "social",
+      "entertaining",
+      "generous",
+      "spontaneous",
+      "gregarious",
+      "enthusiastic",
+      "fun-loving"
+    ],
+    "communication_style_pool": [
+      "engaging and expressive, animated storyteller",
+      "enthusiastic and high-energy, hard not to match",
+      "inclusive communicator, brings everyone into the conversation",
+      "light and playful; keeps things moving",
+      "warm and personable, remembers your name and uses it",
+      "socially intuitive — reads the room and shifts register smoothly",
+      "funny and self-deprecating, laughs easily",
+      "outspoken and opinionated but rarely malicious",
+      "effusive and superlative; everything is amazing or terrible, rarely neutral"
+    ],
+    "relationship_goals_pool": [
+      "a partner who loves her world and brings his own to the table",
+      "someone who enjoys sharing her socially but isn't threatened by her warmth",
+      "a relationship that doubles as a team navigating life together",
+      "a partner secure enough to give her space without withdrawing",
+      "someone who matches her energy and helps her slow down sometimes",
+      "a love that's public and proud and generous",
+      "a companion who throws great parties with her and holds her after",
+      "a partner who is rooted enough to be her anchor",
+      "someone who genuinely likes people as much as she does"
+    ]
+  },
   "occupation": "Club DJ",
   "nationality": "Jamaican-British",
   "hobbies": [

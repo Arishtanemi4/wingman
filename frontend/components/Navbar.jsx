@@ -17,12 +17,12 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <span className="text-lg font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
-            Wingman
+            Wingman.ai
           </span>
           <div className="flex gap-6">
             <NavLink to="/analyze" className={linkClass}>Analyze</NavLink>
             <NavLink to="/simulate" className={linkClass}>Simulate</NavLink>
-            <NavLink to="/personas" className={linkClass}>Personas</NavLink>
+            <NavLink to="/personas" className={linkClass}>Chat</NavLink>
           </div>
         </div>
         <button

@@ -1,6 +1,8 @@
+import asyncio
 import json
 import os
 import re
+import time
 import traceback
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
@@ -9,17 +11,17 @@ from json_repair import repair_json
 
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
-from openai import OpenAI
 from pydantic import BaseModel
 
 from agents import list_personas
 from cache import cache_get, cache_set, hash_obj
-from gen.config import EVAL_CACHE_DIR, EVALUATIONS_DIR, LLM_API_KEY, LLM_BASE_URL, LLM_MODEL
+from gen.config import EVAL_CACHE_DIR, EVALUATIONS_DIR, DEFAULT_LLM_MODEL
+from llm import complete
 from routes.image import format_image_block
 from user_store import append_evaluation
 
 router = APIRouter()
-_client = OpenAI(base_url=LLM_BASE_URL, api_key=LLM_API_KEY, timeout=60.0)
+_eval_sem = asyncio.Semaphore(1)  # serialize LLM calls — 40 RPM limit
 
 _EVAL_PROMPT = """You are an expert dating profile consultant and a highly advanced behavioral psychology engine. Your task is to roleplay as a specific female user persona and critically evaluate a male user's dating profile from her unique perspective.
 
@@ -115,29 +117,29 @@ def _extract_json(text: str) -> dict:
     return result
 
 
-def _evaluate_one(persona_data: dict, male_profile_str: str) -> dict | None:
+def _evaluate_one(persona_data: dict, male_profile_str: str, model: str = DEFAULT_LLM_MODEL) -> dict | None:
     try:
         prompt = _EVAL_PROMPT.format(
             persona=_format_persona(persona_data),
             male_profile=male_profile_str,
         )
-        response = _client.chat.completions.create(
-            model=LLM_MODEL,
-            messages=[{"role": "user", "content": prompt}],
+        raw = complete(
+            model,
+            [{"role": "user", "content": prompt}],
+            max_tokens=4096,
+            temperature=0.6,
+            top_p=0.95,
         )
-        return _extract_json(response.choices[0].message.content)
+        time.sleep(1.5)
+        return _extract_json(raw)
     except Exception:
         return None
 
 
 def run_evaluation(name: str, age: int, occupation: str, bio: str,
                    hobbies: list[str],
-                   image_descriptions: list[str], image_analyses: list[dict]) -> str:
-    """
-    Runs all 108 personas against the male profile in parallel.
-    Saves report to gen/evaluations/<name>_<timestamp>.json.
-    Returns the saved file path.
-    """
+                   image_descriptions: list[str], image_analyses: list[dict],
+                   model: str = DEFAULT_LLM_MODEL) -> str:
     print(f"[eval] Starting evaluation for '{name}'")
 
     male_profile_str = _format_male_profile(
@@ -157,10 +159,9 @@ def run_evaluation(name: str, age: int, occupation: str, bio: str,
 
     evaluations = []
 
-    # 1 worker: Ollama is single-threaded, parallelism just queues
     with ThreadPoolExecutor(max_workers=1) as executor:
         futures = {
-            executor.submit(_evaluate_one, p, male_profile_str): p["name"]
+            executor.submit(_evaluate_one, p, male_profile_str, model): p["name"]
             for p in personas
         }
         done = 0
@@ -204,6 +205,7 @@ class UserProfile(BaseModel):
     image_descriptions: list[str] = []
     image_analyses: list[dict] = []
     username: str | None = None
+    model: str | None = None
 
 
 @router.post("/evaluate", response_model=EvaluationReport)
@@ -215,6 +217,7 @@ def evaluate_profile_route(profile: UserProfile) -> EvaluationReport:
         profile.name, profile.age, profile.occupation or "",
         profile.bio, profile.hobbies,
         profile.image_descriptions, profile.image_analyses,
+        model=profile.model or DEFAULT_LLM_MODEL,
     )
 
     with open(filepath, encoding="utf-8") as f:
@@ -224,27 +227,26 @@ def evaluate_profile_route(profile: UserProfile) -> EvaluationReport:
 
 
 @router.post("/evaluate/stream")
-def evaluate_stream(profile: UserProfile):
-    """SSE endpoint — streams one evaluation per archetype, updates JSON file per result."""
+async def evaluate_stream(profile: UserProfile):
+    """SSE endpoint — runs all 12 archetype evaluations concurrently, streams results as they finish."""
     if not profile.hobbies:
         raise HTTPException(400, "At least one hobby is required.")
 
     key = hash_obj(profile.model_dump())
 
-    def generate():
+    async def generate():
         timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
         safe_name = profile.name.lower().replace(" ", "_")
         filepath = os.path.abspath(
             os.path.join(EVALUATIONS_DIR, f"{safe_name}_{timestamp}.json")
         )
 
-        # Cache hit → replay stored evaluations instantly, no LLM calls
         cached = cache_get(EVAL_CACHE_DIR, key)
         if cached:
             evals = cached.get("evaluations", [])
             yield f"data: {json.dumps({'type': 'start', 'total': len(evals), 'cached': True})}\n\n"
             for i, result in enumerate(evals):
-                yield f"data: {json.dumps({'type': 'result', 'index': i + 1, 'data': result})}\n\n"
+                yield f"data: {json.dumps({'type': 'result', 'index': i + 1, 'archetype': result.get('_archetype'), 'data': result})}\n\n"
             yield f"data: {json.dumps({'type': 'done', 'total': len(evals), 'cached': True})}\n\n"
             return
 
@@ -252,14 +254,13 @@ def evaluate_stream(profile: UserProfile):
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(report, f, indent=2, ensure_ascii=False)
 
-        # One persona per archetype (12 total)
         seen, personas = set(), []
         for p in list_personas():
             if p["archetype"] not in seen:
                 seen.add(p["archetype"])
                 personas.append(p)
 
-        male_profile_str = _format_male_profile(
+        profile_str = _format_male_profile(
             profile.name, profile.age, profile.occupation or "",
             profile.bio, profile.hobbies,
             profile.image_descriptions, profile.image_analyses,
@@ -267,17 +268,25 @@ def evaluate_stream(profile: UserProfile):
 
         yield f"data: {json.dumps({'type': 'start', 'total': len(personas), 'file_path': filepath})}\n\n"
 
-        for i, persona_data in enumerate(personas):
-            result = _evaluate_one(persona_data, male_profile_str)
+        selected_model = profile.model or DEFAULT_LLM_MODEL
+
+        async def eval_one_async(persona_data):
+            async with _eval_sem:
+                result = await asyncio.to_thread(_evaluate_one, persona_data, profile_str, model=selected_model)
+            return persona_data, result
+
+        completed = 0
+        for coro in asyncio.as_completed([eval_one_async(p) for p in personas]):
+            persona_data, result = await coro
+            completed += 1
             if result:
                 result['_archetype'] = persona_data['archetype']
                 report["evaluations"].append(result)
                 report["total"] = len(report["evaluations"])
                 with open(filepath, "w", encoding="utf-8") as f:
                     json.dump(report, f, indent=2, ensure_ascii=False)
-                yield f"data: {json.dumps({'type': 'result', 'index': i + 1, 'archetype': persona_data['archetype'], 'data': result})}\n\n"
+                yield f"data: {json.dumps({'type': 'result', 'index': completed, 'archetype': persona_data['archetype'], 'data': result})}\n\n"
 
-        # Persist completed report to cache for instant future replays
         cache_set(EVAL_CACHE_DIR, key, report)
         append_evaluation(
             profile.username or "",

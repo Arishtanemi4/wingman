@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getPersona, chatWithPersona } from '../services/api'
+import { getPersona, chatWithPersona, NVIDIA_MODELS } from '../services/api'
+import { useWingman } from '../services/WingmanContext'
 
 const ARCHETYPE_COLORS = {
   intellectual:     'text-blue-300',
@@ -19,7 +20,7 @@ const ARCHETYPE_COLORS = {
 
 const archetypeLabel = (arch) =>
   arch
-    ? `A Female ${arch.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}`
+    ? `Female ${arch.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}`
     : 'Her'
 
 const archetypeInitial = (arch) =>
@@ -29,6 +30,7 @@ export default function ChatPage() {
   const { name } = useParams()
   const navigate = useNavigate()
   const decodedName = decodeURIComponent(name)
+  const { selectedModel, updateModel } = useWingman()
 
   const [persona, setPersona] = useState(null)
   const [messages, setMessages] = useState([])
@@ -59,7 +61,7 @@ export default function ChatPage() {
     setLoading(true)
 
     try {
-      const res = await chatWithPersona(decodedName, text, history)
+      const res = await chatWithPersona(decodedName, text, history, selectedModel)
       setMessages((prev) => [...prev, { role: 'assistant', content: res.data.reply }])
     } catch {
       setMessages((prev) => [
@@ -122,12 +124,24 @@ export default function ChatPage() {
             {persona.age} · {persona.occupation} · {persona.nationality}
           </p>
         </div>
-        <button
-          onClick={() => setMessages([])}
-          className="text-xs text-slate-600 hover:text-slate-400 transition-colors"
-        >
-          Clear
-        </button>
+        <div className="flex items-center gap-3">
+          <select
+            value={selectedModel}
+            onChange={(e) => updateModel(e.target.value)}
+            disabled={loading}
+            className="bg-slate-900 border border-border rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-purple-500 disabled:opacity-50"
+          >
+            {NVIDIA_MODELS.map(m => (
+              <option key={m.id} value={m.id}>{m.label}</option>
+            ))}
+          </select>
+          <button
+            onClick={() => setMessages([])}
+            className="text-xs text-slate-600 hover:text-slate-400 transition-colors"
+          >
+            Clear
+          </button>
+        </div>
       </div>
 
       {/* Messages */}

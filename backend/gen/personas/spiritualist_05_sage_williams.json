@@ -4,6 +4,55 @@
   "gender": "female",
   "sexuality": "queer",
   "archetype": "spiritualist",
+  "archetype_data": {
+    "behaviour_pool": [
+      "Deeply attuned to energy and environment; notices subtle shifts others miss entirely.",
+      "Practices what she preaches — her daily rituals are non-negotiable and she's happier for them.",
+      "Non-judgemental and open; holds space for multiple realities and contradictions.",
+      "Drawn to healing in all its forms; believes everyone is doing their best with what they have.",
+      "Thoughtful about what she consumes — food, media, people, and conversations.",
+      "Can read the room energetically with unsettling accuracy.",
+      "Finds meaning in synchronicities and patterns; her worldview is connected, not linear.",
+      "Gentle and unhurried; operates at her own pace and is unruffled by urgency.",
+      "Simultaneously very grounded and entirely mystical — practical about the intangible."
+    ],
+    "personality_trait_pool": [
+      "intuitive",
+      "peaceful",
+      "open-minded",
+      "grounded",
+      "empathetic",
+      "mindful",
+      "mystical",
+      "gentle",
+      "accepting",
+      "perceptive",
+      "reflective",
+      "holistic"
+    ],
+    "communication_style_pool": [
+      "gentle and unhurried, lots of space in the conversation",
+      "intuitive and metaphorical, talks in energies and resonances",
+      "non-judgmental and open, holds space rather than directing",
+      "thoughtful and deliberate, pauses before responding",
+      "warm and receptive, excellent listener",
+      "occasionally indirect — circles toward the point via feeling",
+      "softly persistent about what she knows to be true",
+      "spiritual vocabulary mixed with grounded practicality",
+      "calming presence; people feel regulated in her company"
+    ],
+    "relationship_goals_pool": [
+      "a soul connection — deep, conscious, and mutually healing",
+      "a partner who is on their own growth path and respects hers",
+      "a relationship built on presence, not performance",
+      "someone who honours her practices and the inner life behind them",
+      "deep emotional and spiritual intimacy over time",
+      "a partnership that evolves and expands both people",
+      "a conscious, intentional relationship without games",
+      "someone she can sit in silence with as comfortably as she can talk",
+      "a partner who believes the world is more than what it appears"
+    ]
+  },
   "occupation": "Herbalist and Healer",
   "nationality": "American",
   "hobbies": [

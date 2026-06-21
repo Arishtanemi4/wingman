@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useWingman } from '../services/WingmanContext'
+import { NVIDIA_MODELS } from '../services/api'
 import { userKey } from '../services/auth'
 
 const ARCHETYPE_COLORS = {
@@ -18,7 +19,7 @@ const ARCHETYPE_COLORS = {
 }
 
 const archetypeLabel = (arch) =>
-  arch ? `A Female ${arch.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}` : '—'
+  arch ? `Female ${arch.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}` : '—'
 
 const resolveArchetype = (r) =>
   r._archetype || Object.keys(ARCHETYPE_COLORS).find(k =>
@@ -132,6 +133,21 @@ function SimCard({ evaluation }) {
   )
 }
 
+function ModelSelect({ value, onChange, disabled }) {
+  return (
+    <select
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      disabled={disabled}
+      className="bg-slate-900 border border-border rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-purple-500 disabled:opacity-50"
+    >
+      {NVIDIA_MODELS.map(m => (
+        <option key={m.id} value={m.id}>{m.label}</option>
+      ))}
+    </select>
+  )
+}
+
 export default function SimulatePage() {
   const navigate = useNavigate()
   const {
@@ -141,6 +157,8 @@ export default function SimulatePage() {
     evalError: error,
     runEvaluate,
     stopEvaluate: stop,
+    selectedModel,
+    updateModel,
   } = useWingman()
 
   const profile = (() => {
@@ -169,7 +187,8 @@ export default function SimulatePage() {
             12 female archetypes rate <span className="text-slate-300">{profile.name}</span>'s profile.
           </p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex items-center gap-3">
+          <ModelSelect value={selectedModel} onChange={updateModel} disabled={status === 'running'} />
           {status === 'running' ? (
             <button onClick={stop} className="px-4 py-2 rounded-lg border border-red-700/50 text-red-400 text-sm hover:bg-red-950/30 transition-colors">
               Stop

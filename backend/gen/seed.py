@@ -172,6 +172,7 @@ def build_persona(seed, archetype_data, hobby_pool, index_in_archetype):
         "gender": "female",
         "sexuality": seed["sexuality"],
         "archetype": seed["archetype"],
+        "archetype_data": arch,
         "occupation": seed["occupation"],
         "nationality": seed["nationality"],
         "hobbies": hobbies,

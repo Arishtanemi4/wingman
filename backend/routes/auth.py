@@ -35,3 +35,26 @@ def login(body: LoginRequest) -> LoginResponse:
     if pwd and pwd == body.password:
         return LoginResponse(success=True, username=body.username.strip())
     return LoginResponse(success=False, error="Invalid username or password")
+
+
+@router.post("/auth/signup", response_model=LoginResponse)
+def signup(body: LoginRequest) -> LoginResponse:
+    username = body.username.strip().lower()
+    password = body.password
+
+    if not username or len(username) < 3:
+        return LoginResponse(success=False, error="Username must be at least 3 characters.")
+    if " " in username:
+        return LoginResponse(success=False, error="Username cannot contain spaces.")
+    if not password or len(password) < 3:
+        return LoginResponse(success=False, error="Password must be at least 3 characters.")
+
+    users = _load_users()
+    if username in users:
+        return LoginResponse(success=False, error="Username already taken.")
+
+    with open(_USERS_CSV, "a", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow([username, password])
+
+    return LoginResponse(success=True, username=username)

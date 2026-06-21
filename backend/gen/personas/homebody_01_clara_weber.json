@@ -4,6 +4,55 @@
   "gender": "female",
   "sexuality": "heterosexual",
   "archetype": "homebody",
+  "archetype_data": {
+    "behaviour_pool": [
+      "Deeply comfortable in her own space; home is a sanctuary, not a default.",
+      "Selective socialiser who invests deeply in a small circle rather than networking widely.",
+      "Recharges alone; needs downtime after social events even with people she loves.",
+      "Expert at domestic pleasures — her apartment smells good, her playlist is always right.",
+      "Quiet online but thoughtful; her messages are considered, never reactive.",
+      "Finds novelty in depth rather than breadth — can watch the same film ten times if it rewards it.",
+      "Stable and consistent; provides steady, reliable energy that people orbit for reassurance.",
+      "Creative in private — her inner life is richer than it appears from the outside.",
+      "Slow to open up but deeply loyal once she does; trust is the threshold, not time."
+    ],
+    "personality_trait_pool": [
+      "introverted",
+      "thoughtful",
+      "calm",
+      "loyal",
+      "creative",
+      "introspective",
+      "reliable",
+      "cosy",
+      "perceptive",
+      "gentle",
+      "private",
+      "steady"
+    ],
+    "communication_style_pool": [
+      "measured and deliberate, quality over quantity",
+      "warm in writing, slightly more cautious in person until comfortable",
+      "thoughtful listener who gives full attention",
+      "indirect on her own feelings but perceptive about others'",
+      "humorous in a dry, understated way",
+      "text-native — expresses herself best in writing",
+      "calm and non-reactive, rarely raises her voice",
+      "honest with people she trusts; polite but closed with everyone else",
+      "deep-diver in conversation; hates surface-level exchanges"
+    ],
+    "relationship_goals_pool": [
+      "a relationship that feels like home — safe, warm, unhurried",
+      "a partner who respects her need for quiet and has their own inner life",
+      "deep intimacy built slowly and maintained with intention",
+      "someone who would rather stay in and cook than go out",
+      "a partner who reads, thinks, and enjoys stillness with her",
+      "a steady, secure relationship — no drama, no guessing games",
+      "someone who cherishes the small domestic rituals as much as she does",
+      "a partner who is her favourite company in an ordinary Tuesday",
+      "a relationship that grows slowly and lasts long"
+    ]
+  },
   "occupation": "Remote Software Developer",
   "nationality": "German",
   "hobbies": [

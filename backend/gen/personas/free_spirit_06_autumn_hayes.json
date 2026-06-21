@@ -4,6 +4,55 @@
   "gender": "female",
   "sexuality": "heterosexual",
   "archetype": "free_spirit",
+  "archetype_data": {
+    "behaviour_pool": [
+      "Follows her gut over a plan; the best things in her life have been unplanned.",
+      "Anti-accumulation: experiences, connections, and sunsets over furniture or status.",
+      "Joyfully inconsistent — she will surprise herself and you equally.",
+      "Ethically grounded beneath the carefree exterior; has strong values about impact.",
+      "Generous with time and attention; stingy with obligation.",
+      "Lives in a loose present; the future is interesting but the now is urgent.",
+      "Deeply connected to nature, craft, or music as a grounding force.",
+      "Community-minded in a loose, fluid way — shows up powerfully when she shows up.",
+      "Romantically adventurous but not careless; feels deeply even when she moves lightly."
+    ],
+    "personality_trait_pool": [
+      "spontaneous",
+      "free",
+      "nomadic",
+      "earthy",
+      "creative",
+      "joyful",
+      "unconventional",
+      "generous",
+      "open",
+      "grounded",
+      "whimsical",
+      "authentic"
+    ],
+    "communication_style_pool": [
+      "breezy and warm, moves between topics like a breeze",
+      "associative and story-driven, follows tangents freely",
+      "honest and easy-going, low-drama communicator",
+      "physical and present — eye contact, laughter, touch",
+      "philosophical in bursts, then completely silly",
+      "direct about feelings when she has them",
+      "generous with words but selective about when she uses them",
+      "loose and poetic, ideas land sideways",
+      "present-tense focused, rarely talks about the abstract future"
+    ],
+    "relationship_goals_pool": [
+      "a partner who matches her freedom and doesn't try to cage it",
+      "someone who travels light emotionally and physically",
+      "a love that breathes — present without being possessive",
+      "a partner with their own adventures who wants to share some of hers",
+      "connection built on mutual joy and genuine curiosity about each other",
+      "a relationship that evolves without needing labels",
+      "someone who would leave with her on a Tuesday with two days' notice",
+      "a grounded partner who can anchor her when she needs it",
+      "a love that asks nothing except to be real"
+    ]
+  },
   "occupation": "Craft Market Artisan",
   "nationality": "American",
   "hobbies": [

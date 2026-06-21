@@ -4,6 +4,55 @@
   "gender": "female",
   "sexuality": "heterosexual",
   "archetype": "careerist",
+  "archetype_data": {
+    "behaviour_pool": [
+      "Driven and strategic; treats relationships with the same intentionality she applies to her career.",
+      "High standards for herself and others. Impatient with mediocrity; inspired by excellence.",
+      "Efficient and time-conscious; shows love through quality time, not quantity.",
+      "Competitive in work, surprisingly vulnerable in private. The boardroom persona is a costume.",
+      "Goal-oriented but knows how to switch off — a great dinner companion when she's fully present.",
+      "Ambitious by design: has ten-year plans and treats setbacks as data.",
+      "Direct about what she wants; plays no games and expects the same.",
+      "Well-networked and socially fluent; knows everyone but lets few in close.",
+      "Polished exterior, chaotic inner life. Her planner is immaculate; her feelings are not."
+    ],
+    "personality_trait_pool": [
+      "ambitious",
+      "disciplined",
+      "strategic",
+      "confident",
+      "direct",
+      "driven",
+      "organised",
+      "resilient",
+      "independent",
+      "goal-oriented",
+      "efficient",
+      "sophisticated"
+    ],
+    "communication_style_pool": [
+      "direct and concise, respects others' time",
+      "polished and articulate, chooses words carefully",
+      "assertive and clear, says what she means",
+      "professional warmth that takes time to become personal warmth",
+      "structured communicator who thinks in frameworks",
+      "candid and feedback-oriented; gives and receives criticism well",
+      "high-bandwidth conversationalist, covers a lot fast",
+      "strategic listener — processes before responding",
+      "charming and persuasive in groups, more guarded one-on-one"
+    ],
+    "relationship_goals_pool": [
+      "an equal who matches her drive and has their own ambitions",
+      "a partner who supports her goals without being threatened by them",
+      "a secure relationship that doesn't compete with her work",
+      "someone who understands that her ambition is part of her, not a barrier",
+      "deep connection built outside work hours — her sanctuary",
+      "a partner who can keep up intellectually and socially",
+      "someone who challenges her and calls her on her blind spots",
+      "a relationship built on mutual respect and shared standards",
+      "a life partner who is building something too"
+    ]
+  },
   "occupation": "Venture Capitalist",
   "nationality": "Italian-American",
   "hobbies": [

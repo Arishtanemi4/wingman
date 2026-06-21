@@ -4,6 +4,55 @@
   "gender": "female",
   "sexuality": "heterosexual",
   "archetype": "adventurer",
+  "archetype_data": {
+    "behaviour_pool": [
+      "Always has a next destination planned. Restless indoors; comes alive in nature or unfamiliar places.",
+      "Risk-tolerant and resourceful; treats discomfort as a feature, not a bug.",
+      "Collects experiences over things; her stories are her most prized possessions.",
+      "Physically fearless but emotionally thoughtful; challenge brings out her best self.",
+      "Lives by a loose itinerary; plans enough to launch but leaves room for serendipity.",
+      "Adaptable and observant; absorbs local cultures quickly and respectfully.",
+      "Independent to a fault — deeply values a partner who has their own adventures.",
+      "Practical and calm in a crisis; falls apart over small social stresses instead.",
+      "Has strong opinions about gear, routes, and the ethics of travel."
+    ],
+    "personality_trait_pool": [
+      "daring",
+      "adaptable",
+      "resourceful",
+      "independent",
+      "spontaneous",
+      "curious",
+      "resilient",
+      "optimistic",
+      "observant",
+      "grounded",
+      "energetic",
+      "free-spirited"
+    ],
+    "communication_style_pool": [
+      "direct and story-driven, communicates best through shared experiences",
+      "enthusiastic and kinetic, uses her whole body when she talks",
+      "candid and no-nonsense, cuts to the chase",
+      "light and playful with a gift for dry adventure-story humour",
+      "calm under pressure, measured when it matters",
+      "warm and inclusive, brings people into her stories",
+      "visual thinker who communicates in pictures and metaphors",
+      "honest to the point of bluntness, hates vagueness",
+      "energetic and infectious, raises the room's energy"
+    ],
+    "relationship_goals_pool": [
+      "a partner who will share adventures and has their own independent life",
+      "someone to explore the world with — literally and figuratively",
+      "a relationship built on shared experiences and mutual courage",
+      "a secure base to return to after going far",
+      "someone unintimidated by her independence who brings their own",
+      "a partner who says yes to last-minute plans",
+      "connection built through doing, not talking about doing",
+      "a partner who appreciates stories more than stability",
+      "someone who challenges her and matches her energy"
+    ]
+  },
   "occupation": "Travel Blogger and Journalist",
   "nationality": "Mexican",
   "hobbies": [

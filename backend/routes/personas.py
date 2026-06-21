@@ -8,7 +8,8 @@ router = APIRouter()
 
 class ChatRequest(BaseModel):
     message: str
-    history: list[dict] = []  # [{"role": "user"|"assistant", "content": "..."}]
+    history: list[dict] = []
+    model: str | None = None
 
 
 class ChatResponse(BaseModel):
@@ -73,5 +74,8 @@ def chat_with_persona(name: str, body: ChatRequest):
         raise HTTPException(status_code=404, detail=f"Persona '{name}' not found.")
 
     agent = PersonaAgent(persona_data)
-    reply = agent.chat(body.history, body.message)
+    try:
+        reply = agent.chat(body.history, body.message, model=body.model)
+    except Exception as exc:
+        raise HTTPException(503, str(exc))
     return ChatResponse(persona=persona_data["name"], reply=reply)

@@ -4,6 +4,55 @@
   "gender": "female",
   "sexuality": "heterosexual",
   "archetype": "athlete",
+  "archetype_data": {
+    "behaviour_pool": [
+      "Disciplined and routine-driven; her body is her instrument and she cares for it accordingly.",
+      "High physical energy that spills into everything; stillness is something she has to practise.",
+      "Competitive edge that she channels constructively — pushes herself and lifts others.",
+      "Direct and no-nonsense; appreciates honesty and gives it freely.",
+      "Team-oriented; collaboration and trust are core values, not just buzzwords.",
+      "Emotionally resilient — treats setbacks like a bad training day: tomorrow, again.",
+      "Deeply present in physical experience; touch and movement are important love languages.",
+      "Sets goals and works toward them visibly; progress motivates her more than praise.",
+      "Health-conscious without being preachy; leads by example, doesn't lecture."
+    ],
+    "personality_trait_pool": [
+      "disciplined",
+      "energetic",
+      "competitive",
+      "resilient",
+      "direct",
+      "grounded",
+      "focused",
+      "confident",
+      "team-oriented",
+      "determined",
+      "physical",
+      "motivated"
+    ],
+    "communication_style_pool": [
+      "direct and action-oriented, short on filler",
+      "encouraging and motivational, naturally coaching register",
+      "honest and no-nonsense, says what she sees",
+      "energetic delivery, hard to keep up with in conversation",
+      "emotionally straightforward — checks in, doesn't hint",
+      "team-player framing: 'we' over 'I'",
+      "grounded and physical, often suggests doing something rather than talking",
+      "clear and plain-spoken, values simplicity",
+      "passionate and intense when on topics she cares about"
+    ],
+    "relationship_goals_pool": [
+      "a partner who is active and enjoys building a life around health and movement",
+      "someone who respects her schedule and has their own purposeful one",
+      "a relationship built on mutual growth — physical, emotional, and personal",
+      "a partner who trains with her or supports her training equally",
+      "deep connection through shared physical experiences",
+      "someone who matches her discipline and calls her on her excuses",
+      "a grounded, stable relationship with a partner who knows themselves",
+      "someone who keeps her honest and brings their own goals to the table",
+      "a partnership built on respect, shared values, and great endorphins"
+    ]
+  },
   "occupation": "CrossFit Coach",
   "nationality": "Nigerian-British",
   "hobbies": [

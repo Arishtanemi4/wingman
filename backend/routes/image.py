@@ -1,6 +1,8 @@
+import asyncio
 import base64
 import json
 import re
+import time
 
 from fastapi import APIRouter, HTTPException
 from json_repair import repair_json
@@ -8,10 +10,12 @@ from openai import OpenAI
 from pydantic import BaseModel
 
 from cache import cache_get, cache_set, hash_bytes
-from gen.config import IMAGE_CACHE_DIR, LLM_API_KEY, LLM_BASE_URL, VISION_MODEL
+from gen.config import IMAGE_CACHE_DIR, VISION_BASE_URL, VISION_API_KEY, VISION_MODEL
 
 router = APIRouter()
-_client = OpenAI(base_url=LLM_BASE_URL, api_key=LLM_API_KEY, timeout=120.0)
+_client = OpenAI(base_url=VISION_BASE_URL, api_key=VISION_API_KEY, timeout=120.0)
+# cap concurrent vision API calls — model returns prose instead of JSON when overloaded
+_vision_sem = asyncio.Semaphore(1)
 
 _VISION_PROMPT = """You are a professional dating-profile photo analyst with expertise in
 facial aesthetics, photography, and behavioral psychology. Analyse this photo of a man.
@@ -53,16 +57,44 @@ class ImageAnalysis(BaseModel):
 
 
 def _extract_json(text: str) -> dict:
+    if not text:
+        raise ValueError("vision model returned empty content")
+
+    # Direct parse
     try:
         return json.loads(text)
-    except json.JSONDecodeError:
+    except (json.JSONDecodeError, ValueError):
         pass
-    match = re.search(r'\{.*\}', text, re.DOTALL)
-    raw = match.group() if match else text
-    result = repair_json(raw, return_objects=True)
-    if not isinstance(result, dict):
-        raise ValueError("vision model did not return a JSON object")
-    return result
+
+    # Strip markdown code fences, then retry
+    stripped = re.sub(r'```(?:json)?\s*', '', text).strip()
+    try:
+        return json.loads(stripped)
+    except (json.JSONDecodeError, ValueError):
+        pass
+
+    # Find first balanced { ... } object (avoids greedy overshoot)
+    depth, start = 0, None
+    for i, ch in enumerate(text):
+        if ch == '{':
+            if depth == 0:
+                start = i
+            depth += 1
+        elif ch == '}':
+            depth -= 1
+            if depth == 0 and start is not None:
+                candidate = text[start:i + 1]
+                result = repair_json(candidate, return_objects=True)
+                if isinstance(result, dict):
+                    return result
+                break
+
+    # Last resort: repair the whole response
+    result = repair_json(text, return_objects=True)
+    if isinstance(result, dict):
+        return result
+
+    raise ValueError("vision model did not return a JSON object")
 
 
 def _to_score(val, default: float = 0.0) -> float:
@@ -95,17 +127,29 @@ def analyze_image(image_base64: str | None, image_url: str | None) -> dict:
     if cached:
         return {**cached, "image_hash": key, "cached": True}
 
-    response = _client.chat.completions.create(
-        model=VISION_MODEL,
-        messages=[{
-            "role": "user",
-            "content": [
-                {"type": "image_url", "image_url": {"url": image_ref}},
-                {"type": "text", "text": _VISION_PROMPT},
-            ],
-        }],
-    )
-    data = _extract_json(response.choices[0].message.content)
+    last_err = None
+    for _attempt in range(2):
+        response = _client.chat.completions.create(
+            model=VISION_MODEL,
+            messages=[{
+                "role": "user",
+                "content": [
+                    {"type": "image_url", "image_url": {"url": image_ref}},
+                    {"type": "text", "text": _VISION_PROMPT},
+                ],
+            }],
+        )
+        content = response.choices[0].message.content or ""
+        try:
+            data = _extract_json(content)
+            last_err = None
+            break
+        except ValueError as exc:
+            last_err = exc
+            time.sleep(1.5)  # brief pause before retry
+    if last_err:
+        raise last_err
+    time.sleep(1.5)  # stay under 40 RPM across all API calls
 
     raw_scores = data.get("scores", {})
     scores = (
@@ -179,16 +223,19 @@ def format_image_block(image_descriptions: list[str], image_analyses: list[dict]
 
 
 @router.post("/image/describe", response_model=ImageAnalysis)
-def describe_image(payload: ImageInput) -> ImageAnalysis:
+async def describe_image(payload: ImageInput) -> ImageAnalysis:
     """
-    Describes + scores a user's photo using qwen2.5-vl (golden ratio, lighting,
-    contrast, facial symmetry, physical build). Cached by image hash so the same
-    photo is never re-processed. Pass the returned object into
-    UserProfile.image_analyses for /analyze and /evaluate.
+    Describes + scores a photo. Serialised via semaphore — the vision model
+    returns prose instead of JSON when hit with concurrent requests.
+    Cached by image hash so the same photo is never re-processed.
     """
     if not payload.image_base64 and not payload.image_url:
         raise HTTPException(400, "Provide image_base64 or image_url.")
     try:
-        return ImageAnalysis(**analyze_image(payload.image_base64, payload.image_url))
+        async with _vision_sem:
+            result = await asyncio.to_thread(
+                analyze_image, payload.image_base64, payload.image_url
+            )
+        return ImageAnalysis(**result)
     except Exception as exc:
         raise HTTPException(500, f"Image analysis failed: {exc}")

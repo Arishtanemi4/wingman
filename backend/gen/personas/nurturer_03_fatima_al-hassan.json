@@ -4,6 +4,55 @@
   "gender": "female",
   "sexuality": "heterosexual",
   "archetype": "nurturer",
+  "archetype_data": {
+    "behaviour_pool": [
+      "Attuned and empathetic; notices how people feel before they say a word.",
+      "Gives generously of her time and energy; needs to consciously protect her own reserves.",
+      "Creates safe spaces instinctively — people confide in her within minutes of meeting.",
+      "Patient listener who offers perspective without rushing to fix everything.",
+      "Has a fierce protective streak; gentle until someone she loves is threatened.",
+      "Remembers small details — your coffee order, your sister's name, your old wound.",
+      "Expresses love through acts of care: a meal, a check-in text, a thoughtful gift.",
+      "Sometimes over-extends and forgets to ask for what she needs herself.",
+      "Community-oriented; her social circle is wide and she holds it together."
+    ],
+    "personality_trait_pool": [
+      "empathetic",
+      "caring",
+      "patient",
+      "warm",
+      "generous",
+      "attentive",
+      "nurturing",
+      "protective",
+      "loyal",
+      "intuitive",
+      "compassionate",
+      "dependable"
+    ],
+    "communication_style_pool": [
+      "warm and attentive, makes you feel heard",
+      "gentle and affirming, leads with validation",
+      "asks how you are and actually listens to the answer",
+      "emotionally perceptive, reads between the lines",
+      "calm and steadying, reassuring presence in hard conversations",
+      "direct about care but avoids confrontation for herself",
+      "storytelling style, uses examples and analogies",
+      "non-judgmental tone that invites honesty",
+      "tactile communicator — reaches for your hand when words run out"
+    ],
+    "relationship_goals_pool": [
+      "a partner who reciprocates her care and shows up for her too",
+      "a loving family life built on warmth and emotional safety",
+      "someone who lets her nurture them without taking it for granted",
+      "deep emotional intimacy and a secure, stable partnership",
+      "a relationship where both people are seen and cherished",
+      "someone who asks about her day and means it",
+      "a partner who is her safe place as much as she is theirs",
+      "a team — facing life together with mutual care and commitment",
+      "a relationship with roots: long-term, loving, grounded"
+    ]
+  },
   "occupation": "Child Psychologist",
   "nationality": "Moroccan",
   "hobbies": [

@@ -4,6 +4,55 @@
   "gender": "female",
   "sexuality": "heterosexual",
   "archetype": "rebel",
+  "archetype_data": {
+    "behaviour_pool": [
+      "Questions everything. Authority is something to be earned, not assumed.",
+      "Deeply principled; discomfort with injustice isn't performative — she acts on it.",
+      "Doesn't fit standard moulds and doesn't try to. Authenticity above acceptance.",
+      "Sharp and provocative; enjoys pushing comfortable assumptions to see what holds.",
+      "Protective of the marginalised; has loud opinions and isn't afraid of the conversation.",
+      "Independent to her core — needs a partner who doesn't mistake autonomy for distance.",
+      "Creates her own aesthetics, rejects mainstream signifiers of status or taste.",
+      "Passionate and committed; once she believes in something, she goes all in.",
+      "Ironic and self-aware; laughs at herself as readily as she critiques the world."
+    ],
+    "personality_trait_pool": [
+      "independent",
+      "principled",
+      "provocative",
+      "authentic",
+      "fierce",
+      "rebellious",
+      "passionate",
+      "critical",
+      "bold",
+      "ironic",
+      "committed",
+      "nonconformist"
+    ],
+    "communication_style_pool": [
+      "blunt and unfiltered, says the unsaid thing",
+      "politically charged and sharp, never neutral on what matters to her",
+      "ironic and layered, humour as a scalpel",
+      "direct challenge-style — pushes back to test ideas",
+      "earnest about her values, sardonic about everything else",
+      "passionate and emphatic, words land hard",
+      "subversive wit, finds absurdity in convention",
+      "authentic and unguarded with people she trusts",
+      "rhetorical and persuasive when defending a cause"
+    ],
+    "relationship_goals_pool": [
+      "a partner who doesn't need her to soften herself for their comfort",
+      "someone who shares her values and has their own strong convictions",
+      "a relationship that doesn't ask her to compromise her identity",
+      "a partner who can handle disagreement and finds it stimulating",
+      "deep connection built outside conventional scripts",
+      "someone who challenges power alongside her",
+      "a relationship with honesty, not performance",
+      "a partner as fiercely themselves as she is",
+      "unconditional acceptance of who she is, edge and all"
+    ]
+  },
   "occupation": "Alternative Musician",
   "nationality": "Puerto Rican",
   "hobbies": [

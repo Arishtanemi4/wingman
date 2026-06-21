@@ -1,20 +1,20 @@
+import asyncio
 import json
 import os
 import re
 
 from fastapi import APIRouter, HTTPException
 from json_repair import repair_json
-from openai import OpenAI
 from pydantic import BaseModel
 
 from cache import cache_get, cache_set, hash_obj
-from gen.config import ANALYSIS_CACHE_DIR, FRAGMENTS_DIR, LLM_API_KEY, LLM_BASE_URL, LLM_MODEL
-INSIGHTS_CACHE_DIR = ANALYSIS_CACHE_DIR  # reuse same dir, different key prefix
+from gen.config import ANALYSIS_CACHE_DIR, FRAGMENTS_DIR, DEFAULT_LLM_MODEL
+INSIGHTS_CACHE_DIR = ANALYSIS_CACHE_DIR
+from llm import complete
 from routes.image import format_image_block
 from user_store import append_analysis
 
 router = APIRouter()
-_client = OpenAI(base_url=LLM_BASE_URL, api_key=LLM_API_KEY)
 
 # Fragment pools loaded once at startup
 with open(os.path.join(FRAGMENTS_DIR, "hobbies.json"), encoding="utf-8") as _f:
@@ -31,10 +31,14 @@ class UserProfile(BaseModel):
     age: int
     bio: str
     occupation: str | None = None
+    gender: str | None = None
+    sexuality: str | None = None
+    interested_in: str | None = None
     hobbies: list[str]
     image_descriptions: list[str] = []
     image_analyses: list[dict] = []
-    username: str | None = None               # set by frontend from session
+    username: str | None = None
+    model: str | None = None
 
 
 class HobbyFeedback(BaseModel):
@@ -74,25 +78,34 @@ def _archetype_context() -> str:
 def _build_prompt(profile: UserProfile, arch_context: str) -> str:
     hobbies_str = ", ".join(profile.hobbies) or "none listed"
     occupation_str = profile.occupation or "not specified"
+    subject = profile.gender or "person"
+    target = profile.interested_in or "potential matches"
 
     img_block = ""
     photos = format_image_block(profile.image_descriptions, profile.image_analyses)
     if photos:
         img_block = f"\n\n## Photos (with aesthetic scores out of 10)\n{photos}"
 
+    gender_line = f"Gender: {profile.gender}" if profile.gender else ""
+    sexuality_line = f"Sexuality: {profile.sexuality}" if profile.sexuality else ""
+
+    identity_block = "\n".join(filter(None, [gender_line, sexuality_line]))
+    if identity_block:
+        identity_block = "\n" + identity_block
+
     return f"""You are a sharp, psychologically-aware dating coach.
-Analyse this man's profile and give specific, actionable feedback on how he can
-develop his hobbies and interests to stand out more to women with different personality types.
-Use the 12 female persona archetypes below as your frame of reference.
+Analyse this {subject}'s profile and give specific, actionable feedback on how they can
+develop their hobbies and interests to stand out more to {target} with different personality types.
+Use the 12 persona archetypes below as your frame of reference.
 Where photo scores are given, factor the visual presentation into your read.
 
-## Female Persona Archetypes (12 types, 108 women total)
+## Persona Archetypes (12 types, 108 people total)
 {arch_context}
 
 ## User Profile
 Name: {profile.name}
 Age: {profile.age}
-Occupation: {occupation_str}
+Occupation: {occupation_str}{identity_block}
 Bio: {profile.bio}
 Hobbies: {hobbies_str}{img_block}
 
@@ -100,7 +113,7 @@ Hobbies: {hobbies_str}{img_block}
 For each of the user's hobbies:
 1. Which 1–3 archetypes find this naturally appealing and why
 2. A specific DIRECTION to develop this hobby — not "do more of it", but a concrete angle
-   that opens it to more types of women or makes it a genuine conversation-starter
+   that opens it to more types of people or makes it a genuine conversation-starter
 3. The standout tip: the exact level or aspect of this hobby that becomes genuinely impressive
 
 Also identify the 2–3 archetypes the user currently has the WEAKEST overlap with.
@@ -111,7 +124,7 @@ Finally give 3–5 top-level prioritised recommendations.
 
 Respond ONLY with valid JSON in this exact structure — no explanation outside the JSON:
 {{
-  "summary": "2–3 sentence overall read on his profile",
+  "summary": "2–3 sentence overall read on their profile",
   "hobby_feedback": [
     {{
       "hobby": "exact hobby name from his list",
@@ -159,12 +172,7 @@ def _normalise(data: dict) -> dict:
 # ── Route ─────────────────────────────────────────────────────────────────────
 
 @router.post("/analyze", response_model=AnalysisResult)
-def analyze_profile(profile: UserProfile) -> AnalysisResult:
-    """
-    Analyses the user's profile against the 12 female persona archetypes,
-    factoring in scored photo analyses. Results are cached by profile hash
-    so an identical profile is never re-processed.
-    """
+async def analyze_profile(profile: UserProfile) -> AnalysisResult:
     if not profile.hobbies:
         raise HTTPException(400, "At least one hobby is required for analysis.")
 
@@ -176,11 +184,17 @@ def analyze_profile(profile: UserProfile) -> AnalysisResult:
     arch_context = _archetype_context()
     prompt = _build_prompt(profile, arch_context)
 
-    response = _client.chat.completions.create(
-        model=LLM_MODEL,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    raw = response.choices[0].message.content
+    try:
+        raw = await asyncio.to_thread(
+            complete,
+            profile.model or DEFAULT_LLM_MODEL,
+            [{"role": "user", "content": prompt}],
+            max_tokens=4096,
+            temperature=0.6,
+            top_p=0.95,
+        )
+    except Exception as exc:
+        raise HTTPException(503, f"LLM unavailable: {exc}")
 
     try:
         data = _normalise(_extract_json(raw))
@@ -247,10 +261,7 @@ def _coerce_insights(data: dict) -> dict[str, dict]:
 
 
 @router.post("/archetypes/insights", response_model=InsightsResult)
-def archetype_insights(profile: UserProfile) -> InsightsResult:
-    """One LLM call — pros/cons for all 12 archetypes. Cached by profile hash.
-    Tolerant of malformed/partial LLM output: always returns all 12 archetypes,
-    filling any the model missed with empty pros/cons rather than failing."""
+async def archetype_insights(profile: UserProfile) -> InsightsResult:
     if not profile.hobbies:
         raise HTTPException(400, "At least one hobby is required.")
 
@@ -268,16 +279,17 @@ def archetype_insights(profile: UserProfile) -> InsightsResult:
         arch_context=_archetype_context(),
     )
     try:
-        response = _client.chat.completions.create(
-            model=LLM_MODEL,
-            messages=[{"role": "user", "content": prompt}],
+        raw = await asyncio.to_thread(
+            complete,
+            profile.model or DEFAULT_LLM_MODEL,
+            [{"role": "user", "content": prompt}],
             max_tokens=2000,
-            timeout=180,
+            temperature=0.6,
+            top_p=0.95,
         )
     except Exception as exc:
         raise HTTPException(503, f"LLM unavailable: {exc}")
 
-    raw = response.choices[0].message.content
     try:
         parsed = _coerce_insights(_extract_json(raw))
     except Exception:

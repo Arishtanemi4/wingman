@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useRef } from 'react'
-import { analyzeProfile, extractErrorMessage } from './api'
+import { analyzeProfile, extractErrorMessage, DEFAULT_MODEL, NVIDIA_MODELS } from './api'
 import { stripPreviews } from './imageUtils'
 import { currentUsername, userKey } from './auth'
 
@@ -10,10 +10,20 @@ const WingmanContext = createContext(null)
 export const useWingman = () => useContext(WingmanContext)
 
 export function WingmanProvider({ children }) {
-  // Keys computed HERE (inside the provider, at mount time after login).
-  // Must NOT be at module level — module loads once, but provider remounts per login.
   const RESULT_KEY = userKey('wingman_result')
   const EVAL_KEY   = userKey('wingman_sim')
+
+  // ── Model selection — validate against current model list to evict stale IDs ──
+  const VALID_IDS = new Set(NVIDIA_MODELS.map(m => m.id))
+  const [selectedModel, setSelectedModel] = useState(() => {
+    const stored = localStorage.getItem('wingman_model')
+    return stored && VALID_IDS.has(stored) ? stored : DEFAULT_MODEL
+  })
+
+  const updateModel = (model) => {
+    setSelectedModel(model)
+    localStorage.setItem('wingman_model', model)
+  }
 
   // ── Analyze state ──
   const [analyzeLoading, setAnalyzeLoading] = useState(false)
@@ -28,7 +38,11 @@ export function WingmanProvider({ children }) {
     setAnalyzeResult(null)
     localStorage.removeItem(RESULT_KEY)
     try {
-      const res = await analyzeProfile({ ...stripPreviews(payload), username: currentUsername() })
+      const res = await analyzeProfile({
+        ...stripPreviews(payload),
+        username: currentUsername(),
+        model: selectedModel,
+      })
       setAnalyzeResult(res.data)
       localStorage.setItem(RESULT_KEY, JSON.stringify(res.data))
     } catch (err) {
@@ -72,7 +86,11 @@ export function WingmanProvider({ children }) {
       const res = await fetch(`${API_URL}/api/evaluate/stream`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...stripPreviews(profile), username: currentUsername() }),
+        body: JSON.stringify({
+          ...stripPreviews(profile),
+          username: currentUsername(),
+          model: selectedModel,
+        }),
         signal: controller.signal,
       })
       if (!res.ok) throw new Error(`Server error ${res.status}`)
@@ -97,8 +115,9 @@ export function WingmanProvider({ children }) {
             if (event.type === 'start') {
               setEvalProgress({ done: 0, total: event.total })
             } else if (event.type === 'result') {
-              // Always store _archetype so display never falls back to LLM name
-              const enriched = { ...event.data, _archetype: event.archetype }
+              // Cached events omit top-level `archetype`; fall back to the
+              // `_archetype` already baked into the stored result.
+              const enriched = { ...event.data, _archetype: event.archetype || event.data?._archetype }
               accumulated = [...accumulated, enriched]
               setEvalResults([...accumulated])
               setEvalProgress(prev => ({ ...prev, done: event.index }))
@@ -127,6 +146,8 @@ export function WingmanProvider({ children }) {
 
   return (
     <WingmanContext.Provider value={{
+      // model
+      selectedModel, updateModel,
       // analyze
       analyzeLoading, analyzeResult, analyzeError, runAnalyze,
       // evaluate
